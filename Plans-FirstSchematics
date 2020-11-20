@@ -1,0 +1,26 @@
+Description:
+This mushroom simulator will simulate several varieties of mushrooms and their growing conditions. Inspired by games like Dwarf Fortress and their 
+complex simulations of worlds, this game will try and simulate the various things that are involved in the growing of mushrooms, like nearby trees and features,
+rain, the seasons, and so on. 
+
+Needed Objects:
+
+Trees: There should be a virtual tree class with a variety of instantiations. Each tree should 
+be either coniferous or deciduous, and have a type/species (I.E, oak, douglas fir, etc). Information
+such as the height of the tree should also be included, as well as the age of the tree, the extent of its root structures, etc.
+
+Mushrooms: Mushrooms grow from mycelium. Each block around a tree can contain mycelium, and that block will either be growing mushrooms or not based of 
+the mushrooms requirements. Mycelium should grow to adjacent blocks depending on what is in the block. Mushrooms should also grow at different times of the year,
+depending on soil moisture.
+
+Soil: Mushrooms and trees grow in soil. Each block should have soil with its own traits. Each block of soil could have different consistency? Different kinds of soil?
+Probably after the basics are already completed. At the very least, soil should have a moisture level depending on rain.
+
+Other things to include:
+
+Seasons. Summer, Fall, Winter, Spring. Should change every 30 days or so. Perhaps, variable number of days per season?
+
+Rain. Should happen depending on season, etc. Maybe cloud cover could be included to help determine likelyhood of rain.
+
+Temperature. Should also depend on season, maybe affects likelihood of rain.
+
