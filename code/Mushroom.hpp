@@ -1,9 +1,10 @@
 class Mushroom{
 	private:
 		int density;
-		bool isBloomiing;
+		int reproductiveAge;
+		bool isBlooming;
 		String description;
 		String name;
 	public:
-		spread();
+		void spread();
 }

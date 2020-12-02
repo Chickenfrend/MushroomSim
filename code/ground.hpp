@@ -1,4 +1,4 @@
-class ground{
+class Ground{
 	private:
 		int density;
 		int moisture;
