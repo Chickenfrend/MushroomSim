@@ -5,6 +5,7 @@ namespace Objects{
 			bool isDeciduous; 
 			int maxDistance;
 			int ageYears;
+			int ageSeasons;
 			float height;
 			float circumference;
 			float maxHeight;
