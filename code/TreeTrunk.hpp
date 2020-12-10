@@ -1,18 +1,39 @@
-namespace Objects{
-	class TreeTrunk{
-		private:
-			String treeType;
-			bool isDeciduous; 
-			int maxDistance;
-			int ageYears;
-			int ageSeasons;
-			float height;
-			float circumference;
-			float maxHeight;
+#ifndef __TREETRUNK
+#define __TREETRUNK
 
-		public:
-			void age();
-			void growRoots();
-			void growTaller();
-	}
-}
+#include <string>
+
+class TreeTrunk{
+	protected:
+		std::string treeType;
+		std::string description;
+		bool isDeciduous; 
+		int maxDistance;//This is the distance the roots should grow from the tree (in blocks)
+		int distance;//Actual distance of the roots.
+
+		int ageYears;
+		int ageSeasons;
+		int ageDays;
+		int stage;//This should be the stage of the tree. Young, old, etc. May have an enum for this.
+
+		float height;
+		float circumference;
+		float maxHeight;
+
+	public:
+		void ageDay();
+		void ageSeason();
+		void ageYear();
+		void ageStage();
+
+		void growTaller();
+		void growRoots();
+		virtual void growRootsCheck() = 0;
+
+		bool getDeciduousStatus();
+		std::string getDescription();
+		std::string getTreeType();
+		std::string loadDescription(std::string name);
+};
+
+#endif

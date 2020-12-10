@@ -11,6 +11,7 @@ class world{
 		vector<vector<Ground>> world; 
 		std::pair<int,int> curPos; 
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.
+
 	public:
 		void generateWorld(); //This will randomly generate a world
 		void update(); //This should update the world one tick. Should change curPos and go through whole 2d list.

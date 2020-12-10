@@ -1,10 +1,23 @@
+#ifndef __MUSHROOM
+#define __MUSHROOM
+
+#include <string> 
 class Mushroom{
 	private:
-		int density;
+		float density;
 		int reproductiveAge;
 		bool isBlooming;
-		String description;
-		String name;
+		std::string description;
+		std::string name;
 	public:
-		void spread();
-}
+		virtual bool checkSpreadConditions();
+		virtual void spread();
+		virtual void sporeRelease();
+
+		float getDensity();
+		bool getBloomingStatus();
+		std::string getDescription();
+		std::string getName();
+};
+
+#endif
