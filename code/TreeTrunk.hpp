@@ -2,6 +2,7 @@
 #define __TREETRUNK
 
 #include <string>
+#include <memory>
 
 class TreeTrunk{
 	protected:
@@ -34,6 +35,7 @@ class TreeTrunk{
 		std::string getDescription();
 		std::string getTreeType();
 		std::string loadDescription(std::string name);
+
 };
 
 #endif

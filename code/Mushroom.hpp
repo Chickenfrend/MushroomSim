@@ -2,6 +2,7 @@
 #define __MUSHROOM
 
 #include <string> 
+#include "Ground.hpp"
 #include "ShroomTracker.hpp"
 class Mushroom{
 	protected:

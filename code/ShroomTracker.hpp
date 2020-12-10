@@ -9,6 +9,6 @@ class ShroomTracker{
 	int age;
 	int count;
 	float mass;
-}
+};
 
 #endif
