@@ -2,7 +2,7 @@
 #define __MUSHROOM
 
 #include <string> 
-#include "Ground.hpp"
+#include <memory>
 #include "ShroomTracker.hpp"
 class Mushroom{
 	protected:
@@ -24,7 +24,7 @@ class Mushroom{
 		std::string getName();
 		std::unique_ptr<ShroomTracker> getShroomTracker();
 
-		void setShroomTracker(unique_ptr<ShroomTracker> tracker);
+		void setShroomTracker(std::unique_ptr<ShroomTracker> tracker);
 };
 
 #endif

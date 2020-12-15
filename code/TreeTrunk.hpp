@@ -5,6 +5,7 @@
 #include <memory>
 
 class TreeTrunk{
+	private:
 	protected:
 		std::string treeType;
 		std::string description;

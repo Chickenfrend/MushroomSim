@@ -7,9 +7,9 @@ class Ground{
 	private:
 		int density;
 		int moisture;
-		TreeRoot root;
-		TreeTrunk trunk;
-		Mushroom mushroom;
+		std::unique_ptr<TreeRoot> root;
+		std::unique_ptr<TreeTrunk> trunk;
+		std::unique_ptr<Mushroom> mushroom;
 
 	public:
 		int getDensity();

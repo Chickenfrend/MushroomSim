@@ -1,19 +1,18 @@
-#ifndef __TREETRUNK
-#define __TREETRUNK
+#ifndef __TREEROOT
+#define __TREEROOT
 
-#include "TreeTrunk.hpp"
-namespace Objects{
-	class TreeRoot{
-		private:
-			string treeType;
-			bool isDeciduous;
-			int distanceFromTrunk;
-			std::unique_ptr<TreeTrunk> parentTrunk;
-			std::pair<int,int> parentPos;
-		public:
+//#include "TreeTrunk.hpp"
+#include <memory>
+class TreeRoot{
+	private:
+		std::string treeType;
+		bool isDeciduous;
+		int distanceFromTrunk;
+		//std::unique_ptr<TreeTrunk> parentTrunk;
+		std::pair<int,int> parentPos;
+	public:
 
-		
-	}
-}
+	
+};
 
 #endif
