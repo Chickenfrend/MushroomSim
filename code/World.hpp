@@ -4,6 +4,9 @@
 #include "Ground.hpp"
 #include <vector>
 
+/* Concept for later. We could make the world wrap, and add our own functions to add horizontally and vertically to curPos, which would
+ * use modular addition to adjust the current position. Get north, south, etc, would also adjust accordingly.
+ */
 class World{
 	private:
 		enum season {spring, summer, fall, winter};
@@ -15,7 +18,8 @@ class World{
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.
 
 	public:
-		void generateWorld(); //This will randomly generate a world
+		void generateWorld(); //This will randomly generate a world, populating it with tree trunks randomly.
+		void populateWorld(); //This will let the trees grow for a bit then randomly populate with mushrooms.
 		void update(); //This should update the world one tick. Should change curPos and go through whole 2d list.
 		void run(); //This will be some kind of while loop that keeps running update. May do this in main instead, not sure.
 
@@ -24,6 +28,7 @@ class World{
 		Ground& getSouth(int dist = 1); //Should get whatever is dist south of curPos
 		Ground& getEast(int dist = 1); //Should get whatever is dist east of curPos
 		Ground& getWest(int dist = 1); //Should get whatever is dist west of curPos
+		std::vector<Ground*> getArea(int dist); //Returns a vector of pointers to the nearby ground tiles, within a certain distance in every direction from curPos. 
 
 		//These functions should adjust the current position, as long as it's in scope.
 		void moveNorth();

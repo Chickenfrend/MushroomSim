@@ -2,38 +2,64 @@
 
 
 void World::initWorld(){
+	world.resize(size);
+
+	for(int i = 0; i < size; i++){
+		world.at(i).resize(size);
+	}
 }
 
 Ground& World::getCurPos(){
-	return world[std::get<0>(curPos)][std::get<1>(curPos)];
+	return world[curPos.first][curPos.second];
 }
 
 Ground& World::getNorth(int dist){
-	if(std::get<1>(curPos) - dist >= 0){
-		return world[std::get<0>(curPos)][std::get<1>(curPos) - dist];
+	if(curPos.second - dist >= 0){
+		return world[curPos.first][curPos.second - dist];
 	}
-	return world[std::get<0>(curPos)][std::get<1>(curPos)];
+	return world[curPos.first][curPos.second];
 }
 
 Ground& World::getSouth(int dist){
-	if(std::get<1>(curPos) + dist < size){
-		return world[std::get<0>(curPos)][std::get<1>(curPos) + dist];
+	if(curPos.second + dist < size){
+		return world[curPos.first][curPos.second + dist];
 	}
-	return world[std::get<0>(curPos)][std::get<1>(curPos)];
+	return world[curPos.first][curPos.second];
 }
 
 Ground& World::getWest(int dist){
-	if(std::get<0>(curPos) - dist >= 0){
-		return world[std::get<0>(curPos) - dist][std::get<1>(curPos)];
+	if(curPos.first - dist >= 0){
+		return world[curPos.first - dist][curPos.second];
 	}
-	return world[std::get<0>(curPos)][std::get<1>(curPos)];
+	return world[curPos.first][curPos.second];
 }
 
 Ground& World::getEast(int dist){
-	if(std::get<0>(curPos) + dist < size){
-		return world[std::get<0>(curPos) + dist][std::get<1>(curPos)];
+	if(curPos.first + dist < size){
+		return world[curPos.first + dist][curPos.second];
 	}
-	return world[std::get<0>(curPos)][std::get<1>(curPos)];
+	return world[curPos.first][curPos.second];
+}
+
+//Okay, so here we need to search a square with the current position at its center, which means we should start 
+//at (curPos.first - dist, curPos.second - dist). 
+//IF PROGRAM CRASHES, CHECK FOR OUT OF BOUND ERROR HERE!
+std::vector<Ground*> World::getArea(int dist){
+	std::vector<Ground*> result;	
+	int maxHor = size - curPos.first;
+	maxHor = std::min(maxHor, dist);
+	int minHor = std::min(dist, curPos.first);
+	int maxVert = size - curPos.second;
+	maxVert = std::min(maxVert, dist);
+	int minVert = std::min(dist, curPos.second);
+
+	for(int i = curPos.first - minHor; i <= curPos.first + maxHor; i++){
+		for(int j = curPos.second - minVert; j <= curPos.first + maxVert; j++){
+			result.push_back(&world[i][j]);
+		}
+	}
+
+	return result;
 }
 
 void World::moveNorth(){
