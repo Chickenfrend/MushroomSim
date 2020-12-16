@@ -13,6 +13,7 @@ OakTrunk::OakTrunk(){
 	maxDistance = 90;
 	circumference = 0.0f;
 	maxHeight = 90.0f;
+	graphicsSymbol = 'O';
 }
 
 void OakTrunk::growRootsCheck(){

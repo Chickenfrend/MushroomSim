@@ -25,6 +25,8 @@ class Mushroom{
 		std::unique_ptr<ShroomTracker> getShroomTracker();
 
 		void setShroomTracker(std::unique_ptr<ShroomTracker> tracker);
+
+		char getASCIIGraphics();
 };
 
 #endif

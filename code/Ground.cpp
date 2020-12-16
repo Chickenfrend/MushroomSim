@@ -36,3 +36,22 @@ std::unique_ptr<TreeTrunk>& Ground::getTreeTrunk(){
 std::unique_ptr<Mushroom>& Ground::getMushroom(){
 	return mushroom;
 }
+
+void Ground::setTreeTrunk(TreeTrunk* t){
+	trunk.reset(t);
+}
+
+char Ground::getASCIIGraphics(){
+	if(trunk != nullptr){
+		return trunk->getASCIIGraphics();
+	}
+	else if(mushroom){
+		return mushroom->getASCIIGraphics();
+	}
+	else if(root){
+		return root->getASCIIGraphics();
+	}
+	else{
+		return 'g';
+	}
+}

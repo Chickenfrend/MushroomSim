@@ -2,8 +2,11 @@
 #define __WORLD
 
 #include "Ground.hpp"
+#include <iostream>
 #include <vector>
 #include <algorithm>
+#include <stdio.h>
+#include<stdlib.h>
 
 /* Concept for later. We could make the world wrap, and add our own functions to add horizontally and vertically to curPos, which would
  * use modular addition to adjust the current position. Get north, south, etc, would also adjust accordingly.
@@ -38,6 +41,8 @@ class World{
 		void moveSouth();
 		void moveEast();
 		void moveWest();
+
+		void resetCurPos();
 
 		void printWorld(); //This, likely shouldn't really be used in the final version. For now it is convenient to print stuff to the terminal though.
 

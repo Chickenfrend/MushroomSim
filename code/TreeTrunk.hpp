@@ -22,6 +22,8 @@ class TreeTrunk{
 		float circumference;
 		float maxHeight;
 
+		char graphicsSymbol;
+
 	public:
 		void ageDay();
 		void ageSeason();
@@ -36,6 +38,8 @@ class TreeTrunk{
 		std::string getDescription();
 		std::string getTreeType();
 		std::string loadDescription(std::string name);
+
+		char getASCIIGraphics();
 
 };
 

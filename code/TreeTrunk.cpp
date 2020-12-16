@@ -11,3 +11,7 @@ std::string TreeTrunk::getDescription(){
 std::string TreeTrunk::getTreeType(){
 	return treeType;
 }
+
+char TreeTrunk::getASCIIGraphics(){
+	return graphicsSymbol;
+}
