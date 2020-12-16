@@ -62,6 +62,18 @@ std::vector<Ground*> World::getArea(int dist){
 	return result;
 }
 
+bool World::hasTreeInArea(int dist){
+	std::vector<Ground*> area = getArea(dist);
+
+	std::for_each(std::begin(area), std::end(area), [](Ground* const& value){
+		if(value->getTreeTrunk() != NULL){
+			return true; 		
+		}
+	});
+
+	return false;
+}
+
 void World::moveNorth(){
 	if(curPos.second - 1 >= 0){
 		curPos.second--;

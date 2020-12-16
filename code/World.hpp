@@ -3,6 +3,7 @@
 
 #include "Ground.hpp"
 #include <vector>
+#include <algorithm>
 
 /* Concept for later. We could make the world wrap, and add our own functions to add horizontally and vertically to curPos, which would
  * use modular addition to adjust the current position. Get north, south, etc, would also adjust accordingly.
@@ -29,6 +30,8 @@ class World{
 		Ground& getEast(int dist = 1); //Should get whatever is dist east of curPos
 		Ground& getWest(int dist = 1); //Should get whatever is dist west of curPos
 		std::vector<Ground*> getArea(int dist); //Returns a vector of pointers to the nearby ground tiles, within a certain distance in every direction from curPos. 
+
+		bool hasTreeInArea(int dist); //If there's a tree trunk in a certain area, returns true. Calls getArea.
 
 		//These functions should adjust the current position, as long as it's in scope.
 		void moveNorth();

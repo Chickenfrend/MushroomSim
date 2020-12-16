@@ -5,6 +5,8 @@
 
 class Ground{
 	private:
+		//Moisture and density are percentages that indicate how dense, and moist, respectively, the soil is.
+		//Drainage rate is the rate at which moisture leaves the ground.
 		float density;
 		float moisture;
 		float drainageRate;
@@ -15,12 +17,12 @@ class Ground{
 	public:
 		Ground(float _density = 0.0f, float _moisture = 0.0f, float _drainageRate = 0.0f, std::unique_ptr<TreeRoot> r = NULL, std::unique_ptr<TreeTrunk> t = NULL, std::unique_ptr<Mushroom> m = NULL);
 		float getDensity();
-		void setDensity();
+		void setDensity(float d);
 		float getMoisture();
-		void setMoisture(float moisture);
-		TreeRoot& getTreeRoot();
-		TreeTrunk& getTreeTrunk();
-		Mushroom& getMushroom();
+		void setMoisture(float m);
+		std::unique_ptr<TreeRoot>& getTreeRoot();
+		std::unique_ptr<TreeTrunk>& getTreeTrunk();
+		std::unique_ptr<Mushroom>& getMushroom();
 		void update();
 };
 
