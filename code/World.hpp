@@ -22,6 +22,7 @@ class World{
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.
 
 	public:
+		World();
 		void generateWorld(); //This will randomly generate a world, populating it with tree trunks randomly.
 		void populateWorld(); //This will let the trees grow for a bit then randomly populate with mushrooms.
 		void update(); //This should update the world one tick. Should change curPos and go through whole 2d list.

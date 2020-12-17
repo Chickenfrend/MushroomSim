@@ -1,3 +1,6 @@
+#ifndef __GROUND
+#define __GROUND
+
 #include "Mushroom.hpp"
 #include "TreeRoot.hpp"
 #include "TreeTrunk.hpp"
@@ -16,11 +19,11 @@ class Ground{
 		std::unique_ptr<TreeTrunk> trunk;
 
 	public:
-		Ground(float _density = 0.0f, float _moisture = 0.0f, float _drainageRate = 0.0f, std::unique_ptr<TreeRoot> r = nullptr, std::unique_ptr<TreeTrunk> t = nullptr, std::unique_ptr<Mushroom> m = nullptr);
+		Ground(float _density = 0.0f, float _moisture = 0.0f, float _drainageRate = 0.0f);
 		float getDensity();
 		float getMoisture();
 		std::unique_ptr<TreeRoot>& getTreeRoot();
-		std::unique_ptr<TreeTrunk>& getTreeTrunk();
+		TreeTrunk* getTreeTrunk();
 		std::unique_ptr<Mushroom>& getMushroom();
 		
 		void setDensity(float d);
@@ -32,3 +35,4 @@ class Ground{
 		void update();
 };
 
+#endif

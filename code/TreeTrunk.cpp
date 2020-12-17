@@ -15,3 +15,7 @@ std::string TreeTrunk::getTreeType(){
 char TreeTrunk::getASCIIGraphics(){
 	return graphicsSymbol;
 }
+
+std::string TreeTrunk::loadDescription(std::string name){
+	return "temp string. Update loadDescription function eventually please";
+}

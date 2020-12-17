@@ -1,5 +1,13 @@
 #include "World.hpp"
 
+World::World(){
+	isRaining = false;
+	curSeason = fall;
+
+	curPos.first = 0;
+	curPos.second = 0;
+}
+
 void World::initWorld(){
 	world.resize(size);
 
@@ -11,6 +19,9 @@ void World::initWorld(){
 //While writing this function, I started to come to the realization that the way all my navigation functions use curPos might be stupid.
 void World::generateWorld(){
 	initWorld();
+	if(world.empty()){
+		std::cout << "Initialization of world failed! Your world is empty!" << std::endl;
+	}
 
 	/*std::vector<std::vector<Ground>>::iterator row;
 	std::vector<Ground>::iterator col;
@@ -22,16 +33,14 @@ void World::generateWorld(){
 	}
 	*/
 
-	for(;curPos.first < size; curPos.first++){
-		for(;curPos.second < size; curPos.second++){
+	for(curPos.first = 0;curPos.first < size; curPos.first++){
+		for(curPos.second = 0;curPos.second < size; curPos.second++){
 			Ground& currentGround = getCurPos();
 			
 			int treeChance = rand() % 100;
 
-			OakTrunk newTrunk;
-
-			if(treeChance < 15 && !hasTreeInArea(3) && !currentGround.getTreeTrunk()){
-				currentGround.setTreeTrunk(&newTrunk);
+			if(treeChance < 15 && !hasTreeInArea(2) && !currentGround.getTreeTrunk()){
+				currentGround.setTreeTrunk(new OakTrunk());
 			}
 		}
 	}
@@ -44,15 +53,15 @@ void World::generateWorld(){
 //IF PROGRAM CRASHES, CHECK FOR OUT OF BOUND ERROR HERE!
 std::vector<Ground*> World::getArea(int dist){
 	std::vector<Ground*> result;	
-	int maxHor = size - curPos.first;
+	int maxHor = (size - 1) - curPos.first;
 	maxHor = std::min(maxHor, dist);
 	int minHor = std::min(dist, curPos.first);
-	int maxVert = size - curPos.second;
+	int maxVert = (size - 1) - curPos.second;
 	maxVert = std::min(maxVert, dist);
 	int minVert = std::min(dist, curPos.second);
 
 	for(int i = curPos.first - minHor; i <= curPos.first + maxHor; i++){
-		for(int j = curPos.second - minVert; j <= curPos.first + maxVert; j++){
+		for(int j = curPos.second - minVert; j <= curPos.second + maxVert; j++){
 			result.push_back(&world[i][j]);
 		}
 	}
@@ -62,14 +71,29 @@ std::vector<Ground*> World::getArea(int dist){
 
 bool World::hasTreeInArea(int dist){
 	std::vector<Ground*> area = getArea(dist);
+	bool result = false; 
 
-	std::for_each(std::begin(area), std::end(area), [](Ground* const& value){
-		if(value->getTreeTrunk() != NULL){
-			return true; 		
+	if(area.empty()){
+		std::cout << "Error! Your vector is empty!" << std::endl;
+		return false;
+	}
+
+	/*
+	std::for_each(std::begin(area), std::end(area), [&result](Ground* const& value){
+		if(value->getTreeTrunk().get() != nullptr){
+			result = true; 		
 		}
-	});
 
-	return false;
+	});
+	*/
+
+	for(int i = 0; i < area.size(); i++){
+		if(area[i]->getTreeTrunk() != nullptr){
+			result = true;
+		}
+	}
+
+	return result;
 }
 
 
@@ -136,12 +160,13 @@ void World::resetCurPos(){
 }
 
 void World::printWorld(){
-	for(;curPos.first < size; curPos.first++){
-		for(;curPos.second < size; curPos.second++){
+	for(curPos.first = 0;curPos.first < size; curPos.first++){
+		for(curPos.second = 0;curPos.second < size; curPos.second++){
 			std::cout << getCurPos().getASCIIGraphics() << " ";	
 		}
 		std::cout << std::endl;
 	}
 
+	resetCurPos();
 }
 

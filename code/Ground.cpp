@@ -1,12 +1,13 @@
 #include "Ground.hpp"
 
-Ground::Ground(float _density, float _moisture, float _drainageRate, std::unique_ptr<TreeRoot> r, std::unique_ptr<TreeTrunk> t, std::unique_ptr<Mushroom> m){
+Ground::Ground(float _density, float _moisture, float _drainageRate){
 	density = _density;
 	moisture = _moisture;
 	drainageRate = _drainageRate;
-	root = std::move(r);
-	trunk = std::move(t);
-	mushroom = std::move(m);
+
+	root.reset(nullptr);
+	trunk.reset(nullptr);
+	trunk.reset(nullptr);
 }
 
 float Ground::getDensity(){
@@ -29,8 +30,12 @@ std::unique_ptr<TreeRoot>& Ground::getTreeRoot(){
 	return root;
 }
 
-std::unique_ptr<TreeTrunk>& Ground::getTreeTrunk(){
-	return trunk;
+TreeTrunk* Ground::getTreeTrunk(){
+	if(trunk.get() != nullptr){
+		return trunk.get();
+	}else{
+		return nullptr;
+	}
 }
 
 std::unique_ptr<Mushroom>& Ground::getMushroom(){

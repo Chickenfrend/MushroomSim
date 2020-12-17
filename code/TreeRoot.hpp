@@ -2,6 +2,7 @@
 #define __TREEROOT
 
 //#include "TreeTrunk.hpp"
+#include <string>
 #include <memory>
 class TreeRoot{
 	private:
