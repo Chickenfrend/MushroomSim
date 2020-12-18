@@ -33,24 +33,24 @@ void World::generateWorld(){
 	}
 	*/
 
-	for(curPos.first = 0;curPos.first < size; curPos.first++){
+	for(curPos.first = 0; curPos.first < size; curPos.first++){
 		for(curPos.second = 0;curPos.second < size; curPos.second++){
 			Ground& currentGround = getCurPos();
 			
 			int treeChance = rand() % 100;
 
-			if(treeChance < 15 && !hasTreeInArea(2) && !currentGround.getTreeTrunk()){
-				currentGround.setTreeTrunk(new OakTrunk());
+			TreeTrunk* newTrunk = new OakTrunk();
+			if(treeChance < 15 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
+				currentGround.setTreeTrunk(newTrunk);
 			}
 		}
 	}
 
 	resetCurPos();
-
 }
+
 //Okay, so here we need to search a square with the current position at its center, which means we should start 
 //at (curPos.first - dist, curPos.second - dist). But, we need to adjust for if you happen to by the edges of the map.
-//IF PROGRAM CRASHES, CHECK FOR OUT OF BOUND ERROR HERE!
 std::vector<Ground*> World::getArea(int dist){
 	std::vector<Ground*> result;	
 	int maxHor = (size - 1) - curPos.first;
@@ -78,20 +78,21 @@ bool World::hasTreeInArea(int dist){
 		return false;
 	}
 
-	/*
+	
 	std::for_each(std::begin(area), std::end(area), [&result](Ground* const& value){
-		if(value->getTreeTrunk().get() != nullptr){
+		if(value->getTreeTrunk() != nullptr){
 			result = true; 		
 		}
 
 	});
-	*/
 
+/*
 	for(int i = 0; i < area.size(); i++){
 		if(area[i]->getTreeTrunk() != nullptr){
 			result = true;
 		}
 	}
+	*/
 
 	return result;
 }

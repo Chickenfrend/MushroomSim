@@ -12,6 +12,7 @@ class TreeTrunk{
 		bool isDeciduous; 
 		int maxDistance;//This is the distance the roots should grow from the tree (in blocks)
 		int distance;//Actual distance of the roots.
+		int distanceTolerance = 2; //How close this tree will spawn from other trees.
 
 		int ageYears;
 		int ageSeasons;
@@ -35,6 +36,7 @@ class TreeTrunk{
 		virtual void growRootsCheck() = 0;
 
 		bool getDeciduousStatus();
+		int getDistanceTolerance();
 		std::string getDescription();
 		std::string getTreeType();
 		std::string loadDescription(std::string name);
