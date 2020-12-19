@@ -46,7 +46,11 @@ void Ground::setTreeTrunk(TreeTrunk* t){
 	trunk.reset(t);
 }
 
-char Ground::getASCIIGraphics(){
+void Ground::setWorld(World* parentWorld){
+	world = parentWorld;
+}
+
+std::string Ground::getASCIIGraphics(){
 	if(trunk != nullptr){
 		return trunk->getASCIIGraphics();
 	}
@@ -57,6 +61,12 @@ char Ground::getASCIIGraphics(){
 		return root->getASCIIGraphics();
 	}
 	else{
-		return 'g';
+		return "\033[32mg\033[0m";
+	}
+}
+
+void Ground::updateTreeSeason(){
+	if(trunk != nullptr){
+		trunk->setCurrentSeason(world->getCurrentSeason());
 	}
 }

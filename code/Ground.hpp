@@ -5,8 +5,11 @@
 #include "TreeRoot.hpp"
 #include "TreeTrunk.hpp"
 #include "OakTrunk.hpp"
+#include "World.hpp"
 #include <memory>
+#include <string>
 
+class World;
 class Ground{
 	private:
 		//Moisture and density are percentages that indicate how dense, and moist, respectively, the soil is.
@@ -17,6 +20,7 @@ class Ground{
 		std::unique_ptr<TreeRoot> root;
 		std::unique_ptr<Mushroom> mushroom;
 		std::unique_ptr<TreeTrunk> trunk;
+		World* world = nullptr;
 
 	public:
 		Ground(float _density = 0.0f, float _moisture = 0.0f, float _drainageRate = 0.0f);
@@ -29,8 +33,11 @@ class Ground{
 		void setDensity(float d);
 		void setMoisture(float m);
 		void setTreeTrunk(TreeTrunk* t);
+		void setTreeSeason(int newSeason);
+		void setWorld(World* parentWorld);
+		void updateTreeSeason();
 
-		char getASCIIGraphics();//For now this is what we'll use to decide what to print in the world print function.
+		std::string getASCIIGraphics();//For now this is what we'll use to decide what to print in the world print function.
 
 		void update();
 };

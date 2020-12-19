@@ -6,7 +6,7 @@
 #include "ShroomTracker.hpp"
 class Mushroom{
 	protected:
-		char graphicsSymbol = 'm';
+		std::string graphicsSymbol = "m";
 		float density; //The density of the mycelium in whatever ground block (should this be kept in the ground object?).
 		int reproductiveAge; //The age at which the mycelium starts to produce mushrooms.
 		bool isBlooming; //Whether or not the mycelium is making mushrooms
@@ -27,7 +27,7 @@ class Mushroom{
 
 		void setShroomTracker(std::unique_ptr<ShroomTracker> tracker);
 
-		char getASCIIGraphics();
+		std::string getASCIIGraphics();
 };
 
 #endif

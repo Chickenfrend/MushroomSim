@@ -16,7 +16,7 @@ std::string Mushroom::getName(){
 	return name;
 }
 
-char Mushroom::getASCIIGraphics(){
+std::string Mushroom::getASCIIGraphics(){
 	return graphicsSymbol;
 }
 

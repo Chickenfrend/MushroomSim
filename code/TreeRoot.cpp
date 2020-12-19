@@ -1,5 +1,5 @@
 #include "TreeRoot.hpp"
 
-char TreeRoot::getASCIIGraphics(){
-	return 'r';
+std::string TreeRoot::getASCIIGraphics(){
+	return "r";
 }

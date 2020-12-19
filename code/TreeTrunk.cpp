@@ -12,13 +12,59 @@ std::string TreeTrunk::getTreeType(){
 	return treeType;
 }
 
-char TreeTrunk::getASCIIGraphics(){
+std::string TreeTrunk::getASCIIGraphics(){
 	return graphicsSymbol;
 }
 
 int TreeTrunk::getDistanceTolerance(){
 	return distanceTolerance;
 }
+
+void TreeTrunk::ageHour(){
+	ageHours++;
+}
+
+void TreeTrunk::updateAgeDay(){
+	ageDays = ageHours % 24;
+}
+
+void TreeTrunk::updateAgeMonth(){
+	ageMonths = ageDays % 30;
+}
+
+void TreeTrunk::updateAgeYear(){
+	ageYears = ageMonths % 12;
+}
+
+//This should 
+void TreeTrunk::updateStage(){
+	if(ageHours == 0){
+		stage = seed; 
+		height = 0;
+	}else if(ageYears >= 75){
+		stage = mature;
+		height = 75;
+	}else if(ageMonths >= 5){
+		stage = sapling;
+		height = 15;
+	}
+	else if(ageMonths >= 1 && currentSeason == spring){
+		stage = sprout;
+	}
+}
+
+void TreeTrunk::age(){
+	ageHour();
+	updateAgeDay();
+	updateAgeMonth();
+	updateAgeYear();
+	updateStage();
+}
+
+void TreeTrunk::setCurrentSeason(season updatedSeason){
+	currentSeason = updatedSeason;
+}
+
 
 std::string TreeTrunk::loadDescription(std::string name){
 	return "temp string. Update loadDescription function eventually please";

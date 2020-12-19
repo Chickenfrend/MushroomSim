@@ -12,7 +12,7 @@ class TreeRoot{
 		//std::unique_ptr<TreeTrunk> parentTrunk;
 		std::pair<int,int> parentPos;
 	public:
-		char getASCIIGraphics();
+		std::string getASCIIGraphics();
 
 	
 };

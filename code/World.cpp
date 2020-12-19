@@ -42,6 +42,7 @@ void World::generateWorld(){
 			TreeTrunk* newTrunk = new OakTrunk();
 			if(treeChance < 15 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
 				currentGround.setTreeTrunk(newTrunk);
+				currentGround.setWorld(this);
 			}
 		}
 	}
@@ -67,6 +68,10 @@ std::vector<Ground*> World::getArea(int dist){
 	}
 
 	return result;
+}
+
+season World::getCurrentSeason(){
+	return curSeason;
 }
 
 bool World::hasTreeInArea(int dist){
@@ -163,7 +168,7 @@ void World::resetCurPos(){
 void World::printWorld(){
 	for(curPos.first = 0;curPos.first < size; curPos.first++){
 		for(curPos.second = 0;curPos.second < size; curPos.second++){
-			std::cout << getCurPos().getASCIIGraphics() << " ";	
+			std::cout << getCurPos().getASCIIGraphics();	
 		}
 		std::cout << std::endl;
 	}

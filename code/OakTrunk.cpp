@@ -5,15 +5,9 @@ OakTrunk::OakTrunk(){
 	description = loadDescription(treeType);
 	isDeciduous = false;
 
-	ageYears = 0;
-	ageSeasons = 0;
-	stage = 0;
-
-	height = 0.0f;
 	maxDistance = 90;
-	circumference = 0.0f;
 	maxHeight = 90.0f;
-	graphicsSymbol = 'O';
+	graphicsSymbol = "\033[33mO\033[0m";
 }
 
 void OakTrunk::growRootsCheck(){
