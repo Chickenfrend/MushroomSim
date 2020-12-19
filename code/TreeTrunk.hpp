@@ -28,11 +28,15 @@ class TreeTrunk{
 		int getDistanceTolerance();
 		std::string getDescription();
 		std::string getTreeType();
+		int getRootRadius();
+		int getMaxRootRadius();
 		std::string loadDescription(std::string name);
 
 		void setCurrentSeason(season updatedSeason);
+		void setRootRadius(int newRad);
 		//Concept. Since TreeTrunk doesn't have access to it's world, we can have it generate a new tree root object and pass it to ground or world, which can 
 		//do the work of actually placing roots.
+		//If you use this, remember memory management! This allocates memory for a new pointer.
 		TreeRoot* generateTreeRoot();	
 
 
@@ -44,11 +48,12 @@ class TreeTrunk{
 		std::string treeType;
 		std::string description;
 		bool isDeciduous; 
+		int childRoots = 0;//
 		int maxDistance;//This is the distance the roots should grow from the tree (in blocks)
 		int distance;//Actual distance of the roots.
 		int distanceTolerance = 2; //How close this tree will spawn from other trees.
-		int rootCircumference = 0; //The real root circumference of this tree.
-		int maxRootCircumference = 3; //Maximum distance roots can grow.
+		int rootRadius = 0; //The real root circumference of this tree.
+		int maxRootRadius = 3; //Maximum distance roots can grow.
 
 		int ageHours = 0;
 		int ageYears = 0;

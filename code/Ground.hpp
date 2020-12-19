@@ -26,16 +26,18 @@ class Ground{
 		Ground(float _density = 0.0f, float _moisture = 0.0f, float _drainageRate = 0.0f);
 		float getDensity();
 		float getMoisture();
-		std::unique_ptr<TreeRoot>& getTreeRoot();
+		TreeRoot* getTreeRoot();
 		TreeTrunk* getTreeTrunk();
-		std::unique_ptr<Mushroom>& getMushroom();
+		Mushroom* getMushroom();
 		
 		void setDensity(float d);
 		void setMoisture(float m);
 		void setTreeTrunk(TreeTrunk* t);
+		void setTreeRoot(TreeRoot* newroot);
 		void setTreeSeason(int newSeason);
 		void setWorld(World* parentWorld);
 		void updateTreeSeason();
+		void growTreeRoots();
 
 		std::string getASCIIGraphics();//For now this is what we'll use to decide what to print in the world print function.
 

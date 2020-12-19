@@ -25,7 +25,10 @@ class World{
 
 		season getCurrentSeason();
 
-		Ground& getCurPos(); //Returns curpos
+		Ground& getCurPos(); //Returns the ground at curpos
+		Ground* getNearCurPos(int hor, int vert);//This gets the position hor horizontally from curPOs, and vert vertically from curPos. 
+		//The following are flawed since they return references when it's very possible we might wind up exceeding the vector bounds. In those cases
+		//it would be better to return a null pointer or throw an exception.
 		Ground& getNorth(int dist = 1); //Should get whatever is dist north of curPos
 		Ground& getSouth(int dist = 1); //Should get whatever is dist south of curPos
 		Ground& getEast(int dist = 1); //Should get whatever is dist east of curPos

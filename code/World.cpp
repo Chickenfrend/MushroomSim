@@ -107,6 +107,14 @@ Ground& World::getCurPos(){
 	return world[curPos.first][curPos.second];
 }
 
+Ground* World::getNearCurPos(int hor, int vert){
+	if(0 <= curPos.first && curPos.first + hor < size && 0 <= curPos.second + vert && curPos.second + vert < size){
+		return &world[curPos.first + hor][curPos.second + vert];
+	}else{
+		return nullptr;
+	}
+}
+
 Ground& World::getNorth(int dist){
 
 	if(curPos.second - dist >= 0){

@@ -8,10 +8,10 @@ class TreeRoot{
 	private:
 		std::string treeType;
 		bool isDeciduous;
-		int distanceFromTrunk;
 		//std::unique_ptr<TreeTrunk> parentTrunk;
-		std::pair<int,int> parentPos;
+		//std::pair<int,int> parentPos;
 	public:
+		TreeRoot(std::string parentType, bool parentDeciduous);
 		std::string getASCIIGraphics();
 
 	

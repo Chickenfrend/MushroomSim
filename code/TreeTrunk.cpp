@@ -16,6 +16,12 @@ std::string TreeTrunk::getASCIIGraphics(){
 	return graphicsSymbol;
 }
 
+TreeRoot* TreeTrunk::generateTreeRoot(){
+	TreeRoot* newRoot = new TreeRoot(treeType, isDeciduous);
+
+	return newRoot;
+}
+
 int TreeTrunk::getDistanceTolerance(){
 	return distanceTolerance;
 }

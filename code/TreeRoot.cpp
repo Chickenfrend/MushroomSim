@@ -1,5 +1,10 @@
 #include "TreeRoot.hpp"
 
+TreeRoot::TreeRoot(std::string parentType, bool parentDeciduous){
+	treeType = parentType;
+	isDeciduous = parentDeciduous;
+}
+
 std::string TreeRoot::getASCIIGraphics(){
 	return "r";
 }

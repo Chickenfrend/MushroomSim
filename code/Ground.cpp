@@ -26,20 +26,16 @@ void Ground::setDensity(float d){
 	density = d;
 }
 
-std::unique_ptr<TreeRoot>& Ground::getTreeRoot(){
-	return root;
+TreeRoot* Ground::getTreeRoot(){
+	return root.get();
 }
 
 TreeTrunk* Ground::getTreeTrunk(){
-	if(trunk.get() != nullptr){
-		return trunk.get();
-	}else{
-		return nullptr;
-	}
+	return trunk.get();
 }
 
-std::unique_ptr<Mushroom>& Ground::getMushroom(){
-	return mushroom;
+Mushroom* Ground::getMushroom(){
+	return mushroom.get();
 }
 
 void Ground::setTreeTrunk(TreeTrunk* t){
@@ -70,3 +66,22 @@ void Ground::updateTreeSeason(){
 		trunk->setCurrentSeason(world->getCurrentSeason());
 	}
 }
+
+void Ground::growTreeRoots(){
+	if(trunk != nullptr){
+		int rad = trunk->getRootRadius();	
+		for(int i = -rad; i < rad; i++){
+			for(int j = -rad; j < rad; i++){
+				Ground* currentGround = world->getNearCurPos(i, j);	
+
+				if(currentGround->getTreeTrunk() != nullptr &&  i != j && !((i == 0) && (j == rad)) && !((i == rad) && (j == 0))){
+					if(!(currentGround->getTreeTrunk()) && !(currentGround->getTreeRoot())){
+						currentGround->setTreeRoot(trunk->generateTreeRoot());
+					}
+				}
+			}
+		}
+		trunk->setRootRadius(rad++);
+	}
+}
+
