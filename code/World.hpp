@@ -26,7 +26,7 @@ class World{
 		season getCurrentSeason();
 
 		Ground& getCurPos(); //Returns the ground at curpos
-		Ground* getNearCurPos(int hor, int vert);//This gets the position hor horizontally from curPOs, and vert vertically from curPos. 
+		Ground* getNearCurPos(int hor, int vert);//This gets the position hor horizontally from curPos, and vert vertically from curPos. 
 		//The following are flawed since they return references when it's very possible we might wind up exceeding the vector bounds. In those cases
 		//it would be better to return a null pointer or throw an exception.
 		Ground& getNorth(int dist = 1); //Should get whatever is dist north of curPos
@@ -40,12 +40,18 @@ class World{
 		void moveEast();
 		void moveWest();
 
+		//This function moves curpos to the next valid position.
+		void moveNext();
+
+		bool curPosAtEnd();
+
 		void resetCurPos();
 
 		void printWorld(); //This, likely shouldn't really be used in the final version. For now it is convenient to print stuff to the terminal though.	
 	private:
 		int worldAgeHours = 0;
-		bool isRaining;
+		bool isRaining = false;
+		bool isDay = false;
 		season curSeason;
 		int size = 50;
 		std::vector<std::vector<Ground>> world; 

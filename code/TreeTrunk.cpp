@@ -16,6 +16,14 @@ std::string TreeTrunk::getASCIIGraphics(){
 	return graphicsSymbol;
 }
 
+int TreeTrunk::getRootRadius(){
+	return rootRadius;
+}
+
+void TreeTrunk::setRootRadius(int newRad){
+	rootRadius = newRad;
+}
+
 TreeRoot* TreeTrunk::generateTreeRoot(){
 	TreeRoot* newRoot = new TreeRoot(treeType, isDeciduous);
 
@@ -56,6 +64,20 @@ void TreeTrunk::updateStage(){
 	}
 	else if(ageMonths >= 1 && currentSeason == spring){
 		stage = sprout;
+		height = 2;
+	}
+}
+
+//This function is kind of stupid and I should definitely figure out a different way to do this.
+bool TreeTrunk::checkRootRequirements(){
+	if(stage == sprout && rootRadius == 0){
+		return true;
+	}else if(stage == sapling && rootRadius == 1){
+		return true;
+	}else if(stage == mature && rootRadius == 2){
+		return true;
+	}else{
+		return false;
 	}
 }
 

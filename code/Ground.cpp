@@ -38,8 +38,20 @@ Mushroom* Ground::getMushroom(){
 	return mushroom.get();
 }
 
+bool Ground::hasTreeTrunk(){
+	if(trunk.get() == nullptr){
+		return false;
+	}else{
+		return true;
+	}
+}
+
 void Ground::setTreeTrunk(TreeTrunk* t){
 	trunk.reset(t);
+}
+
+void Ground::setTreeRoot(TreeRoot* r){
+	root.reset(r);
 }
 
 void Ground::setWorld(World* parentWorld){
@@ -82,6 +94,16 @@ void Ground::growTreeRoots(){
 			}
 		}
 		trunk->setRootRadius(rad++);
+	}
+}
+
+void Ground::update(){
+	if(hasTreeTrunk()){
+		updateTreeSeason();
+		trunk->age();
+		if(trunk->checkRootRequirements()){
+			growTreeRoots();
+		}
 	}
 }
 

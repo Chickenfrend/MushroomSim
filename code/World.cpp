@@ -50,6 +50,23 @@ void World::generateWorld(){
 	resetCurPos();
 }
 
+void World::populateWorld(){
+	for(int i = 0; i < 500; i++){
+		for(int j = 0; j < 360; j++){
+			update();
+		}
+	}
+}
+
+void World::update(){
+	resetCurPos();
+	while(!curPosAtEnd()){
+		getCurPos().update();
+		moveNext();
+	}
+	resetCurPos();
+}
+
 //Okay, so here we need to search a square with the current position at its center, which means we should start 
 //at (curPos.first - dist, curPos.second - dist). But, we need to adjust for if you happen to by the edges of the map.
 std::vector<Ground*> World::getArea(int dist){
@@ -166,6 +183,23 @@ void World::moveEast(){
 	if(curPos.first + 1 < size){
 		curPos.first++;
 	}
+}
+
+void World::moveNext(){
+	if(curPos.first < size-1){
+		curPos.first++;
+	}
+	else if(curPos.second < size-1){
+		curPos.first = 0;
+		curPos.second++;
+	}
+}
+
+bool World::curPosAtEnd(){
+	if(curPos.first == (size - 1) && curPos.second == (size-1)){
+		return true;
+	}
+	return false;
 }
 
 void World::resetCurPos(){

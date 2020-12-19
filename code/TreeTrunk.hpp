@@ -25,6 +25,7 @@ class TreeTrunk{
 		virtual void growRootsCheck() = 0;
 
 		bool getDeciduousStatus();
+		virtual bool checkRootRequirements(); //Returns true if it's time to grow a new root layer!
 		int getDistanceTolerance();
 		std::string getDescription();
 		std::string getTreeType();
@@ -38,7 +39,6 @@ class TreeTrunk{
 		//do the work of actually placing roots.
 		//If you use this, remember memory management! This allocates memory for a new pointer.
 		TreeRoot* generateTreeRoot();	
-
 
 		std::string getASCIIGraphics();
 

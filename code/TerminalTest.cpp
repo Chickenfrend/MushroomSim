@@ -7,4 +7,8 @@ int main(){
 	testworld.generateWorld();
 
 	testworld.printWorld();
+
+	testworld.populateWorld();
+
+	testworld.printWorld();
 }

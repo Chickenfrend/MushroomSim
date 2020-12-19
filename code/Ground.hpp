@@ -29,6 +29,7 @@ class Ground{
 		TreeRoot* getTreeRoot();
 		TreeTrunk* getTreeTrunk();
 		Mushroom* getMushroom();
+		bool hasTreeTrunk();
 		
 		void setDensity(float d);
 		void setMoisture(float m);
