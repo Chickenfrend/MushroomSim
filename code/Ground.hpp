@@ -42,7 +42,7 @@ class Ground{
 
 		std::string getASCIIGraphics();//For now this is what we'll use to decide what to print in the world print function.
 
-		void update();
+		void update(int hours);
 };
 
 #endif

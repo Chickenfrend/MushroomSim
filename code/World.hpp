@@ -19,7 +19,7 @@ class World{
 		World();
 		void generateWorld(); //This will randomly generate a world, populating it with tree trunks randomly.
 		void populateWorld(); //This will let the trees grow for a bit then randomly populate with mushrooms.
-		void update(); //This should update the world one tick. Should change curPos and go through whole 2d list.
+		void update(int hours); //This should update the world one tick. Should change curPos and go through whole 2d list.
 		void run(); //This will be some kind of while loop that keeps running update. May do this in main instead, not sure.
 		bool hasTreeInArea(int dist); //If there's a tree trunk in a certain area, returns true. Calls getArea.
 
@@ -49,7 +49,12 @@ class World{
 
 		void printWorld(); //This, likely shouldn't really be used in the final version. For now it is convenient to print stuff to the terminal though.	
 	private:
-		int worldAgeHours = 0;
+		//Right now, the numbers for the age just increase. It might be smart to make them reset. I.E., I could make 
+		//the age in hours reset to 0 when it goes past 24. I don't really need to keep the total number of hours.
+		int ageHours = 0;
+		int ageDays = 0;
+		int ageMonths = 0;
+		int ageYears = 0;
 		bool isRaining = false;
 		bool isDay = false;
 		season curSeason;
@@ -57,6 +62,7 @@ class World{
 		std::vector<std::vector<Ground>> world; 
 		std::pair<int,int> curPos; 
 
+		void updateAges(int hours);
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.
 		std::vector<Ground*> getArea(int dist); //Returns a vector of pointers to the nearby ground tiles, within a certain distance in every direction from curPos. 
 

@@ -97,10 +97,10 @@ void Ground::growTreeRoots(){
 	}
 }
 
-void Ground::update(){
+void Ground::update(int hours){
 	if(hasTreeTrunk()){
 		updateTreeSeason();
-		trunk->age();
+		trunk->age(hours);
 		if(trunk->checkRootRequirements()){
 			growTreeRoots();
 		}

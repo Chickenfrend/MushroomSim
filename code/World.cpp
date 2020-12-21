@@ -2,7 +2,7 @@
 
 World::World(){
 	isRaining = false;
-	curSeason = fall;
+	curSeason = spring;
 
 	curPos.first = 0;
 	curPos.second = 0;
@@ -44,6 +44,9 @@ void World::generateWorld(){
 				currentGround.setTreeTrunk(newTrunk);
 				currentGround.setWorld(this);
 			}
+			else{
+				delete newTrunk;
+			}
 		}
 	}
 
@@ -51,17 +54,23 @@ void World::generateWorld(){
 }
 
 void World::populateWorld(){
+	int count = 0;
 	for(int i = 0; i < 500; i++){
 		for(int j = 0; j < 360; j++){
-			update();
-		}
+			std::cout << "About to update world on iteration " << count << "." << std::endl;
+			update(24);
+			count++;
+		}	
 	}
+	
+	//update();
 }
 
-void World::update(){
+void World::update(int hours){
 	resetCurPos();
+	updateAges(hours);
 	while(!curPosAtEnd()){
-		getCurPos().update();
+		getCurPos().update(hours);
 		moveNext();
 	}
 	resetCurPos();
@@ -216,5 +225,36 @@ void World::printWorld(){
 	}
 
 	resetCurPos();
+}
+
+void World::updateAges(int hours){
+	ageHours += hours;
+
+	if(ageHours >= 24){
+		ageDays += hours/24;
+		ageHours = ageHours % 24;
+	}
+
+	if(ageDays >= 30){
+		ageMonths += ageDays/30;
+		ageDays = ageDays % 30;
+	}
+
+	if(ageMonths >= 12){
+		ageYears += ageMonths/12;
+		ageMonths = ageMonths % 12;
+	}
+
+	if(ageMonths < 3){
+		curSeason = spring;
+	}else if(ageMonths < 6){
+		curSeason = summer;
+	}else if(ageMonths < 9){
+		curSeason = fall;
+	}else{
+		curSeason = winter;
+	}
+
+	
 }
 

@@ -81,11 +81,24 @@ bool TreeTrunk::checkRootRequirements(){
 	}
 }
 
-void TreeTrunk::age(){
-	ageHour();
-	updateAgeDay();
-	updateAgeMonth();
-	updateAgeYear();
+void TreeTrunk::age(int hours){
+	ageHours += hours;
+
+	if(ageHours >= 24){
+		ageDays += hours/24;
+		ageHours = ageHours % 24;
+	}
+
+	if(ageDays >= 30){
+		ageMonths += ageDays/30;
+		ageDays = ageDays % 30;
+	}
+
+	if(ageMonths >= 12){
+		ageYears += ageMonths/12;
+		ageMonths = ageMonths % 12;
+	}
+
 	updateStage();
 }
 

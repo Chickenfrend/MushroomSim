@@ -18,7 +18,7 @@ class TreeTrunk{
 			snag
 		};
 
-		void age(); //This function calls the other age functions and updates all the counters for the trees age.
+		void age(int hours); //This function calls the other age functions and updates all the counters for the trees age.
 
 		void growTaller();
 		void growRoots();
