@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
 #include "GlobalEnums.hpp"
 #include "TreeRoot.hpp"
 
@@ -18,7 +19,6 @@ class TreeTrunk{
 			snag
 		};
 
-		void age(int hours); //This function calls the other age functions and updates all the counters for the trees age.
 
 		void growTaller();
 		void growRoots();
@@ -31,16 +31,26 @@ class TreeTrunk{
 		std::string getTreeType();
 		int getRootRadius();
 		int getMaxRootRadius();
+
 		std::string loadDescription(std::string name);
 
 		void setCurrentSeason(season updatedSeason);
 		void setRootRadius(int newRad);
-		//Concept. Since TreeTrunk doesn't have access to it's world, we can have it generate a new tree root object and pass it to ground or world, which can 
-		//do the work of actually placing roots.
+
+		int getAgeHours();
+		int getAgeDays();
+		int getAgeMonths();
+		void age(int hours); //This function ages the tree int hours and adjusts all the age variables.
+
+
+		//Since TreeTrunk doesn't have access to it's world, we can have it generate a new tree root object and pass it to ground or world, 
+		//which can do the work of actually placing roots.
 		//If you use this, remember memory management! This allocates memory for a new pointer.
 		TreeRoot* generateTreeRoot();	
 
 		std::string getASCIIGraphics();
+
+		
 
 	private:
 	protected:
@@ -68,10 +78,6 @@ class TreeTrunk{
 
 		std::string graphicsSymbol = "T";
 
-		void ageHour();
-		void updateAgeDay();
-		void updateAgeMonth();
-		void updateAgeYear();
 		virtual void updateStage();
 
 

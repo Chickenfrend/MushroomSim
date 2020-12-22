@@ -34,25 +34,8 @@ int TreeTrunk::getDistanceTolerance(){
 	return distanceTolerance;
 }
 
-void TreeTrunk::ageHour(){
-	ageHours++;
-}
-
-void TreeTrunk::updateAgeDay(){
-	ageDays = ageHours % 24;
-}
-
-void TreeTrunk::updateAgeMonth(){
-	ageMonths = ageDays % 30;
-}
-
-void TreeTrunk::updateAgeYear(){
-	ageYears = ageMonths % 12;
-}
-
-//This should 
 void TreeTrunk::updateStage(){
-	if(ageHours == 0){
+	/*if(ageHours == 0){
 		stage = seed; 
 		height = 0;
 	}else if(ageYears >= 75){
@@ -65,6 +48,21 @@ void TreeTrunk::updateStage(){
 	else if(ageMonths >= 1 && currentSeason == spring){
 		stage = sprout;
 		height = 2;
+	}
+	*/
+	if(getAgeHours() < 1){
+		stage = seed;
+		height = 0;
+	}else if(stage == seed && getAgeMonths() >= 1 && currentSeason == spring){
+		std::cout << "Current season is " << currentSeason << "so we are updating the stage of this tree to sprout" << std::endl;
+		stage = sprout;
+		height = 2;
+	}else if(stage == sprout && getAgeMonths() >= 5){
+		stage = sapling;
+		height = 15;
+	}else if(stage == sapling && ageYears >= 75){
+		stage = mature;
+		height = 75;
 	}
 }
 
@@ -100,6 +98,18 @@ void TreeTrunk::age(int hours){
 	}
 
 	updateStage();
+}
+
+int TreeTrunk::getAgeHours(){
+	return getAgeDays()*24 + ageHours;
+}
+
+int TreeTrunk::getAgeDays(){
+	return getAgeMonths()*30 + ageDays;
+}
+
+int TreeTrunk::getAgeMonths(){
+	return ageYears*12 + ageMonths;
 }
 
 void TreeTrunk::setCurrentSeason(season updatedSeason){

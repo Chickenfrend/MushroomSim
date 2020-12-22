@@ -27,15 +27,28 @@ void Ground::setDensity(float d){
 }
 
 TreeRoot* Ground::getTreeRoot(){
-	return root.get();
+	if(root != nullptr){
+		return root.get();
+	}else{
+		return nullptr;
+	}
+
 }
 
 TreeTrunk* Ground::getTreeTrunk(){
-	return trunk.get();
+	if(trunk != nullptr){
+		return trunk.get();
+	}else{
+		return nullptr;
+	}
 }
 
 Mushroom* Ground::getMushroom(){
-	return mushroom.get();
+	if(mushroom != nullptr){
+		return mushroom.get();
+	}else{
+		return nullptr;
+	}
 }
 
 bool Ground::hasTreeTrunk(){
@@ -79,21 +92,26 @@ void Ground::updateTreeSeason(){
 	}
 }
 
+//This function is ugly...
 void Ground::growTreeRoots(){
 	if(trunk != nullptr){
 		int rad = trunk->getRootRadius();	
+		trunk->setRootRadius(rad++);
 		for(int i = -rad; i < rad; i++){
-			for(int j = -rad; j < rad; i++){
+			for(int j = -rad; j < rad; j++){
 				Ground* currentGround = world->getNearCurPos(i, j);	
-
-				if(currentGround->getTreeTrunk() != nullptr &&  i != j && !((i == 0) && (j == rad)) && !((i == rad) && (j == 0))){
-					if(!(currentGround->getTreeTrunk()) && !(currentGround->getTreeRoot())){
-						currentGround->setTreeRoot(trunk->generateTreeRoot());
+				if(currentGround != nullptr){
+					std::cout << "About to grow a root if nothing is obscured and we're not on a square corner!" << std::endl;
+					if((currentGround->getTreeTrunk() == nullptr) &&  (i != j) && !((i == 0) && (j == rad)) && !((i == rad) && (j == 0))){
+						std::cout << "About to check if the ground is occupied!" << std::endl;
+						if(!(currentGround->getTreeTrunk()) && !(currentGround->getTreeRoot())){
+							std::cout << "Here we go setting the ground to have tree roots!" << std::endl;
+							currentGround->setTreeRoot(trunk->generateTreeRoot());
+						}
 					}
 				}
 			}
 		}
-		trunk->setRootRadius(rad++);
 	}
 }
 

@@ -55,12 +55,13 @@ void World::generateWorld(){
 
 void World::populateWorld(){
 	int count = 0;
-	for(int i = 0; i < 500; i++){
+	for(int i = 0; i < 100; i++){
 		for(int j = 0; j < 360; j++){
-			std::cout << "About to update world on iteration " << count << "." << std::endl;
+			//std::cout << "About to update world on iteration " << count << "." << std::endl;
 			update(24);
 			count++;
 		}	
+		std::cout << "Just went through year " << i << std::endl;
 	}
 	
 	//update();
@@ -134,7 +135,7 @@ Ground& World::getCurPos(){
 }
 
 Ground* World::getNearCurPos(int hor, int vert){
-	if(0 <= curPos.first && curPos.first + hor < size && 0 <= curPos.second + vert && curPos.second + vert < size){
+	if(0 <= curPos.first + hor && curPos.first + hor < size && 0 <= curPos.second + vert && curPos.second + vert < size){
 		return &world[curPos.first + hor][curPos.second + vert];
 	}else{
 		return nullptr;
