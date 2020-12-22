@@ -40,7 +40,12 @@ void World::generateWorld(){
 			int treeChance = rand() % 100;
 
 			TreeTrunk* newTrunk = new OakTrunk();
-			if(treeChance < 15 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
+			/*if(treeChance < 15 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
+				currentGround.setTreeTrunk(newTrunk);
+				currentGround.setWorld(this);
+			}
+			*/
+			if(curPos.first % 15 == 0 && curPos.second % 15 == 0){
 				currentGround.setTreeTrunk(newTrunk);
 				currentGround.setWorld(this);
 			}
@@ -49,6 +54,9 @@ void World::generateWorld(){
 			}
 		}
 	}
+	
+
+
 
 	resetCurPos();
 }

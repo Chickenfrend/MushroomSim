@@ -96,12 +96,13 @@ void Ground::updateTreeSeason(){
 void Ground::growTreeRoots(){
 	if(trunk != nullptr){
 		int rad = trunk->getRootRadius();	
-		trunk->setRootRadius(rad++);
+		int newRad = rad + 1;
+		trunk->setRootRadius(newRad);
 		for(int i = -rad; i <= rad; i++){
 			for(int j = -rad; j <= rad; j++){
 				Ground* currentGround = world->getNearCurPos(i, j);	
 				if(currentGround != nullptr){
-					if((currentGround->getTreeTrunk() == nullptr) &&  (i != j) && (i != -j)){
+					if((currentGround->getTreeTrunk() == nullptr) &&  (((abs(i) != rad) || (abs(j) != rad)) && ((i != j) || (i != -j)))){
 						if(!(currentGround->getTreeTrunk()) && !(currentGround->getTreeRoot())){
 							currentGround->setTreeRoot(trunk->generateTreeRoot());
 						}

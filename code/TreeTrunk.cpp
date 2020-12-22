@@ -35,21 +35,6 @@ int TreeTrunk::getDistanceTolerance(){
 }
 
 void TreeTrunk::updateStage(){
-	/*if(ageHours == 0){
-		stage = seed; 
-		height = 0;
-	}else if(ageYears >= 75){
-		stage = mature;
-		height = 75;
-	}else if(ageMonths >= 5){
-		stage = sapling;
-		height = 15;
-	}
-	else if(ageMonths >= 1 && currentSeason == spring){
-		stage = sprout;
-		height = 2;
-	}
-	*/
 	if(getAgeHours() < 1){
 		stage = seed;
 		height = 0;
@@ -58,9 +43,11 @@ void TreeTrunk::updateStage(){
 		stage = sprout;
 		height = 2;
 	}else if(stage == sprout && getAgeMonths() >= 5){
+		std::cout << "We are updating the stage of this tree to sapling" << std::endl;
 		stage = sapling;
 		height = 15;
 	}else if(stage == sapling && ageYears >= 75){
+		std::cout << "We are updating the stage of this tree to mature" << std::endl;
 		stage = mature;
 		height = 75;
 	}
