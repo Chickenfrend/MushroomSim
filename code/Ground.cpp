@@ -95,9 +95,8 @@ void Ground::updateTreeSeason(){
 //This function is ugly...
 void Ground::growTreeRoots(){
 	if(trunk != nullptr){
-		int rad = trunk->getRootRadius();	
-		int newRad = rad + 1;
-		trunk->setRootRadius(newRad);
+		int rad = trunk->getRootRadius() + 1;	
+		trunk->setRootRadius(rad);
 		for(int i = -rad; i <= rad; i++){
 			for(int j = -rad; j <= rad; j++){
 				Ground* currentGround = world->getNearCurPos(i, j);	
