@@ -97,15 +97,12 @@ void Ground::growTreeRoots(){
 	if(trunk != nullptr){
 		int rad = trunk->getRootRadius();	
 		trunk->setRootRadius(rad++);
-		for(int i = -rad; i < rad; i++){
-			for(int j = -rad; j < rad; j++){
+		for(int i = -rad; i <= rad; i++){
+			for(int j = -rad; j <= rad; j++){
 				Ground* currentGround = world->getNearCurPos(i, j);	
 				if(currentGround != nullptr){
-					std::cout << "About to grow a root if nothing is obscured and we're not on a square corner!" << std::endl;
-					if((currentGround->getTreeTrunk() == nullptr) &&  (i != j) && !((i == 0) && (j == rad)) && !((i == rad) && (j == 0))){
-						std::cout << "About to check if the ground is occupied!" << std::endl;
+					if((currentGround->getTreeTrunk() == nullptr) &&  (i != j) && (i != -j)){
 						if(!(currentGround->getTreeTrunk()) && !(currentGround->getTreeRoot())){
-							std::cout << "Here we go setting the ground to have tree roots!" << std::endl;
 							currentGround->setTreeRoot(trunk->generateTreeRoot());
 						}
 					}
