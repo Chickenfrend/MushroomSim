@@ -30,15 +30,18 @@ class Ground{
 		TreeTrunk* getTreeTrunk();
 		Mushroom* getMushroom();
 		bool hasTreeTrunk();
+		bool hasMushroom();
 		
 		void setDensity(float d);
 		void setMoisture(float m);
+		void setMushroom(Mushroom* m);
 		void setTreeTrunk(TreeTrunk* t);
 		void setTreeRoot(TreeRoot* newroot);
 		void setTreeSeason(int newSeason);
 		void setWorld(World* parentWorld);
 		void updateTreeSeason();
 		void growTreeRoots();
+		void growMushroom();
 
 		std::string getASCIIGraphics();//For now this is what we'll use to decide what to print in the world print function.
 

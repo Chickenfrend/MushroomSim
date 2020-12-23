@@ -22,7 +22,6 @@ class TreeTrunk{
 
 		void growTaller();
 		void growRoots();
-		virtual void growRootsCheck() = 0;
 
 		bool getDeciduousStatus();
 		virtual bool checkRootRequirements(); //Returns true if it's time to grow a new root layer!

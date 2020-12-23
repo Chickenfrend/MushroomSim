@@ -59,6 +59,18 @@ bool Ground::hasTreeTrunk(){
 	}
 }
 
+bool Ground::hasMushroom(){
+	if(mushroom.get() == nullptr){
+		return false;
+	}else{
+		return true;
+	}
+}
+
+void Ground::setMushroom(Mushroom* m){
+	mushroom.reset(m);
+}
+
 void Ground::setTreeTrunk(TreeTrunk* t){
 	trunk.reset(t);
 }
@@ -110,6 +122,20 @@ void Ground::growTreeRoots(){
 			}
 		}
 	}
+}
+
+void Ground::growMushroom(){
+	std::vector<Ground*> adjacent = world->getArea(1);	
+	std::vector<Ground*> empty;
+	for(auto i : adjacent){
+		if(!(i->hasMushroom())){
+			empty.push_back(i);
+		}
+	}
+	int randIndex = rand() % empty.size();
+
+	empty.at(randIndex)->setMushroom(mushroom->generateMycelium());
+	mushroom->getShroomTracker()->incrementCount();
 }
 
 void Ground::update(int hours){

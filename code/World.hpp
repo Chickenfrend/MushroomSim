@@ -33,6 +33,7 @@ class World{
 		Ground& getSouth(int dist = 1); //Should get whatever is dist south of curPos
 		Ground& getEast(int dist = 1); //Should get whatever is dist east of curPos
 		Ground& getWest(int dist = 1); //Should get whatever is dist west of curPos
+		std::vector<Ground*> getArea(int dist); //Returns a vector of pointers to the nearby ground tiles, within a certain distance in every direction from curPos. 
 
 		//These functions should adjust the current position, as long as it's in scope.
 		void moveNorth();
@@ -64,7 +65,6 @@ class World{
 
 		void updateAges(int hours);
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.
-		std::vector<Ground*> getArea(int dist); //Returns a vector of pointers to the nearby ground tiles, within a certain distance in every direction from curPos. 
 
 
 };

@@ -10,7 +10,4 @@ OakTrunk::OakTrunk(){
 	graphicsSymbol = "\033[33mO\033[0m";
 }
 
-void OakTrunk::growRootsCheck(){
-		
-}
 
