@@ -146,5 +146,10 @@ void Ground::update(int hours){
 			growTreeRoots();
 		}
 	}
+	if(hasMushroom()){
+		if(mushroom->checkSpreadConditions()){
+			growMushroom();
+		}
+	}
 }
 
