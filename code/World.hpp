@@ -15,7 +15,7 @@
 
 class Ground;
 class World{
-		public:
+	public:
 		World();
 		void generateWorld(); //This will randomly generate a world, populating it with tree trunks randomly.
 		void populateWorld(); //This will let the trees grow for a bit then randomly populate with mushrooms.
@@ -23,23 +23,25 @@ class World{
 		void run(); //This will be some kind of while loop that keeps running update. May do this in main instead, not sure.
 		bool hasTreeInArea(int dist); //If there's a tree trunk in a certain area, returns true. Calls getArea.
 
-		Ground& getCurPos(); //Returns the ground at curpos
+		Ground& getCurPos(); //Returns the ground at curpos, not curPos itself.
 		Ground* getNearCurPos(int hor, int vert);//This gets the position hor horizontally from curPos, and vert vertically from curPos. 
+
 		//The following are flawed since they return references when it's very possible we might wind up exceeding the vector bounds. In those cases
 		//it would be better to return a null pointer or throw an exception.
 		Ground& getNorth(int dist = 1); //Should get whatever is dist north of curPos
 		Ground& getSouth(int dist = 1); //Should get whatever is dist south of curPos
 		Ground& getEast(int dist = 1); //Should get whatever is dist east of curPos
 		Ground& getWest(int dist = 1); //Should get whatever is dist west of curPos
-		std::vector<Ground*> getArea(int dist); //Returns a vector of pointers to the nearby ground tiles, within a certain distance in every direction from curPos. 
+		std::vector<Ground*> getArea(int dist); //dist is the distance from curPos in which to get. Square area centered on curPos.
 
-		//These functions should adjust the current position, as long as it's in scope.
+		//Note that these functions just adjust curPos.
 		void moveNorth();
 		void moveSouth();
 		void moveEast();
 		void moveWest();
 
-		//This function moves curpos to the next valid position.
+		//This moves curPos to the next valid position. Useful so that we can iterate through the world without always having to explicitly write 
+		//Double nested loops.
 		void moveNext();
 
 		bool curPosAtEnd();
@@ -50,7 +52,6 @@ class World{
 	private:
 		WorldState worldState;	
 
-		season curSeason;
 		int size = 50;
 		std::vector<std::vector<Ground>> world; 
 		std::pair<int,int> curPos; 

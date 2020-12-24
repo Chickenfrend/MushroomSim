@@ -8,9 +8,15 @@
 
 class Mushroom: public GameObject{
 	private:
+		int ageHours = 0;
+		int ageDays = 0;
+		int ageYears = 0;
+		int ageMonths = 0;
+
 		std::string graphicsSymbol = "m";
 		float density; //The density of the mycelium in whatever ground block (should this be kept in the ground object?).
 		std::shared_ptr<ShroomTracker> organism; // A pointer to a shroom tracker object, which keeps track of what larger organism this mycelium block is part of.
+
 	protected:
 		int reproductiveAge; //The age at which the mycelium starts to produce mushrooms.
 		bool isBlooming; //Whether or not the mycelium is making mushrooms
@@ -23,6 +29,12 @@ class Mushroom: public GameObject{
 		virtual bool checkSpreadConditions(); //Returns true if the mushroom is able to spread!
 		virtual bool checkBloomConditions(); // Returns true if the mushroom is ready to bloom!
 		void sporeRelease();
+
+		//Might be smart to keep these in GameObject.
+		int getAgeHours();
+		int getAgeDays();
+		int getAgeMonths();
+		void age(int hours);
 
 		float getDensity();
 

@@ -140,6 +140,7 @@ void Ground::update(int hours){
 		}
 	}
 	if(hasMushroom()){
+		mushroom->age(hours);
 		if(mushroom->checkSpreadConditions()){
 			growMushroom();
 		}

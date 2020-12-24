@@ -12,7 +12,12 @@ Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<Shr
 }
 
 bool Mushroom::checkSpreadConditions(){
-	return false;
+	if(ageYears % 5 == 0){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
 
 bool Mushroom::checkBloomConditions(){
@@ -47,5 +52,37 @@ Mushroom* Mushroom::generateMycelium(){
 	Mushroom* newShroom = new Mushroom(getWorldState(), organism);
 
 	return newShroom;
+}
+
+void Mushroom::age(int hours){
+	ageHours += hours;
+
+	if(ageHours >= 24){
+		ageDays += hours/24;
+		ageHours = ageHours % 24;
+	}
+
+	if(ageDays >= 30){
+		ageMonths += ageDays/30;
+		ageDays = ageDays % 30;
+	}
+
+	if(ageMonths >= 12){
+		ageYears += ageMonths/12;
+		ageMonths = ageMonths % 12;
+	}
+
+}
+
+int Mushroom::getAgeHours(){
+	return getAgeDays()*24 + ageHours;
+}
+
+int Mushroom::getAgeDays(){
+	return getAgeMonths()*30 + ageDays;
+}
+
+int Mushroom::getAgeMonths(){
+	return ageYears*12 + ageMonths;
 }
 
