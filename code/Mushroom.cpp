@@ -1,15 +1,13 @@
 #include "Mushroom.hpp"
 
-Mushroom::Mushroom(std::shared_ptr<WorldState> currentState){
-	worldState = currentState;
+Mushroom::Mushroom(std::shared_ptr<WorldState> currentState):GameObject(currentState){
 
-	worldState->incrementTotalMushOrganisms();
-	ShroomTracker* tracker = new ShroomTracker(worldState->getTotalMushOrganisms());
+	getWorldState()->incrementTotalMushOrganisms();
+	ShroomTracker* tracker = new ShroomTracker(getWorldState()->getTotalMushOrganisms());
 	organism.reset(tracker);
 }
 
-Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<ShroomTracker> sharedTracker){
-	worldState = currentState;
+Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<ShroomTracker> sharedTracker):GameObject(currentState){
 	organism = sharedTracker;
 }
 
@@ -46,7 +44,7 @@ std::shared_ptr<ShroomTracker> Mushroom::getShroomTracker(){
 }
 
 Mushroom* Mushroom::generateMycelium(){
-	Mushroom* newShroom = new Mushroom(worldState, organism);
+	Mushroom* newShroom = new Mushroom(getWorldState(), organism);
 
 	return newShroom;
 }

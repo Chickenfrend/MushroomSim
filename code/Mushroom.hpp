@@ -4,17 +4,18 @@
 #include <string> 
 #include <memory>
 #include "ShroomTracker.hpp"
-#include "WorldState.hpp"
-class Mushroom{
-	protected:
+#include "GameObject.hpp"
+
+class Mushroom: public GameObject{
+	private:
 		std::string graphicsSymbol = "m";
 		float density; //The density of the mycelium in whatever ground block (should this be kept in the ground object?).
+		std::shared_ptr<ShroomTracker> organism; // A pointer to a shroom tracker object, which keeps track of what larger organism this mycelium block is part of.
+	protected:
 		int reproductiveAge; //The age at which the mycelium starts to produce mushrooms.
 		bool isBlooming; //Whether or not the mycelium is making mushrooms
 		std::string description; //The description of the mushroom. Possibly, this could be stored in the shroom tracker object to avoid unecessarily repeated storage of information. 
 		std::string name; //The name of the mushrooms species.
-		std::shared_ptr<ShroomTracker> organism; // A pointer to a shroom tracker object, which keeps track of what larger organism this mycelium block is part of.
-		std::shared_ptr<WorldState> worldState;
 
 	public:
 		Mushroom(std::shared_ptr<WorldState>);
