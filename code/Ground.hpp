@@ -37,9 +37,8 @@ class Ground{
 		void setMushroom(Mushroom* m);
 		void setTreeTrunk(TreeTrunk* t);
 		void setTreeRoot(TreeRoot* newroot);
-		void setTreeSeason(int newSeason);
 		void setWorld(World* parentWorld);
-		void updateTreeSeason();
+
 		void growTreeRoots();
 		void growMushroom();
 

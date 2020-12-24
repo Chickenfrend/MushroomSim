@@ -23,8 +23,6 @@ class World{
 		void run(); //This will be some kind of while loop that keeps running update. May do this in main instead, not sure.
 		bool hasTreeInArea(int dist); //If there's a tree trunk in a certain area, returns true. Calls getArea.
 
-		season getCurrentSeason();
-
 		Ground& getCurPos(); //Returns the ground at curpos
 		Ground* getNearCurPos(int hor, int vert);//This gets the position hor horizontally from curPos, and vert vertically from curPos. 
 		//The following are flawed since they return references when it's very possible we might wind up exceeding the vector bounds. In those cases
@@ -52,18 +50,11 @@ class World{
 	private:
 		WorldState worldState;	
 
-		int ageHours = 0;
-		int ageDays = 0;
-		int ageMonths = 0;
-		int ageYears = 0;
-		bool isRaining = false;
-		bool isDay = false;
 		season curSeason;
 		int size = 50;
 		std::vector<std::vector<Ground>> world; 
 		std::pair<int,int> curPos; 
 
-		void updateAges(int hours);
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.
 
 

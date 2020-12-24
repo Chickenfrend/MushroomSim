@@ -38,6 +38,7 @@ int TreeTrunk::getDistanceTolerance(){
 }
 
 void TreeTrunk::updateStage(){
+	int currentSeason = getWorldState()->getCurrentSeason();
 	if(getAgeHours() < 1){
 		stage = seed;
 		height = 0;
@@ -101,11 +102,6 @@ int TreeTrunk::getAgeDays(){
 int TreeTrunk::getAgeMonths(){
 	return ageYears*12 + ageMonths;
 }
-
-void TreeTrunk::setCurrentSeason(season updatedSeason){
-	currentSeason = updatedSeason;
-}
-
 
 std::string TreeTrunk::loadDescription(std::string name){
 	return "temp string. Update loadDescription function eventually please";

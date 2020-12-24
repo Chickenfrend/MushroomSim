@@ -98,12 +98,6 @@ std::string Ground::getASCIIGraphics(){
 	}
 }
 
-void Ground::updateTreeSeason(){
-	if(trunk != nullptr){
-		trunk->setCurrentSeason(world->getCurrentSeason());
-	}
-}
-
 //This function is ugly...
 void Ground::growTreeRoots(){
 	if(trunk != nullptr){
@@ -140,7 +134,6 @@ void Ground::growMushroom(){
 
 void Ground::update(int hours){
 	if(hasTreeTrunk()){
-		updateTreeSeason();
 		trunk->age(hours);
 		if(trunk->checkRootRequirements()){
 			growTreeRoots();

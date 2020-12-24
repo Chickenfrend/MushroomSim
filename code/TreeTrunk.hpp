@@ -35,7 +35,6 @@ class TreeTrunk : public GameObject{
 
 		std::string loadDescription(std::string name);
 
-		void setCurrentSeason(season updatedSeason);
 		void setRootRadius(int newRad);
 
 		int getAgeHours();
@@ -71,7 +70,6 @@ class TreeTrunk : public GameObject{
 		int ageMonths = 0;
 		int ageDays = 0;
 		int stage = seed;//This should be the stage of the tree. Young, old, etc. May have an enum for this.
-		int currentSeason = spring;
 
 		float height = 0;
 		float circumference = 0;
