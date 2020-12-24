@@ -1,5 +1,8 @@
 #include "TreeTrunk.hpp"
 
+TreeTrunk::TreeTrunk(std::shared_ptr<WorldState> currentWorldState):GameObject(currentWorldState){
+}
+
 bool TreeTrunk::getDeciduousStatus(){
 	return isDeciduous;
 }

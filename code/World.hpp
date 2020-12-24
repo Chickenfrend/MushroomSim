@@ -7,7 +7,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdio.h>
-#include<stdlib.h>
+#include <stdlib.h>
 
 /* Concept for later. We could make the world wrap, and add our own functions to add horizontally and vertically to curPos, which would
  * use modular addition to adjust the current position. Get north, south, etc, would also adjust accordingly.
@@ -50,8 +50,8 @@ class World{
 
 		void printWorld(); //This, likely shouldn't really be used in the final version. For now it is convenient to print stuff to the terminal though.	
 	private:
-		//Right now, the numbers for the age just increase. It might be smart to make them reset. I.E., I could make 
-		//the age in hours reset to 0 when it goes past 24. I don't really need to keep the total number of hours.
+		WorldState worldState;	
+
 		int ageHours = 0;
 		int ageDays = 0;
 		int ageMonths = 0;

@@ -6,9 +6,11 @@
 #include <iostream>
 #include "GlobalEnums.hpp"
 #include "TreeRoot.hpp"
+#include "GameObject.hpp"
 
-class TreeTrunk{
+class TreeTrunk : public GameObject{
 	public:
+		TreeTrunk(std::shared_ptr<WorldState> currentWorldState);
 		enum TreeStage : int{
 			seed,
 			sprout,

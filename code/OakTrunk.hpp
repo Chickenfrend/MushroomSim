@@ -5,7 +5,7 @@
 
 class OakTrunk: public TreeTrunk{
 	public:
-		OakTrunk();
+		OakTrunk(std::shared_ptr<WorldState> currentState);
 		void growRootsCheck();
 
 };

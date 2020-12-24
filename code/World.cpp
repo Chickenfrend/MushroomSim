@@ -39,7 +39,7 @@ void World::generateWorld(){
 			
 			int treeChance = rand() % 100;
 
-			TreeTrunk* newTrunk = new OakTrunk();
+			TreeTrunk* newTrunk = new OakTrunk(std::make_shared<WorldState>(worldState));
 			if(treeChance < 15 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
 				currentGround.setTreeTrunk(newTrunk);
 				currentGround.setWorld(this);
