@@ -2,6 +2,7 @@
 #define __GROUND
 
 #include "Mushroom.hpp"
+#include "Chanterelle.hpp"
 #include "TreeRoot.hpp"
 #include "TreeTrunk.hpp"
 #include "OakTrunk.hpp"

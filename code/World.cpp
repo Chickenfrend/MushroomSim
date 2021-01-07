@@ -33,13 +33,13 @@ void World::generateWorld(){
 	for(curPos.first = 0; curPos.first < size; curPos.first++){
 		for(curPos.second = 0;curPos.second < size; curPos.second++){
 			Ground& currentGround = getCurPos();
+			currentGround.setWorld(this);
 			
 			int treeChance = rand() % 100;
 
 			TreeTrunk* newTrunk = new OakTrunk(std::make_shared<WorldState>(worldState));
 			if(treeChance < 15 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
 				currentGround.setTreeTrunk(newTrunk);
-				currentGround.setWorld(this);
 			}
 			/*if(curPos.first % 15 == 0 && curPos.second % 15 == 0){
 				currentGround.setTreeTrunk(newTrunk);
@@ -51,9 +51,6 @@ void World::generateWorld(){
 		}
 	}
 	
-
-
-
 	resetCurPos();
 }
 
@@ -65,7 +62,22 @@ void World::populateWorld(){
 			update(24);
 			count++;
 		}	
-		std::cout << "Just went through year " << i << std::endl;
+		//std::cout << "Just went through year " << i << std::endl;
+	}
+
+	//This part places mushrooms
+	while(!curPosAtEnd()){
+		Ground& currentGround = getCurPos();
+
+		int mushChance = rand() % 100;
+		Mushroom* newShroom = new Chanterelle(std::make_shared<WorldState>(worldState));
+		if(mushChance < 7 && !currentGround.hasTreeTrunk() && !currentGround.hasMushroom() && newShroom->checkSpreadConditions()){
+			currentGround.setMushroom(newShroom);		
+		}
+		else{
+			delete newShroom;
+		}
+		moveNext();
 	}
 	
 	//update();
