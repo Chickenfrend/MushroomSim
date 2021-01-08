@@ -93,6 +93,40 @@ void World::update(int hours){
 	resetCurPos();
 }
 
+void World::run(){
+	bool running = true;
+	bool continuous = false;
+	while(running){
+		printWorld();
+		std::string selection = "";
+		int timeStep = 10;
+		std::cout << "Each update is " << timeStep << " hours." << std::endl;
+		std::cout << "q to quit, r to run, u to update one step, + to add 10 hours to time step, - to remove 10 hours: ";
+		std::cin >> selection;
+		std::cout << std::endl;
+
+		if(selection == "q"){
+			running == false;
+		}else if(selection == "u"){
+			update(timeStep);	
+		}else if(selection == "r"){
+			ToolBox::ClearScreen();
+			continuous == true;
+			while(continuous){
+				printWorld();
+				std::cout << "q to quit, p to stop running, +to add 10 hours to time step, - to remove 10 hours";	
+				std::cout << "Each update is " << timeStep << " hours." << std::endl;
+
+				update(timeStep);
+
+				ToolBox::ClearScreen();
+			}
+		}
+
+		ToolBox::ClearScreen();
+	}
+}
+
 //Okay, so here we need to search a square with the current position at its center, which means we should start 
 //at (curPos.first - dist, curPos.second - dist). But, we need to adjust for if you happen to by the edges of the map.
 std::vector<Ground*> World::getArea(int dist){
