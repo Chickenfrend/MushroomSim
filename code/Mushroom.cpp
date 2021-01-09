@@ -12,7 +12,7 @@ Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<Shr
 }
 
 bool Mushroom::checkSpreadConditions(){
-	if(ageYears % 5 == 0){
+	if(ageMonths == 0){
 		return true;
 	}else{
 		return false;

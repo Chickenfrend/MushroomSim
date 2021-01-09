@@ -100,8 +100,8 @@ void World::run(){
 		printWorld();
 		std::string selection = "";
 		int timeStep = 10;
-		std::cout << "Each update is " << timeStep << " hours." << std::endl;
 		std::cout << "q to quit, r to run, u to update one step, + to add 10 hours to time step, - to remove 10 hours: ";
+		std::cout << "Each update is " << timeStep << " hours." << std::endl;
 		std::cin >> selection;
 		std::cout << std::endl;
 
