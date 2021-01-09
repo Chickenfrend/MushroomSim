@@ -42,7 +42,7 @@ class Mushroom: public GameObject{
 		std::string getDescription();
 		std::string getName();
 		std::shared_ptr<ShroomTracker> getShroomTracker();
-		Mushroom* generateMycelium(); //Produces a new mycelium block. Remember memory management! This allocates memory for the new mushroom pointer.
+		virtual Mushroom* generateMycelium() = 0; //Produces a new mycelium block. Remember memory management! This allocates memory for the new mushroom pointer.
 
 		void setShroomTracker(std::shared_ptr<ShroomTracker> tracker);
 

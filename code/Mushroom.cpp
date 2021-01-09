@@ -47,11 +47,11 @@ std::shared_ptr<ShroomTracker> Mushroom::getShroomTracker(){
 	return organism;
 }
 
-Mushroom* Mushroom::generateMycelium(){
+/*Mushroom* Mushroom::generateMycelium(){
 	Mushroom* newShroom = new Mushroom(getWorldState(), organism);
 
 	return newShroom;
-}
+}*/
 
 void Mushroom::age(int hours){
 	ageHours += hours;

@@ -126,10 +126,12 @@ void Ground::growMushroom(){
 			empty.push_back(i);
 		}
 	}
-	int randIndex = rand() % empty.size();
+	if(empty.size() != 0){
+		int randIndex = rand() % empty.size();
 
-	empty.at(randIndex)->setMushroom(mushroom->generateMycelium());
-	mushroom->getShroomTracker()->incrementCount();
+		empty.at(randIndex)->setMushroom(mushroom->generateMycelium());
+		mushroom->getShroomTracker()->incrementCount();
+	}
 }
 
 void Ground::update(int hours){

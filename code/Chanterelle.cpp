@@ -16,3 +16,11 @@ Chanterelle::Chanterelle(std::shared_ptr<WorldState> currentState, std::shared_p
 	graphicsSymbol = "\033[33mC\033[0m";
 
 }
+
+Mushroom* Chanterelle::generateMycelium(){
+	Mushroom* newShroom = new Chanterelle(getWorldState(), getShroomTracker());
+
+	std::cout << "Making a new mushroom";
+
+	return newShroom;
+}

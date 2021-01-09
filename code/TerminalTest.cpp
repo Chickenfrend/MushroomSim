@@ -14,5 +14,5 @@ int main(){
 
 	testworld.populateWorld();
 
-	testworld.printWorld();
+	testworld.run();
 }
