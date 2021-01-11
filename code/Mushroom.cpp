@@ -12,11 +12,7 @@ Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<Shr
 }
 
 bool Mushroom::checkSpreadConditions(){
-	if(ageMonths == 0){
-		return true;
-	}else{
-		return false;
-	}
+	return canSpread;
 }
 
 bool Mushroom::checkBloomConditions(){
@@ -52,6 +48,19 @@ std::shared_ptr<ShroomTracker> Mushroom::getShroomTracker(){
 
 	return newShroom;
 }*/
+
+void Mushroom::updateSpreadConditions(int hours){
+	if(ageMonths != spreadFrequencyMonths && ToolBox::HoursToMonths(getAgeHours() + hours)%12 == spreadFrequencyMonths){
+		canSpread = true;
+	}else{
+		canSpread = false;
+	}
+}
+
+void Mushroom::update(int hours){
+	updateSpreadConditions(hours);
+	age(hours);
+}
 
 void Mushroom::age(int hours){
 	ageHours += hours;
