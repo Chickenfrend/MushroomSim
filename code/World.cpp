@@ -71,7 +71,7 @@ void World::populateWorld(){
 
 		int mushChance = rand() % 100;
 		Mushroom* newShroom = new Chanterelle(std::make_shared<WorldState>(worldState));
-		if(mushChance < 7 && !currentGround.hasTreeTrunk() && !currentGround.hasMushroom() && newShroom->checkSpreadConditions()){
+		if(mushChance < 7 && !currentGround.hasTreeTrunk() && !currentGround.hasMushroom()){
 			currentGround.setMushroom(newShroom);		
 		}
 		else{
