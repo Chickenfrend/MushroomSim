@@ -11,6 +11,7 @@
 #include <string>
 
 class World;
+class Mushroom;
 class Ground{
 	private:
 		//Moisture and density are percentages that indicate how dense, and moist, respectively, the soil is.
@@ -32,6 +33,7 @@ class Ground{
 		Mushroom* getMushroom();
 		bool hasTreeTrunk();
 		bool hasMushroom();
+		bool hasTreeRoot();
 		
 		void setDensity(float d);
 		void setMoisture(float m);

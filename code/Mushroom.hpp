@@ -3,10 +3,12 @@
 
 #include <string> 
 #include <memory>
+#include "Ground.hpp"
 #include "ShroomTracker.hpp"
 #include "GameObject.hpp"
 #include "ToolBox.hpp"
 
+class Ground;
 class Mushroom: public GameObject{
 	private:
 		int ageHours = 0;
@@ -33,6 +35,8 @@ class Mushroom: public GameObject{
 		virtual void updateSpreadConditions(int hours);
 		bool checkSpreadConditions(); //Returns true if the mushroom is able to spread!
 		virtual bool checkBloomConditions(); // Returns true if the mushroom is ready to bloom!
+		virtual bool checkSoilConditions(Ground* ground);
+
 
 		void update(int hours);
 		void sporeRelease();

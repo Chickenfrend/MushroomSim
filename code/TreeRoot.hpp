@@ -12,6 +12,8 @@ class TreeRoot{
 		//std::pair<int,int> parentPos;
 	public:
 		TreeRoot(std::string parentType, bool parentDeciduous);
+		bool getIfDeciduous();
+		
 		std::string getASCIIGraphics();
 
 	

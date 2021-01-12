@@ -108,17 +108,17 @@ void World::run(){
 		int day = worldState.getCurrentDay();
 		int hour = worldState.getCurrentHour();
 
-		std::cout << " Year: " << year << " Month: " << month << " Day: " << day << " Hour: " << hour << std::endl;
+		std::cout << "Year: " << year << " Month: " << month << " Day: " << day << " Hour: " << hour << std::endl;
 		std::cin >> selection;
 		std::cout << std::endl;
 
 		if(selection == "q"){
-			running == false;
+			running = false;
 		}else if(selection == "u"){
 			update(timeStep);	
 		}else if(selection == "r"){
 			ToolBox::ClearScreen();
-			continuous == true;
+			continuous = true;
 			while(continuous){
 				printWorld();
 				std::cout << "q to quit, p to stop running, + to add 10 hours to time step, - to remove 10 hours";	

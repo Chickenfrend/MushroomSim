@@ -1,3 +1,6 @@
+#ifndef __WORLDSTATE
+#define __WORLDSTATE
+
 #include "GlobalEnums.hpp"
 
 //I implemented world age, seasons, etc, in world.hpp. Eventually, I should probably move those here.
@@ -32,3 +35,5 @@ class WorldState{
 		int getCurrentDay();
 		int getCurrentHour();
 };
+
+#endif
