@@ -20,7 +20,7 @@ void WorldState::updateAges(int hours){
 	ageHours += hours;
 
 	if(ageHours >= 24){
-		ageDays += hours/24;
+		ageDays += ageHours/24;
 		ageHours = ageHours % 24;
 	}
 
@@ -44,4 +44,47 @@ void WorldState::updateAges(int hours){
 		curSeason = winter;
 	}	
 }
+
+int WorldState::getAgeHours(){
+	return getAgeDays()*24 + ageHours;
+}
+
+int WorldState::getAgeDays(){
+	return getAgeMonths()*30 + ageDays;
+}
+
+int WorldState::getAgeMonths(){
+	return ageYears*12 + ageMonths;
+}
+
+int WorldState::getAgeYears(){
+	return ageYears;
+}
+
+int WorldState::getCurrentMonth(){
+	return ageMonths;
+}
+
+int WorldState::getCurrentDay(){
+	return ageDays;
+}
+
+int WorldState::getCurrentHour(){
+	return ageHours;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

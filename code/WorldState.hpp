@@ -20,5 +20,15 @@ class WorldState{
 		season getCurrentSeason();
 		void updateAges(int hours);
 
+		//These functions give you the total number of hours, days, years, etc, since the world began.
+		int getAgeHours();
+		int getAgeDays();
+		int getAgeMonths();
+		int getAgeYears();
 
+		//These functions get you which month it is in the year, which day it is in the month, and which hour it is in the day.
+		// I.E., getCurrentMonth() never returns anything larger than 12.
+		int getCurrentMonth();
+		int getCurrentDay();
+		int getCurrentHour();
 };

@@ -66,7 +66,7 @@ void Mushroom::age(int hours){
 	ageHours += hours;
 
 	if(ageHours >= 24){
-		ageDays += hours/24;
+		ageDays += ageHours/24;
 		ageHours = ageHours % 24;
 	}
 

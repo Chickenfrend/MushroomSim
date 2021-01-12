@@ -96,12 +96,19 @@ void World::update(int hours){
 void World::run(){
 	bool running = true;
 	bool continuous = false;
+	int timeStep = 10;
 	while(running){
 		printWorld();
 		std::string selection = "";
-		int timeStep = 10;
-		std::cout << "q to quit, r to run, u to update one step, + to add 10 hours to time step, - to remove 10 hours: ";
+		std::cout << "q to quit, r to run, u to update one step, + to add 10 hours to time step, - to remove 10 hours: " << std::endl;
 		std::cout << "Each update is " << timeStep << " hours." << std::endl;
+
+		int year = worldState.getAgeYears();
+		int month = worldState.getCurrentMonth();
+		int day = worldState.getCurrentDay();
+		int hour = worldState.getCurrentHour();
+
+		std::cout << " Year: " << year << " Month: " << month << " Day: " << day << " Hour: " << hour << std::endl;
 		std::cin >> selection;
 		std::cout << std::endl;
 
@@ -114,14 +121,22 @@ void World::run(){
 			continuous == true;
 			while(continuous){
 				printWorld();
-				std::cout << "q to quit, p to stop running, +to add 10 hours to time step, - to remove 10 hours";	
+				std::cout << "q to quit, p to stop running, + to add 10 hours to time step, - to remove 10 hours";	
 				std::cout << "Each update is " << timeStep << " hours." << std::endl;
 
 				update(timeStep);
 
 				ToolBox::ClearScreen();
 			}
+		}else if(selection == "+"){
+			timeStep += 10;
+		}else if(selection == "-"){
+			if(timeStep + 10 >= 0){
+				timeStep -= 10;
+			}
 		}
+
+		
 
 		ToolBox::ClearScreen();
 	}
