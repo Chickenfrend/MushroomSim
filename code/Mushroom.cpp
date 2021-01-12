@@ -22,7 +22,7 @@ bool Mushroom::checkBloomConditions(){
 bool Mushroom::checkSoilConditions(TreeRoot* root){
 	if(!root){
 		return false;
-	}else if(!root->getIfDeciduous()){
+	}else if(root->getIfDeciduous()){
         return true;
 	}else{
         return false;
