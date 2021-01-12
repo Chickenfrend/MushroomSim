@@ -59,11 +59,10 @@ class TreeTrunk : public GameObject{
 		std::string description;
 		bool isDeciduous; 
 		int childRoots = 0;//
-		int maxDistance;//This is the distance the roots should grow from the tree (in blocks)
 		int distance;//Actual distance of the roots.
-		int distanceTolerance = 2; //How close this tree will spawn from other trees.
+		int distanceTolerance = 3; //How close this tree will spawn from other trees.
 		int rootRadius = 0; //The real root circumference of this tree.
-		int maxRootRadius = 3; //Maximum distance roots can grow.
+		int maxRootRadius = 2; //Maximum distance roots can grow.
 
 		int ageHours = 0;
 		int ageYears = 0;
