@@ -8,3 +8,7 @@ TreeRoot::TreeRoot(std::string parentType, bool parentDeciduous){
 std::string TreeRoot::getASCIIGraphics(){
 	return "r";
 }
+
+bool TreeRoot::getIfDeciduous(){
+    return isDeciduous;
+}

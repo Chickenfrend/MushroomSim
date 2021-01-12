@@ -19,10 +19,14 @@ bool Mushroom::checkBloomConditions(){
 	return false;
 }
 
-bool Mushroom::checkSoilConditions(Ground* ground){
-	if(!ground->hasTreeRoot()){
+bool Mushroom::checkSoilConditions(TreeRoot* root){
+	if(!root){
 		return false;
-	}
+	}else if(!root->getIfDeciduous()){
+        return true;
+	}else{
+        return false;
+    }
 }
 
 float Mushroom::getDensity(){
