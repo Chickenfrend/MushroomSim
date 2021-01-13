@@ -7,6 +7,7 @@ class OakTrunk: public TreeTrunk{
 	public:
 		OakTrunk(std::shared_ptr<WorldState> currentState);
 		void growRootsCheck();
+		void updateStage();
 
 };
 

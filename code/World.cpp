@@ -38,7 +38,7 @@ void World::generateWorld(){
 			int treeChance = rand() % 100;
 
 			TreeTrunk* newTrunk = new OakTrunk(std::make_shared<WorldState>(worldState));
-			if(treeChance < 15 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
+			if(treeChance < 5 && !hasTreeInArea(newTrunk->getDistanceTolerance()) && !currentGround.getTreeTrunk()){
 				currentGround.setTreeTrunk(newTrunk);
 			}
 			/*if(curPos.first % 15 == 0 && curPos.second % 15 == 0){
@@ -71,7 +71,7 @@ void World::populateWorld(){
 
 		int mushChance = rand() % 100;
 		Mushroom* newShroom = new Chanterelle(std::make_shared<WorldState>(worldState));
-		if(mushChance < 7 && !currentGround.hasTreeTrunk() && !currentGround.hasMushroom()){
+		if(mushChance < 7 && !currentGround.hasTreeTrunk() && !currentGround.hasMushroom() && newShroom->checkSoilConditions(currentGround.getTreeRoot())){
 			currentGround.setMushroom(newShroom);		
 		}
 		else{
