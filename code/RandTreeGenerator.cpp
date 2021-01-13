@@ -1,7 +1,8 @@
 #include "RandTreeGenerator.hpp"
 
-RandTreeGenerator::RandTreeGenerator(std::string _forestPath){
+RandTreeGenerator::RandTreeGenerator(std::string _forestPath, std::shared_ptr<WorldState> currentState){
 	forestPath = _forestPath;
+	worldState = currentState;
 	GenerateLists();
 }
 
@@ -55,4 +56,25 @@ void RandTreeGenerator::GenerateLists(){
     std::cout << std::endl;
 
 
+}
+
+std::string RandTreeGenerator::pickRandom(){
+	int randInt = rand() % intervals.back();
+	for(int i = 0; i < intervals.size(); i++){
+		if(intervals[i] < randInt){
+			return treeNames[i]; 
+		}
+	}
+}
+
+TreeTrunk* RandTreeGenerator::generateTreeTrunk(){
+	std::string randTreeName = pickRandom();
+	if(randTreeName == "OakTrunk"){
+		return new OakTrunk(worldState);
+	}else if(randTreeName == "PineTrunk"){
+		return new PineTrunk(worldState);
+	}else{
+		std::string error = "Invalid tree name " + randTreeName;
+		throw std::runtime_error(error);
+	}
 }
