@@ -19,7 +19,10 @@ void RandTreeGenerator::GenerateLists(){
 
 	if(treeFile.good()){
 		std::getline(treeFile, firstLine);
-	}
+        std::cout << "Got Here" << std::endl;
+	}else{
+        throw std::runtime_error("File is not good");
+    }
 	
 	int index = 0;
 
@@ -27,16 +30,29 @@ void RandTreeGenerator::GenerateLists(){
 	while(std::getline(treeFile, line)){
 		int currentWeight;
 		std::istringstream stream(line);
-		std::getline(stream, treeNames[index], ',');
+        std::string tempString = "";
+		std::getline(stream, tempString, ',');
+        treeNames.push_back(tempString);
 
 		stream >> currentWeight;
 
 		if(index == 0){
-			intervals[index] = 0;
+			intervals.push_back(currentWeight);
 		}else{
-			intervals[index] = intervals[index-1] + currentWeight;
+			intervals.push_back(intervals[index-1] + currentWeight);
 		}
 
 		index++;	
 	}
+
+    for(int i = 0; i < treeNames.size(); i++){
+        std::cout << treeNames[i] << " ";
+    }
+    std::cout << std::endl;
+    for(int i = 0; i < intervals.size(); i++){
+        std::cout << intervals[i] << " ";
+    }
+    std::cout << std::endl;
+
+
 }
