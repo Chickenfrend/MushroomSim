@@ -4,6 +4,7 @@
 #include "Ground.hpp"
 #include "GlobalEnums.hpp"
 #include "ToolBox.hpp"
+#include "RandTreeGenerator.hpp"
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -53,6 +54,7 @@ class World{
 	private:
 		WorldState worldState;	
 
+		std::string forestPath = "../data/mixedforest.csv";
 		int size = 50;
 		std::vector<std::vector<Ground>> world; 
 		std::pair<int,int> curPos; 
