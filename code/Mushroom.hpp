@@ -3,6 +3,7 @@
 
 #include <string> 
 #include <memory>
+#include <vector>
 #include "ShroomTracker.hpp"
 #include "GameObject.hpp"
 #include "ToolBox.hpp"
@@ -13,14 +14,17 @@ class Mushroom: public GameObject{
 		int ageHours = 0;
 		int ageDays = 0;
 		int ageYears = 0;
-		int ageMonths = 0;
+   		int ageMonths = 0;
 
-		int spreadFrequencyMonths = 0; //This variable is used when checking if it should spread. Setting it to 0 means it will spread yearly.
 
 		float density; //The density of the mycelium in whatever ground block (should this be kept in the ground object?).
 		std::shared_ptr<ShroomTracker> organism; // A pointer to a shroom tracker object, which keeps track of what larger organism this mycelium block is part of.
+        //Possible could be in shroom tracker...
+        void storeValidTreeList();
+        std::vector<std::string> validTrees;
 
 	protected:
+		int spreadFrequencyMonths = 0; //This variable is used when checking if it should spread. Setting it to 0 means it will spread yearly.
 		int reproductiveAge; //The age at which the mycelium starts to produce mushrooms.
 		bool isBlooming; //Whether or not the mycelium is making mushrooms
 		bool canSpread = false;
@@ -35,7 +39,6 @@ class Mushroom: public GameObject{
 		bool checkSpreadConditions(); //Returns true if the mushroom is able to spread!
 		virtual bool checkBloomConditions(); // Returns true if the mushroom is ready to bloom!
 		virtual bool checkSoilConditions(TreeRoot* root);
-
 
 		void update(int hours);
 		void sporeRelease();

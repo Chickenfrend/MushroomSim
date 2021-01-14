@@ -11,6 +11,11 @@ Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<Shr
 	organism = sharedTracker;
 }
 
+void Mushroom::storeValidTreeList(){
+    std::string treeListPath = "../descriptions/" + name + "/valid_trees.txt";
+    
+}
+
 bool Mushroom::checkSpreadConditions(){
 	return canSpread;
 }
