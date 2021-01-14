@@ -1,4 +1,5 @@
 #include "PineTrunk.hpp"
+#include <string>
 
 PineTrunk::PineTrunk(std::shared_ptr<WorldState> currentState):TreeTrunk(currentState){
 	treeType = "Pine";

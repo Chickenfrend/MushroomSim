@@ -127,6 +127,8 @@ void World::run(){
 
 				update(timeStep);
 
+				std::this_thread::sleep_for(std::chrono::milliseconds(32));
+
 				ToolBox::ClearScreen();
 			}
 		}else if(selection == "+"){

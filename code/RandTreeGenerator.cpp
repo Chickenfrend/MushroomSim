@@ -61,10 +61,13 @@ void RandTreeGenerator::GenerateLists(){
 std::string RandTreeGenerator::pickRandom(){
 	int randInt = rand() % intervals.back();
 	for(int i = 0; i < intervals.size(); i++){
-		if(intervals[i] < randInt){
+	 	std::cout << "Got to for loop" << std::endl;	
+		if(randInt < intervals[i]){
+			std::cout << "Current interval is " << intervals[i] << std::endl;
 			return treeNames[i]; 
 		}
 	}
+	throw std::runtime_error("Failed to pick a random tree. Bad or empty forest file?");
 }
 
 TreeTrunk* RandTreeGenerator::generateTreeTrunk(){
@@ -76,5 +79,6 @@ TreeTrunk* RandTreeGenerator::generateTreeTrunk(){
 	}else{
 		std::string error = "Invalid tree name " + randTreeName;
 		throw std::runtime_error(error);
+		return new TreeTrunk(worldState);
 	}
 }
