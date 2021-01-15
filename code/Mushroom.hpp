@@ -4,10 +4,19 @@
 #include <string> 
 #include <memory>
 #include <vector>
+#include <set>
+#include <fstream>
+#include <algorithm>
 #include "ShroomTracker.hpp"
 #include "GameObject.hpp"
 #include "ToolBox.hpp"
 #include "TreeRoot.hpp"
+
+using std::string;
+using std::ifstream;
+using std::cout;
+using std::cin;
+using std::endl;
 
 class Mushroom: public GameObject{
 	private:
@@ -21,9 +30,10 @@ class Mushroom: public GameObject{
 		std::shared_ptr<ShroomTracker> organism; // A pointer to a shroom tracker object, which keeps track of what larger organism this mycelium block is part of.
         //Possible could be in shroom tracker...
         void storeValidTreeList();
-        std::vector<std::string> validTrees;
+        std::set<std::string> validTrees;
 
 	protected:
+		bool checkIfValidTree(string treeName);
 		int spreadFrequencyMonths = 0; //This variable is used when checking if it should spread. Setting it to 0 means it will spread yearly.
 		int reproductiveAge; //The age at which the mycelium starts to produce mushrooms.
 		bool isBlooming; //Whether or not the mycelium is making mushrooms

@@ -6,9 +6,9 @@
 class PineTrunk: public TreeTrunk{
 	public:
 		PineTrunk(std::shared_ptr<WorldState> currentState);
-		virtual bool checkRootRequirements();
+		bool checkRootRequirements() override;
 	protected:
-		virtual void updateStage();
+		void updateStage() override;
 
 };
 

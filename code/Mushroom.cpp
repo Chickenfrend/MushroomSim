@@ -12,8 +12,30 @@ Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<Shr
 }
 
 void Mushroom::storeValidTreeList(){
-    std::string treeListPath = "../descriptions/" + name + "/valid_trees.txt";
+    string treeListPath = "../descriptions/" + name + "/valid_trees.txt";
+	ifstream treeList(treeListPath);
+	string line;
+
+	if(!treeList.is_open()){
+		throw std::runtime_error("Could not open the tree list file.");
+	}
+
+	while(std::getline(treeList, line)){
+		validTrees.insert(line);
+	}
+
+	if(validTrees.empty()){
+		std::cerr << "Warning: Mushroom " << name << " has no valid trees. It won't grow anywhere!";
+	}
     
+}
+
+bool Mushroom::checkIfValidTree(string treeName){
+	if(validTrees.find(treeName) != validTrees.end()){
+		return true;	
+	}else{
+		return false;
+	}
 }
 
 bool Mushroom::checkSpreadConditions(){

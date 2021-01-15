@@ -15,7 +15,7 @@ void RandTreeGenerator::GenerateLists(){
 	int weight;
 
 	if(!treeFile.is_open()){
-		throw std::runtime_error("Could not open file");
+		throw std::runtime_error("Could not open forest file");
 	}
 
 	if(treeFile.good()){
