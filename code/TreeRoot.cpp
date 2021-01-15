@@ -12,3 +12,7 @@ std::string TreeRoot::getASCIIGraphics(){
 bool TreeRoot::getIfDeciduous(){
     return isDeciduous;
 }
+
+std::string TreeRoot::getTreeType(){
+	return treeType;
+}

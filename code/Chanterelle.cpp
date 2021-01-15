@@ -20,7 +20,5 @@ Chanterelle::Chanterelle(std::shared_ptr<WorldState> currentState, std::shared_p
 Mushroom* Chanterelle::generateMycelium(){
 	Mushroom* newShroom = new Chanterelle(getWorldState(), getShroomTracker());
 
-	std::cout << "Making a new mushroom";
-
 	return newShroom;
 }

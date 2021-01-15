@@ -2,7 +2,7 @@
 #include <string>
 
 PineTrunk::PineTrunk(std::shared_ptr<WorldState> currentState):TreeTrunk(currentState){
-	treeType = "Pine";
+	treeType = "PineTree";
 	description = loadDescription(treeType);
 	isDeciduous = false;
 

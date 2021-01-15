@@ -13,6 +13,7 @@ class TreeRoot{
     public:
         TreeRoot(std::string parentType, bool parentDeciduous);
         bool getIfDeciduous();
+		std::string getTreeType();
         
         std::string getASCIIGraphics();
 

@@ -1,7 +1,7 @@
 #include "OakTrunk.hpp"
 
 OakTrunk::OakTrunk(std::shared_ptr<WorldState> currentState):TreeTrunk(currentState){
-	treeType = "Oak";
+	treeType = "OakTree";
 	description = loadDescription(treeType);
 	isDeciduous = true;
 
