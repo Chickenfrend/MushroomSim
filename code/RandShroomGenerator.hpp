@@ -1,19 +1,19 @@
-#ifndef __RANDOMTREEGENERATOR
-#define __RANDOMTREEGENERATOR
-#include "OakTrunk.hpp"
-#include "PineTrunk.hpp"
+#ifndef __RANDOMSHROOMGENERATOR
+#define __RANDOMSHROOMGENERATOR
+#include "Chanterelle.hpp"
+#include "AmanitaMuscaria.hpp"
 #include <vector>
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
 #include <iostream>
 
-class RandTreeGenerator{
+class RandShroomGenerator{
 	public:
-		RandTreeGenerator(std::string _forestPath, std::shared_ptr<WorldState> currentState);
+		RandShroomGenerator(std::string _shroomPath, std::shared_ptr<WorldState> currentState);
 		//This function allocates memory! If you call it you must either encapsulate the pointer
 		//with a smart pointer or remember to delete it.
-		TreeTrunk* generateTreeTrunk();
+		Mushroom* generateMushroom();
 	private:
 		std::string forestPath;
 		void GenerateLists();

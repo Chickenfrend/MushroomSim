@@ -29,10 +29,10 @@ class Mushroom: public GameObject{
 		float density; //The density of the mycelium in whatever ground block (should this be kept in the ground object?).
 		std::shared_ptr<ShroomTracker> organism; // A pointer to a shroom tracker object, which keeps track of what larger organism this mycelium block is part of.
         //Possible could be in shroom tracker...
-        void storeValidTreeList();
         std::set<std::string> validTrees;
 
 	protected:
+		bool needsTreeList = true;
 		bool checkIfValidTree(string treeName);
 		int spreadFrequencyMonths = 0; //This variable is used when checking if it should spread. Setting it to 0 means it will spread yearly.
 		int reproductiveAge; //The age at which the mycelium starts to produce mushrooms.
@@ -41,6 +41,7 @@ class Mushroom: public GameObject{
 		std::string description; //The description of the mushroom. Possibly, this could be stored in the shroom tracker object to avoid unecessarily repeated storage of information. 
 		std::string name; //The name of the mushrooms species.
 		std::string graphicsSymbol = "m";
+        void storeValidTreeList();
 
 	public:
 		Mushroom(std::shared_ptr<WorldState>);

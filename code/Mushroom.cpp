@@ -5,16 +5,14 @@ Mushroom::Mushroom(std::shared_ptr<WorldState> currentState):GameObject(currentS
 	getWorldState()->incrementTotalMushOrganisms();
 	ShroomTracker* tracker = new ShroomTracker(getWorldState()->getTotalMushOrganisms());
 	organism.reset(tracker);
-	storeValidTreeList();
 }
 
 Mushroom::Mushroom(std::shared_ptr<WorldState> currentState, std::shared_ptr<ShroomTracker> sharedTracker):GameObject(currentState){
 	organism = sharedTracker;
-	storeValidTreeList();
 }
 
 void Mushroom::storeValidTreeList(){
-    string treeListPath = "../descriptions/" + name + "/valid_trees.txt";
+    string treeListPath = "../descriptions/mushrooms/" + name + "/valid_trees.txt";
 	ifstream treeList(treeListPath);
 	string line;
 

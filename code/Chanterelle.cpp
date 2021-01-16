@@ -1,6 +1,7 @@
 #include "Chanterelle.hpp"
 
 Chanterelle::Chanterelle(std::shared_ptr<WorldState> currentState):Mushroom(currentState){
+	needsTreeList = false;
 	name = "Chanterelle";
 	isBlooming = false; 
 	description = "Stand In Description, to be replaced";
@@ -9,6 +10,7 @@ Chanterelle::Chanterelle(std::shared_ptr<WorldState> currentState):Mushroom(curr
 }
 
 Chanterelle::Chanterelle(std::shared_ptr<WorldState> currentState, std::shared_ptr<ShroomTracker> sharedTracker):Mushroom(currentState, sharedTracker){
+	needsTreeList = false;
 	name = "Chanterelle";
 	isBlooming = false; 
 	description = "Stand In Description, to be replaced";

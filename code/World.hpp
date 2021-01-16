@@ -5,6 +5,7 @@
 #include "GlobalEnums.hpp"
 #include "ToolBox.hpp"
 #include "RandTreeGenerator.hpp"
+#include "RandShroomGenerator.hpp"
 #include <chrono>
 #include <thread>
 #include <iostream>
@@ -43,7 +44,6 @@ class World{
 		void moveSouth();
 		void moveEast();
 		void moveWest();
-
 		//This moves curPos to the next valid position. Useful so that we can iterate through the world without always having to explicitly write 
 		//Double nested loops.
 		void moveNext();
@@ -56,7 +56,7 @@ class World{
 	private:
 		WorldState worldState;	
 
-		std::string forestPath = "../data/mixedforest.csv";
+		std::string forestPath = "../data/forests/mixedforest";
 		int size = 50;
 		std::vector<std::vector<Ground>> world; 
 		std::pair<int,int> curPos; 

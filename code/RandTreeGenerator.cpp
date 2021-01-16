@@ -7,7 +7,7 @@ RandTreeGenerator::RandTreeGenerator(std::string _forestPath, std::shared_ptr<Wo
 }
 
 void RandTreeGenerator::GenerateLists(){
-	std::ifstream treeFile(forestPath);
+	std::ifstream treeFile(forestPath + "/trees.csv");
 
 	std::string line;
 	std::string firstLine;

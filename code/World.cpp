@@ -69,9 +69,10 @@ void World::populateWorld(){
 	//This part places mushrooms
 	while(!curPosAtEnd()){
 		Ground& currentGround = getCurPos();
-
 		int mushChance = rand() % 100;
-		Mushroom* newShroom = new Chanterelle(std::make_shared<WorldState>(worldState));
+		
+		RandShroomGenerator shroomGen(forestPath, std::make_shared<WorldState>(worldState));	
+		Mushroom* newShroom = shroomGen.generateMushroom();
 		if(mushChance < 7 && !currentGround.hasTreeTrunk() && !currentGround.hasMushroom() && newShroom->checkSoilConditions(currentGround.getTreeRoot())){
 			currentGround.setMushroom(newShroom);		
 		}
