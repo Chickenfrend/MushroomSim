@@ -87,7 +87,7 @@ std::shared_ptr<ShroomTracker> Mushroom::getShroomTracker(){
 }*/
 
 void Mushroom::updateSpreadConditions(int hours){
-	if(ageMonths != spreadFrequencyMonths && ToolBox::HoursToMonths(getAgeHours() + hours)%12 == spreadFrequencyMonths && getAgeMonths() != 0){
+	if(ageMonths != spreadFrequencyMonths && ToolBox::HoursToMonths(getAgeHours() + hours) % 12 == spreadFrequencyMonths && getAgeMonths() != 0){
 		canSpread = true;
 	}else{
 		canSpread = false;
