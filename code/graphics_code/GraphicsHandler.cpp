@@ -15,12 +15,19 @@ void GraphicsHandler::LaunchDisplay(){
 
 	sf::CircleShape shape(100.f);
 	shape.setFillColor(sf::Color::Green);
+	shape.setPosition(gameView.getCenter());
 	while(window.isOpen()){
 		sf::Event event;
 		while(window.pollEvent(event)){
 			if(event.type == sf::Event::Closed){
 				window.close();
 			}
+			/*
+			if(event.type == sf::Event::Resized){
+				sf::FloatRect visibleArea(0.f,0.f, event.size.width, event.size.height);
+				window.setView(sf::View(visibleArea));
+			}
+			*/
 
 			gui.handleEvent(event);
 			//Probably here we should pass the event to another function to check if it's an important key press, etc.
