@@ -1,15 +1,20 @@
 #include "GraphicsHandler.hpp"
 
 void GraphicsHandler::LaunchDisplay(){
-	sf::RenderWindow window(sf::VideoMode(1600,900), "Mushroom Sim!");
+
+	sf::RenderWindow window(sf::VideoMode(1600,900), "Mushroom Sim?");
 	window.setVerticalSyncEnabled(true);
 	tgui::Gui gui(window);
-	tgui::Button::Ptr button = tgui::Button::create();
-	tgui::EditBox::Ptr editBox = tgui::EditBox::create();
-	gui.add(button);
-	gui.add(editBox, "MyWidgetName");
+
 	addRightTextBox(&gui);
 	addBottomTextBox(&gui);
+
+	sf::View gameView;
+	gameView = createView();
+	window.setView(gameView);
+
+	sf::CircleShape shape(100.f);
+	shape.setFillColor(sf::Color::Green);
 	while(window.isOpen()){
 		sf::Event event;
 		while(window.pollEvent(event)){
@@ -23,13 +28,14 @@ void GraphicsHandler::LaunchDisplay(){
 
 		window.clear();
 		gui.draw();
+		window.draw(shape);
 		window.display();
 	}
 }
 
 void GraphicsHandler::addRightTextBox(tgui::Gui* gui){
 	tgui::TextBox::Ptr rightTextBox = tgui::TextBox::create();
-	rightTextBox->setSize("15%", "100%");
+	rightTextBox->setSize(rightBoxWidthPercent, "100%");
 	rightTextBox->setPosition("&.width - width", "0");
 	rightTextBox->setText("Sample Text");
 
@@ -42,14 +48,42 @@ void GraphicsHandler::addBottomTextBox(tgui::Gui* gui){
 
 	if(rightTextBox != nullptr){
 		std::cout << "Found the right box name!";
-		bottomTextBox->setSize("&.width - " + tileInfoBoxName + ".width", "20%");
+		bottomTextBox->setSize("&.width - " + tileInfoBoxName + ".width", bottomBoxHeightPercent);
 	}else{
-		bottomTextBox->setSize("&.width", "20%");
+		bottomTextBox->setSize("&.width", bottomBoxHeightPercent);
 	}
 	bottomTextBox->setPosition("0", "&.height - height");
 	bottomTextBox->setText("Sample Text");
 
 	gui->add(bottomTextBox, worldUpdateBoxName);
+}
+
+sf::View GraphicsHandler::createView(){
+	//Defining what the view views
+	sf::View newView;
+	
+
+	//How view is viewed
+
+	float rightBoxFloat = tGuiPercentToFloat(rightBoxWidthPercent);
+	float downBoxFloat = tGuiPercentToFloat(bottomBoxHeightPercent);
+
+	float viewHeight = 1.0f - downBoxFloat;
+	float viewWidth = 1.0f - rightBoxFloat;
+
+	std::cout << "The view will have width " << viewWidth << " and height " << viewHeight << std::endl;
+
+	newView.setViewport(sf::FloatRect(0.f, 0.f, viewWidth, viewHeight));
+
+	return newView;
+}
+
+float GraphicsHandler::tGuiPercentToFloat(std::string percent){
+	percent.erase(std::remove(percent.begin(), percent.end(), '%'), percent.end());
+
+	float result = std::stof(percent)/100;
+
+	return result;
 }
 
 
