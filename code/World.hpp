@@ -53,12 +53,15 @@ class World{
 		void resetCurPos();
 
 		void printWorld(); //This, likely shouldn't really be used in the final version. For now it is convenient to print stuff to the terminal though.	
+		std::vector<std::vector<std::string>> getSpritePathList();
+
 	private:
 		WorldState worldState;	
 
 		std::string forestPath = "../data/forests/mixedforest";
 		int size = 50;
 		std::vector<std::vector<Ground>> world; 
+		std::vector<std::vector<std::string>> spriteList;
 		std::pair<int,int> curPos; 
 
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.

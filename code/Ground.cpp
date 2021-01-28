@@ -98,6 +98,18 @@ std::string Ground::getASCIIGraphics(){
     }
 }
 
+std::string Ground::getSpritePath(){
+	if(trunk){
+		return "../data/sprites/TreeTrunk.png";
+	}else if(mushroom){
+		return "../data/sprites/Mushroom.png";
+	}else if(root){
+		return "../data/sprites/TreeRoot.png";
+	}else{
+		return "../data/sprites/Ground.png";
+	}
+}
+
 //This function is ugly...
 void Ground::growTreeRoots(){
     if(trunk != nullptr){
