@@ -13,9 +13,16 @@ void GraphicsHandler::LaunchDisplay(){
 	gameView = createView();
 	window.setView(gameView);
 
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-	shape.setPosition(gameView.getCenter());
+	sf::Texture shroomTexture;
+	sf::Texture groundTexture;
+	sf::Texture treeTrunkTexture;
+	sf::Texture treeRootTexture;
+	
+	prepareTexture(&shroomTexture, texturePathFromName("Mushroom.png"));
+	prepareTexture(&groundTexture, texturePathFromName("Ground.png"));
+	prepareTexture(&treeTrunkTexture, texturePathFromName("TreeTrunk.png"));
+	prepareTexture(&treeRootTexture, texturePathFromName("TreeRoot.png"));
+
 	while(window.isOpen()){
 		sf::Event event;
 		while(window.pollEvent(event)){
@@ -35,9 +42,37 @@ void GraphicsHandler::LaunchDisplay(){
 
 		window.clear();
 		gui.draw();
-		window.draw(shape);
 		window.display();
 	}
+}
+
+void GraphicsHandler::drawGraphics(vector<vector<std::string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot, sf::RenderWindow curWindow){
+	int size = spriteNames.size()*spriteNames.size();
+	sf::VertexArray graphics(sf::Quads, size);
+	sf::Texture* currentTexture = ground;
+
+	int currentHorDist = 0; 
+	int currentVertDist = 0;
+	for(auto nameVect : spriteNames){
+		for(auto name : nameVect){
+			if(name == "Mushroom.png"){
+				currentTexture = shroom;
+			}else if(name == "Ground.png"){
+				currentTexture = ground;
+			}else if(name == "TreeTrunk.png"){
+				currentTexture = treeTrunk;
+			}else if(name == "TreeRoot.png"){
+				currentTexture = treeRoot;
+			}else{
+				throw "Error! Unexpexted texture name found in sprite name vector!";
+			}
+			
+			currentHorDist += 16;
+		}
+		currentHorDist = 0;
+		currentVertDist += 16;
+	}
+
 }
 
 void GraphicsHandler::addRightTextBox(tgui::Gui* gui){
@@ -90,6 +125,18 @@ float GraphicsHandler::tGuiPercentToFloat(std::string percent){
 
 	float result = std::stof(percent)/100;
 
+	return result;
+}
+
+void GraphicsHandler::prepareTexture(sf::Texture* texture, std::string textPath){
+	if(!texture->loadFromFile(textPath)){
+		throw "Could not load texture with path " + textPath; 
+	}
+
+}
+
+std::string texturePathFromName(std::string textureName){
+	std::string result = "../../data/sprites/" + textureName;
 	return result;
 }
 

@@ -36,7 +36,7 @@ void World::generateWorld(){
 		for(curPos.second = 0;curPos.second < size; curPos.second++){
 			Ground& currentGround = getCurPos();
 			currentGround.setWorld(this);
-			spriteList.at(curPos.first).at(curPos.second) = currentGround.getSpritePath();
+			spriteList.at(curPos.first).at(curPos.second) = currentGround.getSpriteName();
 			
 			int treeChance = rand() % 100;
 
@@ -78,7 +78,7 @@ void World::populateWorld(){
 		Mushroom* newShroom = shroomGen.generateMushroom();
 		if(mushChance < 7 && !currentGround.hasTreeTrunk() && !currentGround.hasMushroom() && newShroom->checkSoilConditions(currentGround.getTreeRoot())){
 			currentGround.setMushroom(newShroom);		
-			spriteList.at(curPos.first).at(curPos.second) = currentGround.getSpritePath();
+			spriteList.at(curPos.first).at(curPos.second) = currentGround.getSpriteName();
 		}
 		else{
 			delete newShroom;
@@ -95,7 +95,7 @@ void World::update(int hours){
 	while(!curPosAtEnd()){
 		Ground& currentGround = getCurPos();
 		currentGround.update(hours);
-		spriteList.at(curPos.first).at(curPos.second) = currentGround.getSpritePath();
+		spriteList.at(curPos.first).at(curPos.second) = currentGround.getSpriteName();
 		moveNext();
 	}
 	resetCurPos();
@@ -299,8 +299,7 @@ void World::printWorld(){
 	resetCurPos();
 }
 
-std::vector<std::vector<std::string>> World::getSpritePathList(){
+std::vector<std::vector<std::string>> World::getSpriteNames(){
 	return spriteList;
 }
-
 

@@ -45,7 +45,7 @@ class Ground{
         void growMushroom();
 
         std::string getASCIIGraphics();//For now this is what we'll use to decide what to print in the world print function.
-		std::string getSpritePath();//This decides what sprite needs to be printed. Used by the gui hopefully.
+		std::string getSpriteName();//This decides what sprite needs to be printed. Used by the gui hopefully.
 
         void update(int hours);
 };

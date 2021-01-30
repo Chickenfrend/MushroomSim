@@ -98,15 +98,15 @@ std::string Ground::getASCIIGraphics(){
     }
 }
 
-std::string Ground::getSpritePath(){
+std::string Ground::getSpriteName(){
 	if(trunk){
-		return "../data/sprites/TreeTrunk.png";
+		return "TreeTrunk.png";
 	}else if(mushroom){
-		return "../data/sprites/Mushroom.png";
+		return "Mushroom.png";
 	}else if(root){
-		return "../data/sprites/TreeRoot.png";
+		return "TreeRoot.png";
 	}else{
-		return "../data/sprites/Ground.png";
+		return "Ground.png";
 	}
 }
 
