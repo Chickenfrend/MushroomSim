@@ -11,6 +11,7 @@ void GraphicsHandler::LaunchDisplay(){
 
 	sf::View gameView;
 	gameView = createView();
+	gameView.zoom(0.5f);
 	window.setView(gameView);
 
 	sf::Texture shroomTexture;
@@ -24,7 +25,7 @@ void GraphicsHandler::LaunchDisplay(){
 	prepareTexture(&treeRootTexture, texturePathFromName("TreeRoot.png"));
 
 	vector<vector<std::string>> testSpriteVect;
-	int testSize = 10;
+	int testSize = 100;
 	testSpriteVect.resize(testSize);
 	for(int i = 0; i < testSize; i ++){
 		testSpriteVect.at(i).resize(testSize);
@@ -42,12 +43,17 @@ void GraphicsHandler::LaunchDisplay(){
 			if(event.type == sf::Event::Closed){
 				window.close();
 			}
-			/*
+			/*		
 			if(event.type == sf::Event::Resized){
-				sf::FloatRect visibleArea(0.f,0.f, event.size.width, event.size.height);
-				window.setView(sf::View(visibleArea));
+				sf::FloatRect visibleArea(0.f,0.f, event.size.width, event.size.height); 
+				sf::View newView = sf::View(visibleArea);
+				newView.zoom(0.25f); 
+				window.setView(newView);
 			}
 			*/
+			
+			
+			
 
 			gui.handleEvent(event);
 			//Probably here we should pass the event to another function to check if it's an important key press, etc.
@@ -81,6 +87,9 @@ void GraphicsHandler::drawGraphics(vector<vector<std::string>> spriteNames, sf::
 			}else{
 				throw "Error! Unexpexted texture name found in sprite name vector!";
 			}
+
+			//sf::Vector2i spritePixelPos = sf::Vector2i(currentHorDist, currentVertDist);
+			//sf::Vector2f spriteWorldPos = curWindow->mapPixelToCoords(spritePixelPos);
 			
 			std::cout << "About to draw a sprite!" << std::endl;
 			sf::Sprite currentSprite;
@@ -123,17 +132,15 @@ void GraphicsHandler::addBottomTextBox(tgui::Gui* gui){
 }
 
 sf::View GraphicsHandler::createView(){
-	//Defining what the view views
-	sf::View newView;
 	
-
-	//How view is viewed
-
 	float rightBoxFloat = tGuiPercentToFloat(rightBoxWidthPercent);
 	float downBoxFloat = tGuiPercentToFloat(bottomBoxHeightPercent);
 
 	float viewHeight = 1.0f - downBoxFloat;
 	float viewWidth = 1.0f - rightBoxFloat;
+
+	//sf::View newView(sf::Vector2f(800,800),sf::Vector2f(1600*viewHeight, 1600*viewWidth));
+	sf::View newView(sf::FloatRect(0.f,0.f,1600.f*viewWidth,900.f*viewHeight));
 
 	std::cout << "The view will have width " << viewWidth << " and height " << viewHeight << std::endl;
 
