@@ -14,7 +14,7 @@ class GraphicsHandler{
 		void LaunchDisplay();
 		void addRightTextBox(tgui::Gui* gui);
 		void addBottomTextBox(tgui::Gui* gui);
-		void drawGraphics(vector<vector<std::string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot,sf::RenderWindow curWindow);
+		void drawGraphics(vector<vector<std::string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot,sf::RenderWindow* curWindow);
 	private:
 		std::string texturePathFromName(std::string textureName);
 		float tGuiPercentToFloat(std::string percent);

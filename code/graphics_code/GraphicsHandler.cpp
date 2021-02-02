@@ -23,6 +23,19 @@ void GraphicsHandler::LaunchDisplay(){
 	prepareTexture(&treeTrunkTexture, texturePathFromName("TreeTrunk.png"));
 	prepareTexture(&treeRootTexture, texturePathFromName("TreeRoot.png"));
 
+	vector<vector<std::string>> testSpriteVect;
+	int testSize = 10;
+	testSpriteVect.resize(testSize);
+	for(int i = 0; i < testSize; i ++){
+		testSpriteVect.at(i).resize(testSize);
+	}
+
+	for(int i = 0; i < testSize; i++){
+		for(int j = 0; j < testSize; j++){
+			testSpriteVect.at(i).at(j) = "Mushroom.png";
+		}
+	}
+
 	while(window.isOpen()){
 		sf::Event event;
 		while(window.pollEvent(event)){
@@ -41,12 +54,13 @@ void GraphicsHandler::LaunchDisplay(){
 		}
 
 		window.clear();
+		drawGraphics(testSpriteVect, &shroomTexture, &groundTexture, &treeTrunkTexture, &treeRootTexture, &window);
 		gui.draw();
 		window.display();
 	}
 }
 
-void GraphicsHandler::drawGraphics(vector<vector<std::string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot, sf::RenderWindow curWindow){
+void GraphicsHandler::drawGraphics(vector<vector<std::string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot, sf::RenderWindow* curWindow){
 	int size = spriteNames.size()*spriteNames.size();
 	sf::VertexArray graphics(sf::Quads, size);
 	sf::Texture* currentTexture = ground;
@@ -54,6 +68,7 @@ void GraphicsHandler::drawGraphics(vector<vector<std::string>> spriteNames, sf::
 	int currentHorDist = 0; 
 	int currentVertDist = 0;
 	for(auto nameVect : spriteNames){
+		std::cout << "About to iterate through namevector with size " << nameVect.size() << std::endl;
 		for(auto name : nameVect){
 			if(name == "Mushroom.png"){
 				currentTexture = shroom;
@@ -67,6 +82,12 @@ void GraphicsHandler::drawGraphics(vector<vector<std::string>> spriteNames, sf::
 				throw "Error! Unexpexted texture name found in sprite name vector!";
 			}
 			
+			std::cout << "About to draw a sprite!" << std::endl;
+			sf::Sprite currentSprite;
+			currentSprite.setTexture(*currentTexture);
+			currentSprite.setPosition(sf::Vector2f(currentHorDist, currentVertDist));
+			curWindow->draw(currentSprite);
+			
 			currentHorDist += 16;
 		}
 		currentHorDist = 0;
@@ -74,6 +95,7 @@ void GraphicsHandler::drawGraphics(vector<vector<std::string>> spriteNames, sf::
 	}
 
 }
+
 
 void GraphicsHandler::addRightTextBox(tgui::Gui* gui){
 	tgui::TextBox::Ptr rightTextBox = tgui::TextBox::create();
@@ -135,7 +157,7 @@ void GraphicsHandler::prepareTexture(sf::Texture* texture, std::string textPath)
 
 }
 
-std::string texturePathFromName(std::string textureName){
+std::string GraphicsHandler::texturePathFromName(std::string textureName){
 	std::string result = "../../data/sprites/" + textureName;
 	return result;
 }
