@@ -1,11 +1,22 @@
 CXX = g++
-CFLAGES = -std=c++17 -g -Wall
+CFLAGS = -std=c++17 -g -Wall
+ODIR=obj
+GDIR = graphics_code
 
-%.o : %.cpp
-	$(CXX) -c $(CFLAGS) $<
+LIBS = -lm
 
-terminal-test.exe: TerminalTest.o ToolBox.o Ground.o Mushroom.o OakTrunk.o PineTrunk.o Chanterelle.o AmanitaMuscaria.o TreeRoot.o World.o TreeTrunk.o ShroomTracker.o WorldState.o GameObject.o RandTreeGenerator.o RandShroomGenerator.o
-	$(CXX) -o $@ $^
+DEPS = ToolBox.hpp Ground.hpp Mushroom.hpp OakTrunk.hpp PineTrunk.hpp Chanterelle.hpp AmanitaMuscaria.hpp TreeRoot.hpp World.hpp TreeTrunk.hpp ShroomTracker.hpp WorldState.hpp GameObject.hpp RandTreeGenerator.hpp RandShroomGenerator.hpp
+
+_OBJ = TerminalTest.o ToolBox.o Ground.o Mushroom.o OakTrunk.o PineTrunk.o Chanterelle.o AmanitaMuscaria.o TreeRoot.o World.o TreeTrunk.o ShroomTracker.o WorldState.o GameObject.o RandTreeGenerator.o RandShroomGenerator.o
+OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
+
+$(ODIR)/%.o : %.cpp $(DEPS)
+	$(CXX) -c -o $@ $< $(CFLAGS) 
+
+terminal-test.exe: $(OBJ)
+	$(CXX) -o $@ $^ $(CFLAGS) $(LIBS)
+
+.PHONY: clean
 
 clean:
-	$(RM) $(wildcard *.exe) $(wildcard *.o)
+	rm -f $(ODIR)/*.o *~ core %(INCDIR)/*~
