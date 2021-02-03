@@ -47,7 +47,7 @@ void SpriteHandler::prepareTexture(sf::Texture* texture, std::string textPath){
 	}
 }
 
-string texturePathFromName(std::string textureName){
+string SpriteHandler::texturePathFromName(std::string textureName){
 	string result = "../data/sprites/" + textureName;
 	return result;
 }
