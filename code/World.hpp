@@ -59,7 +59,7 @@ class World{
 		WorldState worldState;	
 
 		std::string forestPath = "../data/forests/mixedforest";
-		int size = 50;
+		int size = 100;
 		std::vector<std::vector<Ground>> world; 
 		std::vector<std::vector<std::string>> spriteList;
 		std::pair<int,int> curPos; 

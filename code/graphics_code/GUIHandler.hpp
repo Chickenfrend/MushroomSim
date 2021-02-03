@@ -14,6 +14,7 @@ class GUIHandler{
 		void addRightTextBox(tgui::Gui* gui);
 		void addBottomTextBox(tgui::Gui* gui);
 		sf::View createView();
+		void updateView(sf::View* view, float newWidth, float newHeight);
 	private:
 		float tGuiPercentToFloat(std::string percent);
 

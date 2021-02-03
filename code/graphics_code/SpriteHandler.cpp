@@ -9,7 +9,6 @@ void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture
 	sf::Texture* currentTexture = ground;
 
 	for(auto nameVect : spriteNames){
-		std::cout << "About to iterate through namevector with size " << nameVect.size() << std::endl;
 		for(auto name : nameVect){
 			if(name == "Mushroom.png"){
 				currentTexture = shroom;
@@ -26,7 +25,6 @@ void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture
 			//sf::Vector2i spritePixelPos = sf::Vector2i(currentHorDist, currentVertDist);
 			//sf::Vector2f spriteWorldPos = curWindow->mapPixelToCoords(spritePixelPos);
 			
-			std::cout << "About to draw a sprite!" << std::endl;
 			sf::Sprite currentSprite;
 			currentSprite.setTexture(*currentTexture);
 			currentSprite.setPosition(sf::Vector2f(currentHorDist, currentVertDist));

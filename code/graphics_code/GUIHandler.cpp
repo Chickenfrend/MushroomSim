@@ -14,7 +14,6 @@ void GUIHandler::addBottomTextBox(tgui::Gui* gui){
 	tgui::Widget::Ptr rightTextBox = gui->get(tileInfoBoxName);
 
 	if(rightTextBox != nullptr){
-		std::cout << "Found the right box name!";
 		bottomTextBox->setSize("&.width - " + tileInfoBoxName + ".width", bottomBoxHeightPercent);
 	}else{
 		bottomTextBox->setSize("&.width", bottomBoxHeightPercent);
@@ -26,7 +25,6 @@ void GUIHandler::addBottomTextBox(tgui::Gui* gui){
 }
 
 sf::View GUIHandler::createView(){
-	
 	float rightBoxFloat = tGuiPercentToFloat(rightBoxWidthPercent);
 	float downBoxFloat = tGuiPercentToFloat(bottomBoxHeightPercent);
 
@@ -36,11 +34,19 @@ sf::View GUIHandler::createView(){
 	//sf::View newView(sf::Vector2f(800,800),sf::Vector2f(1600*viewHeight, 1600*viewWidth));
 	sf::View newView(sf::FloatRect(0.f,0.f,1600.f*viewWidth,900.f*viewHeight));
 
-	std::cout << "The view will have width " << viewWidth << " and height " << viewHeight << std::endl;
-
 	newView.setViewport(sf::FloatRect(0.f, 0.f, viewWidth, viewHeight));
 
 	return newView;
+}
+
+void GUIHandler::updateView(sf::View* view, float newWidth, float newHeight){
+	float rightBoxFloat = tGuiPercentToFloat(rightBoxWidthPercent);
+	float downBoxFloat = tGuiPercentToFloat(bottomBoxHeightPercent);
+
+	float viewHeight = 1.0f - downBoxFloat;
+	float viewWidth = 1.0f - rightBoxFloat;
+
+	view->reset(sf::FloatRect(0.f, 0.f, newWidth*viewWidth, newHeight*viewHeight));
 }
 
 float GUIHandler::tGuiPercentToFloat(std::string percent){

@@ -38,6 +38,10 @@ int main(){
 			if(event.type == sf::Event::Closed){
 				window.close();
 			}
+			if(event.type == sf::Event::Resized){
+				gHandler.updateView(&gameView, event.size.width, event.size.height);
+				window.setView(gameView);
+			}
 			gui.handleEvent(event);
 			//Probably here we should pass the event to another function to check if it's an important key press, etc.
 		}
