@@ -57,7 +57,6 @@ void TreeTrunk::updateStage(){
 //This function is kind of stupid and I should definitely figure out a different way to do this.
 bool TreeTrunk::checkRootRequirements(){
 	if(stage == sprout && rootRadius == 0){
-		std::cout << "This is an oak tree" << std::endl;
 		return true;
 	}else if(stage == sapling && rootRadius == 1){
 		return true;
