@@ -5,11 +5,14 @@
 
 class MoveViewCommand : public Command{
 	public:
+		~MoveViewCommand();
 		MoveViewCommand(sf::RenderWindow* _window, sf::Keyboard::Key _key);
+		void setKey(sf::Keyboard::Key _key);
+		void setWindow(sf::RenderWindow* _window);
 		virtual void execute();
 
 	private:
-		std::unique_ptr<sf::RenderWindow> window;
+		sf::RenderWindow* window;
 		sf::Keyboard::Key key;
 		float offset = 32;
 	

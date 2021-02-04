@@ -2,8 +2,16 @@
 
 
 MoveViewCommand::MoveViewCommand(sf::RenderWindow* _window, sf::Keyboard::Key _key){
-	window.reset(_window);
+	window = _window;
 	key = _key;
+}
+
+void MoveViewCommand::setKey(sf::Keyboard::Key _key){
+	key = _key;
+}
+
+void MoveViewCommand::setWindow(sf::RenderWindow* _window){
+	window = _window;
 }
 
 void MoveViewCommand::execute(){
@@ -27,4 +35,6 @@ void MoveViewCommand::execute(){
 	window->setView(curView);
 }
 
+MoveViewCommand::~MoveViewCommand(){
+}
 

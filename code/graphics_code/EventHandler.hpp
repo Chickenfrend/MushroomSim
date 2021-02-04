@@ -6,18 +6,21 @@
 #include <iostream>
 #include "GUIHandler.hpp"
 #include "MoveViewCommand.hpp"
+#include "UpdateWorldCommand.hpp"
+#include "../World.hpp"
 
 class EventHandler{
 	public:
-		EventHandler(sf::RenderWindow* _window);
+		EventHandler(sf::RenderWindow* _window, World* _world);
+		void setTimeStep(int _timeStep);
 		Command* handleEvent(sf::Event event);
 		
 	private:
 		std::unique_ptr<sf::RenderWindow> window;
-		void handleKeyPress(sf::Event event);
-		void handleMouseWheelScroll(sf::Event event);
-		MoveViewCommand* move_view;
-		
+		World* world;
+		int timeStep = 300;
+		Command* handleKeyPress(sf::Event event);
+		void handleMouseWheelScroll(sf::Event event);	
 };
 
 

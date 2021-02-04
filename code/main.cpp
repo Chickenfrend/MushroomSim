@@ -33,7 +33,7 @@ int main(){
 	sHandler.prepareTexture(&treeTrunkTexture, sHandler.texturePathFromName("TreeTrunk.png"));
 	sHandler.prepareTexture(&treeRootTexture, sHandler.texturePathFromName("TreeRoot.png"));
 
-	EventHandler eHandler(&window);
+	EventHandler eHandler(&window, &world);
 
 	while(window.isOpen()){
 		sf::Event event;
@@ -47,7 +47,8 @@ int main(){
 			
 			gui.handleEvent(event);
 			//Probably here we should pass the event to another function to check if it's an important key press, etc.
-			Command* currentCommand = eHandler.handleEvent(event);
+			std::unique_ptr<Command> currentCommand(eHandler.handleEvent(event));
+			//Command* currentCommand = eHandler.handleEvent(event);
 
 			if(currentCommand){
 				currentCommand->execute();
