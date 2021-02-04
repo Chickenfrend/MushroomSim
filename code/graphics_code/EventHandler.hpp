@@ -5,16 +5,18 @@
 #include <TGUI/TGUI.hpp>
 #include <iostream>
 #include "GUIHandler.hpp"
+#include "MoveViewCommand.hpp"
 
 class EventHandler{
 	public:
 		EventHandler(sf::RenderWindow* _window);
-		void handleEvent(sf::Event event);
+		Command* handleEvent(sf::Event event);
 		
 	private:
 		std::unique_ptr<sf::RenderWindow> window;
 		void handleKeyPress(sf::Event event);
 		void handleMouseWheelScroll(sf::Event event);
+		MoveViewCommand* move_view;
 		
 };
 

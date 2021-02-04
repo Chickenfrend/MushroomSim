@@ -5,17 +5,19 @@ EventHandler::EventHandler(sf::RenderWindow* _window){
 }
 
 //Concept. To implement continous running, have a boolean in the world class that tells you if it should be running or not.
-void EventHandler::handleEvent(sf::Event event){
-
+Command* EventHandler::handleEvent(sf::Event event){
 	switch(event.type){
 		case sf::Event::KeyPressed:
-			handleKeyPress(event);
+			// Memory leak!!!
+			return new MoveViewCommand(window.get(), event.key.code);
 			break;
+		/*
 		case sf::Event::MouseWheelScrolled:
 			handleMouseWheelScroll(event);
 			break;
+			*/
 		default:
-			break;
+			return nullptr;
 	}
 	
 }

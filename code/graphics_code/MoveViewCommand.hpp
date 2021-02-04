@@ -11,6 +11,7 @@ class MoveViewCommand : public Command{
 	private:
 		std::unique_ptr<sf::RenderWindow> window;
 		sf::Keyboard::Key key;
+		float offset = 32;
 	
 };
 
