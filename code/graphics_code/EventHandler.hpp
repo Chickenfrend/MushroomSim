@@ -6,6 +6,7 @@
 #include <iostream>
 #include "GUIHandler.hpp"
 #include "MoveViewCommand.hpp"
+#include "AdjustZoomCommand.hpp"
 #include "UpdateWorldCommand.hpp"
 #include "../World.hpp"
 

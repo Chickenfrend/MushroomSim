@@ -10,18 +10,19 @@ void EventHandler::setTimeStep(int _timeStep){
 
 //Concept. To implement continous running, have a boolean in the world class that tells you if it should be running or not.
 Command* EventHandler::handleEvent(sf::Event event){
+	Command* result;
 	switch(event.type){
 		case sf::Event::KeyPressed:
-			return handleKeyPress(event);
+			result = handleKeyPress(event);
 			break;
-		/*
 		case sf::Event::MouseWheelScrolled:
-			handleMouseWheelScroll(event);
+			result = new AdjustZoomCommand(window, event.mouseWheelScroll.delta);
 			break;
-			*/
 		default:
-			return nullptr;
+			result = nullptr;
 	}
+
+	return result;
 	
 }
 
