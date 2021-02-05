@@ -22,16 +22,6 @@ void World::generateWorld(){
 		std::cout << "Initialization of world failed! Your world is empty!" << std::endl;
 	}
 
-	/*std::vector<std::vector<Ground>>::iterator row;
-	std::vector<Ground>::iterator col;
-
-	for(row = world.begin(); row != world.end(); row++){
-		for(col = row->begin(); col != row->end(); col++){
-			
-		}
-	}
-	*/
-
 	for(curPos.first = 0; curPos.first < size; curPos.first++){
 		for(curPos.second = 0;curPos.second < size; curPos.second++){
 			Ground& currentGround = getCurPos();
@@ -174,30 +164,30 @@ std::vector<Ground*> World::getArea(int dist){
 
 bool World::hasTreeInArea(int dist){
 	std::vector<Ground*> area = getArea(dist);
-	bool result = false; 
+	//bool result = false; 
 
 	if(area.empty()){
 		std::cout << "Error! Your vector is empty!" << std::endl;
 		return false;
 	}
 
-	
+	/*	
 	std::for_each(std::begin(area), std::end(area), [&result](Ground* const& value){
 		if(value->getTreeTrunk() != nullptr){
 			result = true; 		
 		}
 
 	});
-
-/*
-	for(int i = 0; i < area.size(); i++){
-		if(area[i]->getTreeTrunk() != nullptr){
-			result = true;
-		}
-	}
 	*/
 
-	return result;
+	for(auto ground : area){
+		if(ground->getTreeTrunk()){
+			return true;
+		}
+	}
+
+	return false;
+	//return result;
 }
 
 
