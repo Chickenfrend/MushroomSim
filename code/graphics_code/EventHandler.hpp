@@ -18,6 +18,7 @@ class EventHandler{
 		
 	private:
 		sf::RenderWindow& window;
+		sf::Vector2f initialViewSize;
 		World* world;
 		int timeStep = 300;
 		Command* handleKeyPress(sf::Event event);

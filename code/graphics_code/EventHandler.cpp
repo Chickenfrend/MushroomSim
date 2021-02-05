@@ -2,6 +2,7 @@
 
 EventHandler::EventHandler(sf::RenderWindow& _window, World* _world) : window(_window){
 	world = _world;
+	initialViewSize = window.getView().getSize();
 }
 
 void EventHandler::setTimeStep(int _timeStep){
@@ -16,7 +17,7 @@ Command* EventHandler::handleEvent(sf::Event event){
 			result = handleKeyPress(event);
 			break;
 		case sf::Event::MouseWheelScrolled:
-			result = new AdjustZoomCommand(window, event.mouseWheelScroll.delta);
+			result = new AdjustZoomCommand(window, event.mouseWheelScroll.delta, initialViewSize.x, 300);
 			break;
 		default:
 			result = nullptr;
