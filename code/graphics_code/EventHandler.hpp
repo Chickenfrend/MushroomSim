@@ -11,12 +11,12 @@
 
 class EventHandler{
 	public:
-		EventHandler(sf::RenderWindow* _window, World* _world);
+		EventHandler(sf::RenderWindow& _window, World* _world);
 		void setTimeStep(int _timeStep);
 		Command* handleEvent(sf::Event event);
 		
 	private:
-		std::unique_ptr<sf::RenderWindow> window;
+		sf::RenderWindow& window;
 		World* world;
 		int timeStep = 300;
 		Command* handleKeyPress(sf::Event event);

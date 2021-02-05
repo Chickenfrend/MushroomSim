@@ -1,7 +1,6 @@
 #include "EventHandler.hpp"
 
-EventHandler::EventHandler(sf::RenderWindow* _window, World* _world){
-	window.reset(_window);
+EventHandler::EventHandler(sf::RenderWindow& _window, World* _world) : window(_window){
 	world = _world;
 }
 
@@ -29,16 +28,16 @@ Command* EventHandler::handleEvent(sf::Event event){
 Command* EventHandler::handleKeyPress(sf::Event event){
 	switch(event.key.code){
 		case sf::Keyboard::Key::Left:
-			return new MoveViewCommand(window.get(), event.key.code);
+			return new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::Right:
-			return new MoveViewCommand(window.get(), event.key.code);
+			return new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::Up:
-			return new MoveViewCommand(window.get(), event.key.code);
+			return new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::Down:
-			return new MoveViewCommand(window.get(), event.key.code);
+			return new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::U:
 			std::cout << "About to update world " << timeStep << " years!" << std::endl;

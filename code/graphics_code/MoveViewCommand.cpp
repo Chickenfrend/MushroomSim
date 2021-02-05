@@ -1,8 +1,7 @@
 #include "MoveViewCommand.hpp"
 
 
-MoveViewCommand::MoveViewCommand(sf::RenderWindow* _window, sf::Keyboard::Key _key){
-	window = _window;
+MoveViewCommand::MoveViewCommand(sf::RenderWindow& _window, sf::Keyboard::Key _key) : window(_window){
 	key = _key;
 }
 
@@ -10,12 +9,8 @@ void MoveViewCommand::setKey(sf::Keyboard::Key _key){
 	key = _key;
 }
 
-void MoveViewCommand::setWindow(sf::RenderWindow* _window){
-	window = _window;
-}
-
 void MoveViewCommand::execute(){
-	sf::View curView = window->getView();
+	sf::View curView = window.getView();
 	switch(key){
 		case sf::Keyboard::Key::Left:
 			curView.move(-offset,0.f);
@@ -32,9 +27,7 @@ void MoveViewCommand::execute(){
 		default:
 			break;
 	}
-	window->setView(curView);
+	window.setView(curView);
 }
 
-MoveViewCommand::~MoveViewCommand(){
-}
 
