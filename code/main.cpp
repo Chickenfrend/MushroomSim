@@ -33,7 +33,7 @@ int main(){
 	sHandler.prepareTexture(&treeTrunkTexture, sHandler.texturePathFromName("TreeTrunk.png"));
 	sHandler.prepareTexture(&treeRootTexture, sHandler.texturePathFromName("TreeRoot.png"));
 	
-	EventHandler eHandler(window, &world);
+	EventHandler eHandler(window, world);
 
 	while(window.isOpen()){
 		sf::Event event;

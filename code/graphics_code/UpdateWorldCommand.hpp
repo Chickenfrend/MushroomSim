@@ -6,10 +6,10 @@
 
 class UpdateWorldCommand : public Command{
 	public:
-		UpdateWorldCommand(World* _world, int _timeStep);
+		UpdateWorldCommand(World& _world, int _timeStep);
 		virtual void execute();
 	private:
-		World* world;
+		World& world;
 		int timeStep;
 };
 

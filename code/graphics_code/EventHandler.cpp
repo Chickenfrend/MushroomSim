@@ -1,7 +1,6 @@
 #include "EventHandler.hpp"
 
-EventHandler::EventHandler(sf::RenderWindow& _window, World* _world) : window(_window){
-	world = _world;
+EventHandler::EventHandler(sf::RenderWindow& _window, World& _world) : window(_window), world{_world}{
 	initialViewSize = window.getView().getSize();
 }
 
@@ -28,24 +27,38 @@ Command* EventHandler::handleEvent(sf::Event event){
 }
 
 Command* EventHandler::handleKeyPress(sf::Event event){
+	Command* result;
 	switch(event.key.code){
 		case sf::Keyboard::Key::Left:
-			return new MoveViewCommand(window, event.key.code);
+			result = new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::Right:
-			return new MoveViewCommand(window, event.key.code);
+			result = new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::Up:
-			return new MoveViewCommand(window, event.key.code);
+			result = new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::Down:
-			return new MoveViewCommand(window, event.key.code);
+			result = new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::U:
 			std::cout << "About to update world " << timeStep << " years!" << std::endl;
-			return new UpdateWorldCommand(world, timeStep);
+			result = new UpdateWorldCommand(world, timeStep);
+			break;
+		case sf::Keyboard::Key::A:
+			result = new CursorLeftCommand(world);
+			break;
+		case sf::Keyboard::Key::D:
+			result = new CursorRightCommand(world);
+			break;
+		case sf::Keyboard::Key::W:
+			result = new CursorUpCommand(world);
+			break;
+		case sf::Keyboard::Key::S:
+			result = new CursorDownCommand(world);
 			break;
 		default:
-			return nullptr;
+			result = nullptr;
 	}
+	return result;
 }
