@@ -3,6 +3,8 @@
 World::World(){
 	curPos.first = 0;
 	curPos.second = 0;
+	cursor.first = 0;
+	cursor.second = 0;
 }
 
 void World::initWorld(){
@@ -254,6 +256,34 @@ void World::moveEast(){
 	if(curPos.first + 1 < size){
 		curPos.first++;
 	}
+}
+
+void World::cursorUp(){
+	if(cursor.second - 1 >= 0){
+		cursor.second--;
+	}
+}
+
+void World::cursorDown(){
+	if(cursor.second + 1 < size){
+		cursor.second++;
+	}
+}
+
+void World::cursorLeft(){
+	if(cursor.first - 1 >= 0){
+		cursor.first--;
+	}
+}
+
+void World::cursorRight(){
+	if(cursor.first + 1 < size){
+		cursor.first++;
+	}
+}
+
+std::pair<int,int> World::getCursor(){
+	return cursor;
 }
 
 void World::moveNext(){

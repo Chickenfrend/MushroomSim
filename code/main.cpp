@@ -58,6 +58,7 @@ int main(){
 
 		window.clear();
 		sHandler.drawGraphics(world.getSpriteNames(), &shroomTexture, &groundTexture, &treeTrunkTexture, &treeRootTexture, &window);
+		sHandler.drawCursor(world.getCursor(), window);
 		gui.draw();
 		window.display();
 	}

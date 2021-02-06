@@ -1,7 +1,8 @@
 #include "SpriteHandler.hpp"
 
 
-void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot, sf::RenderWindow* curWindow){
+void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot, sf::RenderWindow* curWindow)
+{
 
 	int size = spriteNames.size()*spriteNames.size();
 	int currentHorDist = 0; 
@@ -19,7 +20,7 @@ void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture
 			}else if(name == "TreeRoot.png"){
 				currentTexture = treeRoot;
 			}else{
-				throw "Error! Unexpexted texture name found in sprite name vector!";
+				throw "Error! Unexpected texture name found in sprite name vector!";
 			}
 
 			//sf::Vector2i spritePixelPos = sf::Vector2i(currentHorDist, currentVertDist);
@@ -36,6 +37,13 @@ void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture
 		currentVertDist += 16;
 	}
 
+}
+
+void SpriteHandler::drawCursor(pair<int,int> cursor, sf::RenderWindow& curWindow){
+	sf::RectangleShape cursorSquare(sf::Vector2f(16.f,16.f));
+	cursorSquare.setFillColor(sf::Color::White);
+	cursorSquare.setPosition(16.f*cursor.first, 16.f*cursor.second);
+	curWindow.draw(cursorSquare);
 }
 
 

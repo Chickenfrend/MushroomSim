@@ -11,8 +11,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* Concept for later. We could make the world wrap, and add our own functions to add horizontally and vertically to curPos, which would
  * use modular addition to adjust the current position. Get north, south, etc, would also adjust accordingly.
@@ -44,6 +42,7 @@ class World{
 		void moveSouth();
 		void moveEast();
 		void moveWest();
+
 		//This moves curPos to the next valid position. Useful so that we can iterate through the world without always having to explicitly write 
 		//Double nested loops.
 		void moveNext();
@@ -51,6 +50,13 @@ class World{
 		bool curPosAtEnd();
 
 		void resetCurPos();
+
+		//These functions adjust the position of the cursor
+		void cursorRight();
+		void cursorLeft();
+		void cursorUp();
+		void cursorDown();
+		std::pair<int,int> getCursor();
 
 		void printWorld(); //This, likely shouldn't really be used in the final version. For now it is convenient to print stuff to the terminal though.	
 		std::vector<std::vector<std::string>> getSpriteNames();
@@ -63,6 +69,7 @@ class World{
 		std::vector<std::vector<Ground>> world; 
 		std::vector<std::vector<std::string>> spriteList;
 		std::pair<int,int> curPos; 
+		std::pair<int,int> cursor;
 
 		void initWorld(); //Called by generate world. Just, defines the vector for the world.
 
