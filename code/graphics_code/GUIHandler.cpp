@@ -6,6 +6,12 @@ void GUIHandler::addRightTextBox(tgui::Gui* gui){
 	rightTextBox->setPosition("&.width - width", "0");
 	rightTextBox->setText("Sample Text");
 
+	rightTextBox->getRenderer()->setBackgroundColor(sf::Color::Black);
+	rightTextBox->getRenderer()->setTextColor(sf::Color::White);
+	rightTextBox->getRenderer()->setBorderColor(sf::Color(160,82,45));
+	rightTextBox->getRenderer()->setBorders(5);
+	rightTextBox->setReadOnly(true);
+
 	gui->add(rightTextBox, tileInfoBoxName);
 }
 
@@ -20,6 +26,12 @@ void GUIHandler::addBottomTextBox(tgui::Gui* gui){
 	}
 	bottomTextBox->setPosition("0", "&.height - height");
 	bottomTextBox->setText("Sample Text");
+
+	bottomTextBox->getRenderer()->setBackgroundColor(sf::Color::Black);
+	bottomTextBox->getRenderer()->setTextColor(sf::Color::White);
+	bottomTextBox->getRenderer()->setBorderColor(sf::Color(160,82,45));
+	bottomTextBox->getRenderer()->setBorders(5);
+	bottomTextBox->setReadOnly(true);
 
 	gui->add(bottomTextBox, worldUpdateBoxName);
 }
