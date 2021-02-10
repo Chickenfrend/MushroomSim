@@ -1,14 +1,12 @@
 #ifndef CURSOR_UP_COMMAND
 #define CURSOR_UP_COMMAND
 
-#include "Command.hpp"
+#include "CursorMoveCommand.hpp"
 
-class CursorUpCommand : public Command{
+class CursorUpCommand : public CursorMoveCommand{
 	public:
-		CursorUpCommand(World& _world);
-		virtual void execute();
-	private:
-		World& world;
+		CursorUpCommand(World& _world, GUIHandler& _guiHandler);
+		void execute() override;
 };
 
 #endif

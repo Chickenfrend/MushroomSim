@@ -67,6 +67,14 @@ bool Ground::hasMushroom(){
     }
 }
 
+bool Ground::hasTreeRoot(){
+	if(root.get()){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 void Ground::setMushroom(Mushroom* m){
     mushroom.reset(m);
 }

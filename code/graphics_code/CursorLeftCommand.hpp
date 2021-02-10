@@ -1,14 +1,12 @@
 #ifndef CURSOR_LEFT_COMMAND
 #define CURSOR_LEFT_COMMAND
 
-#include "Command.hpp"
+#include "CursorMoveCommand.hpp"
 
-class CursorLeftCommand : public Command{
+class CursorLeftCommand : public CursorMoveCommand{
 	public:
-		CursorLeftCommand(World& _world);
+		CursorLeftCommand(World& _world, GUIHandler& _guiHandler);
 		virtual void execute();
-	private:
-		World& world;
 };
 
 #endif

@@ -9,12 +9,12 @@ int main(){
 	world.generateWorld();
 	world.populateWorld();
 
-	GUIHandler gHandler;
 	SpriteHandler sHandler;
 
 	sf::RenderWindow window(sf::VideoMode(1600,900), "Mushroom Sim?");
 	window.setVerticalSyncEnabled(true);
 	tgui::Gui gui(window);
+	GUIHandler gHandler(gui);
 
 	gHandler.addRightTextBox(&gui);
 	gHandler.addBottomTextBox(&gui);
@@ -33,7 +33,7 @@ int main(){
 	sHandler.prepareTexture(&treeTrunkTexture, sHandler.texturePathFromName("TreeTrunk.png"));
 	sHandler.prepareTexture(&treeRootTexture, sHandler.texturePathFromName("TreeRoot.png"));
 	
-	EventHandler eHandler(window, world);
+	EventHandler eHandler(window, world, gHandler);
 
 	while(window.isOpen()){
 		sf::Event event;

@@ -58,8 +58,11 @@ class World{
 		void cursorDown();
 		std::pair<int,int> getCursor();
 
+		Ground& getCursorGround();
+
 		void printWorld(); //This, likely shouldn't really be used in the final version. For now it is convenient to print stuff to the terminal though.	
 		std::vector<std::vector<std::string>> getSpriteNames();
+
 
 	private:
 		WorldState worldState;	

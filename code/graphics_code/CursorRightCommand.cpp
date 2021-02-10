@@ -1,8 +1,8 @@
 #include "CursorRightCommand.hpp"
 
-CursorRightCommand::CursorRightCommand(World& _world) : world(_world){}
+CursorRightCommand::CursorRightCommand(World& _world, GUIHandler& _guiHandler) : CursorMoveCommand(_world, _guiHandler){}
 
 void CursorRightCommand::execute(){
-	std::cout << "About to move the cursor to the right" << std::endl;
 	world.cursorRight();
+	CursorMoveCommand::execute();
 }

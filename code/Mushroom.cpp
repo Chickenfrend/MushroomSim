@@ -60,6 +60,10 @@ float Mushroom::getDensity(){
 	return density;
 }
 
+std::string Mushroom::getShroomType(){
+	return name;
+}
+
 bool Mushroom::getBloomingStatus(){
 	return isBlooming;
 }

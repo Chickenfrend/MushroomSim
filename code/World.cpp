@@ -138,8 +138,6 @@ void World::run(){
 			}
 		}
 
-		
-
 		ToolBox::ClearScreen();
 	}
 }
@@ -284,6 +282,10 @@ void World::cursorRight(){
 
 std::pair<int,int> World::getCursor(){
 	return cursor;
+}
+
+Ground& World::getCursorGround(){
+	return world[cursor.first][cursor.second];
 }
 
 void World::moveNext(){

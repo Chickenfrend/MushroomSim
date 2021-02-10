@@ -4,7 +4,6 @@
 void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture* shroom, sf::Texture* ground, sf::Texture* treeTrunk, sf::Texture* treeRoot, sf::RenderWindow* curWindow)
 {
 
-	int size = spriteNames.size()*spriteNames.size();
 	int currentHorDist = 0; 
 	int currentVertDist = 0;
 	sf::Texture* currentTexture = ground;
@@ -28,7 +27,8 @@ void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::Texture
 			
 			sf::Sprite currentSprite;
 			currentSprite.setTexture(*currentTexture);
-			currentSprite.setPosition(sf::Vector2f(currentHorDist, currentVertDist));
+			//I am really not sure why, but for some reason what I thought was the vert position is actually the horizontal position.
+			currentSprite.setPosition(currentVertDist, currentHorDist);
 			curWindow->draw(currentSprite);
 			
 			currentHorDist += 16;

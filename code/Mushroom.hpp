@@ -51,6 +51,8 @@ class Mushroom: public GameObject{
 		virtual bool checkBloomConditions(); // Returns true if the mushroom is ready to bloom!
 		virtual bool checkSoilConditions(TreeRoot* root);
 
+		std::string getShroomType();
+
 		void update(int hours);
 		void sporeRelease();
 

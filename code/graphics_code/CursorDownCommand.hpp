@@ -1,14 +1,12 @@
 #ifndef CURSOR_DOWN_COMMAND
 #define CURSOR_DOWN_COMMAND
 
-#include "Command.hpp"
+#include "CursorMoveCommand.hpp"
 
-class CursorDownCommand : public Command{
+class CursorDownCommand : public CursorMoveCommand{
 	public:
-		CursorDownCommand(World& _world);
-		virtual void execute();
-	private:
-		World& world;
+		CursorDownCommand(World& _world, GUIHandler& _guiHandler);
+		virtual void execute() override;
 };
 
 #endif

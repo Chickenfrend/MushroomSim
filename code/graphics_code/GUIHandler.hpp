@@ -11,11 +11,19 @@ using std::vector;
 
 class GUIHandler{
 	public:
+		GUIHandler(tgui::Gui& _gui);
+
 		void addRightTextBox(tgui::Gui* gui);
 		void addBottomTextBox(tgui::Gui* gui);
+		void clearRightTextBox();
+		void clearBottomTextBox();
+		tgui::TextBox::Ptr getRightTextBox();
+		tgui::TextBox::Ptr getBottomTextBox();
+
 		sf::View createView();
 		void updateView(sf::View* view, float newWidth, float newHeight);
 	private:
+		tgui::Gui& gui;
 		float tGuiPercentToFloat(std::string percent);
 
 		std::string tileInfoBoxName = "rightTextBox";

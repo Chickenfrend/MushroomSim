@@ -1,10 +1,11 @@
 #include "GUIHandler.hpp"
 
+GUIHandler::GUIHandler(tgui::Gui& _gui) : gui(_gui){}
+
 void GUIHandler::addRightTextBox(tgui::Gui* gui){
 	tgui::TextBox::Ptr rightTextBox = tgui::TextBox::create();
 	rightTextBox->setSize(rightBoxWidthPercent, "100%");
 	rightTextBox->setPosition("&.width - width", "0");
-	rightTextBox->setText("Sample Text");
 
 	rightTextBox->getRenderer()->setBackgroundColor(sf::Color::Black);
 	rightTextBox->getRenderer()->setTextColor(sf::Color::White);
@@ -25,7 +26,6 @@ void GUIHandler::addBottomTextBox(tgui::Gui* gui){
 		bottomTextBox->setSize("&.width", bottomBoxHeightPercent);
 	}
 	bottomTextBox->setPosition("0", "&.height - height");
-	bottomTextBox->setText("Sample Text");
 
 	bottomTextBox->getRenderer()->setBackgroundColor(sf::Color::Black);
 	bottomTextBox->getRenderer()->setTextColor(sf::Color::White);
@@ -35,6 +35,23 @@ void GUIHandler::addBottomTextBox(tgui::Gui* gui){
 
 	gui->add(bottomTextBox, worldUpdateBoxName);
 }
+
+void GUIHandler::clearRightTextBox(){
+	getRightTextBox()->setText("");
+}
+
+void GUIHandler::clearBottomTextBox(){
+	getBottomTextBox()->setText("");
+}
+
+tgui::TextBox::Ptr GUIHandler::getRightTextBox(){
+	return gui.get<tgui::TextBox>(tileInfoBoxName);
+}
+
+tgui::TextBox::Ptr GUIHandler::getBottomTextBox(){
+	return gui.get<tgui::TextBox>(worldUpdateBoxName);
+}
+
 
 sf::View GUIHandler::createView(){
 	float rightBoxFloat = tGuiPercentToFloat(rightBoxWidthPercent);

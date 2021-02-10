@@ -1,6 +1,6 @@
 #include "EventHandler.hpp"
 
-EventHandler::EventHandler(sf::RenderWindow& _window, World& _world) : window(_window), world{_world}{
+EventHandler::EventHandler(sf::RenderWindow& _window, World& _world, GUIHandler& _guiHandler) : window(_window), world(_world), guiHandler(_guiHandler){
 	initialViewSize = window.getView().getSize();
 }
 
@@ -46,16 +46,16 @@ Command* EventHandler::handleKeyPress(sf::Event event){
 			result = new UpdateWorldCommand(world, timeStep);
 			break;
 		case sf::Keyboard::Key::A:
-			result = new CursorLeftCommand(world);
+			result = new CursorLeftCommand(world, guiHandler);
 			break;
 		case sf::Keyboard::Key::D:
-			result = new CursorRightCommand(world);
+			result = new CursorRightCommand(world, guiHandler);
 			break;
 		case sf::Keyboard::Key::W:
-			result = new CursorUpCommand(world);
+			result = new CursorUpCommand(world, guiHandler);
 			break;
 		case sf::Keyboard::Key::S:
-			result = new CursorDownCommand(world);
+			result = new CursorDownCommand(world, guiHandler);
 			break;
 		default:
 			result = nullptr;
