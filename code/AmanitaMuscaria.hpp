@@ -12,7 +12,7 @@ class AmanitaMuscaria: public Mushroom{
 
 		bool checkSoilConditions(TreeRoot* root) override;
 
-		Mushroom* generateMycelium();
+		Mushroom* generateMycelium() override;
 };
 
 #endif

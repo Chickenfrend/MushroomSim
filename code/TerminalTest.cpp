@@ -1,18 +1,19 @@
 #include <stdio.h>
+
 #include "World.hpp"
 
-int main(){
-	World testworld;
+int main() {
+  World testworld;
 
-	std::cout << "Generating world" << std::endl;
+  std::cout << "Generating world" << std::endl;
 
-	testworld.generateWorld();
+  testworld.generateWorld();
 
-	testworld.printWorld();
+  testworld.printWorld();
 
-	std::cout << "Populating world" << std::endl;
+  std::cout << "Populating world" << std::endl;
 
-	testworld.populateWorld();
+  testworld.populateWorld();
 
-	testworld.run();
+  testworld.run();
 }

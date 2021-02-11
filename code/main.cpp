@@ -1,9 +1,9 @@
+#include "World.hpp"
+#include "graphics_code/EventHandler.hpp"
 #include "graphics_code/GUIHandler.hpp"
 #include "graphics_code/SpriteHandler.hpp"
-#include "graphics_code/EventHandler.hpp"
-#include "World.hpp"
 
-int main(){
+int main() {
 	World world;
 
 	world.generateWorld();
@@ -11,7 +11,7 @@ int main(){
 
 	SpriteHandler sHandler;
 
-	sf::RenderWindow window(sf::VideoMode(1600,900), "Mushroom Sim?");
+	sf::RenderWindow window(sf::VideoMode(1600, 900), "Mushroom Sim?");
 	window.setVerticalSyncEnabled(true);
 	tgui::Gui gui(window);
 	GUIHandler gHandler(gui);
@@ -28,39 +28,49 @@ int main(){
 	sf::Texture treeTrunkTexture;
 	sf::Texture treeRootTexture;
 
-	sHandler.prepareTexture(&shroomTexture, sHandler.texturePathFromName("Mushroom.png"));
-	sHandler.prepareTexture(&groundTexture, sHandler.texturePathFromName("Ground.png"));
-	sHandler.prepareTexture(&treeTrunkTexture, sHandler.texturePathFromName("TreeTrunk.png"));
-	sHandler.prepareTexture(&treeRootTexture, sHandler.texturePathFromName("TreeRoot.png"));
-	
+	sHandler.prepareTexture(&shroomTexture,
+				sHandler.texturePathFromName("Mushroom.png"));
+	sHandler.prepareTexture(&groundTexture,
+				sHandler.texturePathFromName("Ground.png"));
+	sHandler.prepareTexture(&treeTrunkTexture,
+				sHandler.texturePathFromName("TreeTrunk.png"));
+	sHandler.prepareTexture(&treeRootTexture,
+				sHandler.texturePathFromName("TreeRoot.png"));
+
 	EventHandler eHandler(window, world, gHandler);
 
-	while(window.isOpen()){
+	while (window.isOpen()) {
 		sf::Event event;
-		while(window.pollEvent(event)){
-			if(event.type == sf::Event::Closed){
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
 				window.close();
-			}else if(event.type == sf::Event::Resized){
-				gHandler.updateView(&gameView, event.size.width, event.size.height);
+			} else if (event.type == sf::Event::Resized) {
+				gHandler.updateView(&gameView, event.size.width,
+						    event.size.height);
 				window.setView(gameView);
 			}
-			
-			gui.handleEvent(event);
-			//Probably here we should pass the event to another function to check if it's an important key press, etc.
-			std::unique_ptr<Command> currentCommand(eHandler.handleEvent(event));
-			//Command* currentCommand = eHandler.handleEvent(event);
 
-			if(currentCommand){
+			gui.handleEvent(event);
+			// Probably here we should pass the event to another
+			// function to check if it's an important key press,
+			// etc.
+			std::unique_ptr<Command> currentCommand(
+			    eHandler.handleEvent(event));
+			// Command* currentCommand =
+			// eHandler.handleEvent(event);
+
+			if (currentCommand) {
 				currentCommand->execute();
 			}
-
 		}
 
 		window.clear();
-		sHandler.drawGraphics(world.getSpriteNames(), &shroomTexture, &groundTexture, &treeTrunkTexture, &treeRootTexture, &window);
+		sHandler.drawGraphics(world.getSpriteNames(), &shroomTexture,
+				      &groundTexture, &treeTrunkTexture,
+				      &treeRootTexture, &window);
 		sHandler.drawCursor(world.getCursor(), window);
 		gui.draw();
 		window.display();
 	}
-
 }
+

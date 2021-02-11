@@ -1,5 +1,5 @@
 #ifndef UPDATE_WORLD_COMMAND
-#define UPDATE_WOLRD_COMMAND
+#define UPDATE_WORLD_COMMAND
 
 #include "Command.hpp"
 #include "../World.hpp"
