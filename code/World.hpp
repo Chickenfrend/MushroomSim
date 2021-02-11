@@ -10,6 +10,7 @@
 #include "GlobalEnums.hpp"
 #include "RandShroomGenerator.hpp"
 #include "RandTreeGenerator.hpp"
+#include "Ground.hpp"
 #include "ToolBox.hpp"
 
 /* Concept for later. We could make the world wrap, and add our own functions to
