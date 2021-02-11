@@ -6,7 +6,6 @@
 #include "TreeRoot.hpp"
 #include "TreeTrunk.hpp"
 #include "OakTrunk.hpp"
-#include "World.hpp"
 #include <memory>
 #include <string>
    

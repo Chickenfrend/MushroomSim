@@ -13,7 +13,6 @@ void RandTreeGenerator::GenerateLists() {
   std::string line;
   std::string firstLine;
   std::string treeName;
-  int weight;
 
   if (!treeFile.is_open()) {
     throw std::runtime_error("Could not open forest file");
@@ -28,7 +27,6 @@ void RandTreeGenerator::GenerateLists() {
 
   int index = 0;
 
-  int weightSum = 0;
   while (std::getline(treeFile, line)) {
     int currentWeight;
     std::istringstream stream(line);
@@ -47,22 +45,12 @@ void RandTreeGenerator::GenerateLists() {
     index++;
   }
 
-  for (int i = 0; i < treeNames.size(); i++) {
-    std::cout << treeNames[i] << " ";
-  }
-  std::cout << std::endl;
-  for (int i = 0; i < intervals.size(); i++) {
-    std::cout << intervals[i] << " ";
-  }
-  std::cout << std::endl;
 }
 
 std::string RandTreeGenerator::pickRandom() {
   int randInt = rand() % intervals.back();
   for (int i = 0; i < intervals.size(); i++) {
-    std::cout << "Got to for loop" << std::endl;
     if (randInt < intervals[i]) {
-      std::cout << "Current interval is " << intervals[i] << std::endl;
       return treeNames[i];
     }
   }

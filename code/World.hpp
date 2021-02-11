@@ -8,9 +8,9 @@
 #include <vector>
 
 #include "GlobalEnums.hpp"
+#include "Ground.hpp"
 #include "RandShroomGenerator.hpp"
 #include "RandTreeGenerator.hpp"
-#include "Ground.hpp"
 #include "ToolBox.hpp"
 
 /* Concept for later. We could make the world wrap, and add our own functions to
@@ -19,42 +19,40 @@
  * accordingly.
  */
 
-class Ground;
 class World {
-       public:
+	public:
 	World();
-	void generateWorld();  // This will randomly generate a world,
-			       // populating it with tree trunks randomly.
-	void populateWorld();  // This will let the trees grow for a bit then
-			       // randomly populate with mushrooms.
-	void update(
-	    int hours);	 // This should update the world one tick. Should change
-			 // curPos and go through whole 2d list.
-	void run();  // This will be some kind of while loop that keeps running
-		     // update. May do this in main instead, not sure.
-	bool hasTreeInArea(int dist);  // If there's a tree trunk in a certain
-				       // area, returns true. Calls getArea.
+	// This will randomly generate a world,
+	// populating it with tree trunks randomly.
+	void generateWorld();
+	// This will let the trees grow for a bit then
+	// randomly populate with mushrooms.
+	void populateWorld();
+	// This should update the world one tick. Should change
+	// curPos and go through whole 2d list.
+	void update(int hours);
+	// This will be some kind of while loop that keeps running
+	// update. May do this in main instead, not sure.
+	void run();
+	bool hasTreeInArea(int dist); // If there's a tree trunk in a certain
+				      // area, returns true. Calls getArea.
 
-	Ground& getCurPos();  // Returns the ground at curpos, not curPos
-			      // itself.
-	Ground* getNearCurPos(
-	    int hor, int vert);	 // This gets the position hor horizontally from
-				 // curPos, and vert vertically from curPos.
+	Ground &getCurPos();			  // Returns the ground at curpos, not curPos
+						  // itself.
+	Ground *getNearCurPos(int hor, int vert); // This gets the position hor horizontally from
+						  // curPos, and vert vertically from curPos.
 
 	// The following are flawed since they return references when it's very
 	// possible we might wind up exceeding the vector bounds. In those cases
 	// it would be better to return a null pointer or throw an exception.
-	Ground& getNorth(
-	    int dist = 1);  // Should get whatever is dist north of curPos
-	Ground& getSouth(
-	    int dist = 1);  // Should get whatever is dist south of curPos
-	Ground& getEast(
-	    int dist = 1);  // Should get whatever is dist east of curPos
-	Ground& getWest(
-	    int dist = 1);  // Should get whatever is dist west of curPos
-	std::vector<Ground*> getArea(
-	    int dist);	// dist is the distance from curPos in which to get.
-			// Square area centered on curPos.
+	// Either these need to be changed to return pointers, or we should just be very careful when
+	// we call them.
+	Ground &getNorth(int dist = 1);		 // Should get whatever is dist north of curPos
+	Ground &getSouth(int dist = 1);		 // Should get whatever is dist south of curPos
+	Ground &getEast(int dist = 1);		 // Should get whatever is dist east of curPos
+	Ground &getWest(int dist = 1);		 // Should get whatever is dist west of curPos
+	std::vector<Ground *> getArea(int dist); // dist is the distance from curPos in which to get.
+						 // Square area centered on curPos.
 
 	// Note that these functions just adjust curPos.
 	void moveNorth();
@@ -78,14 +76,14 @@ class World {
 	void cursorDown();
 	std::pair<int, int> getCursor();
 
-	Ground& getCursorGround();
+	Ground &getCursorGround();
 
-	void printWorld();  // This, likely shouldn't really be used in the
-			    // final version. For now it is convenient to print
-			    // stuff to the terminal though.
+	void printWorld(); // This, likely shouldn't really be used in the
+			   // final version. For now it is convenient to print
+			   // stuff to the terminal though.
 	std::vector<std::vector<std::string>> getSpriteNames();
 
-       private:
+	private:
 	WorldState worldState;
 
 	std::string forestPath = "../data/forests/mixedforest";
@@ -95,8 +93,8 @@ class World {
 	std::pair<int, int> curPos;
 	std::pair<int, int> cursor;
 
-	void initWorld();  // Called by generate world. Just, defines the vector
-			   // for the world.
+	void initWorld(); // Called by generate world. Just, defines the vector
+			  // for the world.
 };
 
 #endif

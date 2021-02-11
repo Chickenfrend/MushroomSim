@@ -1,4 +1,5 @@
 #include "Ground.hpp"
+#include "World.hpp"
 
 Ground::Ground(float _density, float _moisture, float _drainageRate) {
   density = _density;
