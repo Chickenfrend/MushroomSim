@@ -28,14 +28,10 @@ int main() {
 	sf::Texture treeTrunkTexture;
 	sf::Texture treeRootTexture;
 
-	sHandler.prepareTexture(&shroomTexture,
-				sHandler.texturePathFromName("Mushroom.png"));
-	sHandler.prepareTexture(&groundTexture,
-				sHandler.texturePathFromName("Ground.png"));
-	sHandler.prepareTexture(&treeTrunkTexture,
-				sHandler.texturePathFromName("TreeTrunk.png"));
-	sHandler.prepareTexture(&treeRootTexture,
-				sHandler.texturePathFromName("TreeRoot.png"));
+	sHandler.prepareTexture(&shroomTexture, sHandler.texturePathFromName("Mushroom.png"));
+	sHandler.prepareTexture(&groundTexture, sHandler.texturePathFromName("Ground.png"));
+	sHandler.prepareTexture(&treeTrunkTexture, sHandler.texturePathFromName("TreeTrunk.png"));
+	sHandler.prepareTexture(&treeRootTexture, sHandler.texturePathFromName("TreeRoot.png"));
 
 	EventHandler eHandler(window, world, gHandler);
 
@@ -45,8 +41,7 @@ int main() {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			} else if (event.type == sf::Event::Resized) {
-				gHandler.updateView(&gameView, event.size.width,
-						    event.size.height);
+				gHandler.updateView(&gameView, event.size.width, event.size.height);
 				window.setView(gameView);
 			}
 
@@ -54,8 +49,7 @@ int main() {
 			// Probably here we should pass the event to another
 			// function to check if it's an important key press,
 			// etc.
-			std::unique_ptr<Command> currentCommand(
-			    eHandler.handleEvent(event));
+			std::unique_ptr<Command> currentCommand(eHandler.handleEvent(event));
 			// Command* currentCommand =
 			// eHandler.handleEvent(event);
 
@@ -65,9 +59,7 @@ int main() {
 		}
 
 		window.clear();
-		sHandler.drawGraphics(world.getSpriteNames(), &shroomTexture,
-				      &groundTexture, &treeTrunkTexture,
-				      &treeRootTexture, &window);
+		sHandler.drawGraphics(world.getSpriteNames(), &shroomTexture, &groundTexture, &treeTrunkTexture, &treeRootTexture, &window);
 		sHandler.drawCursor(world.getCursor(), window);
 		gui.draw();
 		window.display();

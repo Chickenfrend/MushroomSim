@@ -48,7 +48,7 @@ void RandShroomGenerator::GenerateLists() {
 
 std::string RandShroomGenerator::pickRandom() {
 	int randInt = rand() % intervals.back();
-	for (int i = 0; i < intervals.size(); i++) {
+	for (size_t i = 0; i < intervals.size(); i++) {
 		if (randInt < intervals[i]) {
 			return shroomNames[i];
 		}

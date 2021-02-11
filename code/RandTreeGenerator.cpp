@@ -49,7 +49,7 @@ void RandTreeGenerator::GenerateLists() {
 
 std::string RandTreeGenerator::pickRandom() {
   int randInt = rand() % intervals.back();
-  for (int i = 0; i < intervals.size(); i++) {
+  for (size_t i = 0; i < intervals.size(); i++) {
     if (randInt < intervals[i]) {
       return treeNames[i];
     }

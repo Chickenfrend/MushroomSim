@@ -28,7 +28,6 @@ bool PineTrunk::checkRootRequirements() {
 }
 
 void PineTrunk::updateStage() {
-  int currentSeason = getWorldState()->getCurrentSeason();
   if (getAgeHours() < 1) {
     stage = seed;
     height = 0;
