@@ -1,6 +1,7 @@
 #ifndef __GUI_HANDLER
 #define __GUI_HANDLER
 
+#include <SFML/System/String.hpp>
 #include <SFML/Window.hpp>
 #include <TGUI/TGUI.hpp>
 #include <iostream>
@@ -16,6 +17,7 @@ class GUIHandler{
 		void addBottomTextBox(tgui::Gui* gui);
 		void clearRightTextBox();
 		void clearBottomTextBox();
+		void updateBottomTextBox(sf::String newText);
 		tgui::TextBox::Ptr getRightTextBox();
 		tgui::TextBox::Ptr getBottomTextBox();
 

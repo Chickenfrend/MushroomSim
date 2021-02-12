@@ -5,6 +5,8 @@
 #include <string>
 #include "world_event_code/WorldUpdateInfo.hpp"
 
+using std::to_string;
+
 // I implemented world age, seasons, etc, in world.hpp. Eventually, I should probably move those here.
 class WorldState {
 	public:

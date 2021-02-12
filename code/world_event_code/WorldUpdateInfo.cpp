@@ -1,11 +1,11 @@
 #include "WorldUpdateInfo.hpp"
 
-WorldUpdateInfo::WorldUpdateInfo() { updateInfo.setString(""); }
+WorldUpdateInfo::WorldUpdateInfo() { updateInfo = ""; }
 
-WorldUpdateInfo::WorldUpdateInfo(string info) { updateInfo.setString(info + "\n"); }
+WorldUpdateInfo::WorldUpdateInfo(string info) { updateInfo += info + "\n"; }
 
-void WorldUpdateInfo::appendInfoLine(string info) { updateInfo.setString(updateInfo.getString() + info + "\n"); }
-void WorldUpdateInfo::resetInfo() { updateInfo.setString(""); }
+void WorldUpdateInfo::appendInfoLine(string info) { updateInfo += info + "\n"; }
+void WorldUpdateInfo::resetInfo() { updateInfo = ""; }
 
-sf::Text WorldUpdateInfo::getText() { return updateInfo; }
+sf::String WorldUpdateInfo::getText() { return updateInfo; }
 

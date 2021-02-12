@@ -42,8 +42,7 @@ Command* EventHandler::handleKeyPress(sf::Event event){
 			result = new MoveViewCommand(window, event.key.code);
 			break;
 		case sf::Keyboard::Key::U:
-			std::cout << "About to update world " << timeStep << " years!" << std::endl;
-			result = new UpdateWorldCommand(world, timeStep);
+			result = new UpdateWorldCommand(world, guiHandler, timeStep);
 			break;
 		case sf::Keyboard::Key::A:
 			result = new CursorLeftCommand(world, guiHandler);

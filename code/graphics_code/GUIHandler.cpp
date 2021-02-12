@@ -1,4 +1,5 @@
 #include "GUIHandler.hpp"
+#include <TGUI/Widgets/TextBox.hpp>
 
 GUIHandler::GUIHandler(tgui::Gui& _gui) : gui(_gui){}
 
@@ -34,6 +35,11 @@ void GUIHandler::addBottomTextBox(tgui::Gui* gui){
 	bottomTextBox->setReadOnly(true);
 
 	gui->add(bottomTextBox, worldUpdateBoxName);
+}
+
+void GUIHandler::updateBottomTextBox(sf::String newText){
+	tgui::TextBox::Ptr updateBox = getBottomTextBox();
+	updateBox->addText(newText);
 }
 
 void GUIHandler::clearRightTextBox(){

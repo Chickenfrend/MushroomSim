@@ -26,7 +26,7 @@ void WorldState::updateAges(int hours) {
 		ageYears += ageMonths / 12;
 		ageMonths = ageMonths % 12;
 	}
-	
+
 	season beginningSeason = curSeason;
 	if (ageMonths < 3) {
 		curSeason = spring;
@@ -37,10 +37,18 @@ void WorldState::updateAges(int hours) {
 	} else {
 		curSeason = winter;
 	}
-	if(beginningSeason == curSeason){
+	if (beginningSeason == curSeason) {
 		updateInfo.appendInfoLine("Season update to " + std::to_string(curSeason));
 	}
 }
+
+string WorldState::getTotalAgeString() {
+	string result =
+	    "Years: " + to_string(ageYears) + " Months: " + to_string(ageMonths) + " Days: " + to_string(ageHours) + " Hours: " + to_string(ageHours);
+	return result;
+}
+
+WorldUpdateInfo &WorldState::getUpdateInfo() { return updateInfo; }
 
 int WorldState::getAgeHours() { return getAgeDays() * 24 + ageHours; }
 

@@ -15,10 +15,10 @@ class WorldUpdateInfo {
 
 	void appendInfoLine(string info);
 	void resetInfo();
-	sf::Text getText();
+	sf::String getText();
 
 	private:
-	sf::Text updateInfo;
+	sf::String updateInfo;
 };
 
 #endif
