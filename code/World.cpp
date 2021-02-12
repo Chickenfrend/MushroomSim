@@ -22,7 +22,7 @@ void World::initWorld() {
 void World::generateWorld() {
 	initWorld();
 	if (world.empty()) {
-		std::cout << "Initialization of world failed! Your world is empty!" << std::endl;
+		throw "Initialization of world failed! Your world is empty!";
 	}
 
 	for (curPos.first = 0; curPos.first < size; curPos.first++) {

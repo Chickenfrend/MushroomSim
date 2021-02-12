@@ -14,7 +14,6 @@ PineTrunk::PineTrunk(std::shared_ptr<WorldState> currentState)
 
 bool PineTrunk::checkRootRequirements() {
   if (stage == sprout && rootRadius == 0) {
-    std::cout << "This is a pine tree" << std::endl;
     return true;
   } else if (stage == sapling && rootRadius == 1) {
     return true;
@@ -33,8 +32,7 @@ void PineTrunk::updateStage() {
     height = 0;
   } else if (stage == seed && getAgeDays() >= 15) {
     stage = sprout;
-    height = 2;
-  } else if (stage == sprout && getAgeMonths() >= 2) {
+    height = 2; } else if (stage == sprout && getAgeMonths() >= 2) {
     stage = sapling;
     height = 15;
   } else if (stage == sapling && ageYears >= 30) {

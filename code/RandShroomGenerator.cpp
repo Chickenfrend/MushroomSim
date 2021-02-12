@@ -19,7 +19,6 @@ void RandShroomGenerator::GenerateLists() {
 
 	if (shroomFile.good()) {
 		std::getline(shroomFile, firstLine);
-		std::cout << "Got Here" << std::endl;
 	} else {
 		throw std::runtime_error("File is not good");
 	}

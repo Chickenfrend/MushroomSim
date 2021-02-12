@@ -18,6 +18,7 @@ class GUIHandler{
 		void clearRightTextBox();
 		void clearBottomTextBox();
 		void updateBottomTextBox(sf::String newText);
+
 		tgui::TextBox::Ptr getRightTextBox();
 		tgui::TextBox::Ptr getBottomTextBox();
 

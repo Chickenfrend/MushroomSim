@@ -20,7 +20,6 @@ void RandTreeGenerator::GenerateLists() {
 
   if (treeFile.good()) {
     std::getline(treeFile, firstLine);
-    std::cout << "Got Here" << std::endl;
   } else {
     throw std::runtime_error("File is not good");
   }
