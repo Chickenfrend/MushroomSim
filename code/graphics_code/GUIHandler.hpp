@@ -7,7 +7,6 @@
 #include <algorithm>
 //#include "../World.hpp"
 
-using std::vector;
 
 class GUIHandler{
 	public:

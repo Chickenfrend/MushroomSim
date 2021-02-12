@@ -12,6 +12,7 @@
 #include "RandShroomGenerator.hpp"
 #include "RandTreeGenerator.hpp"
 #include "ToolBox.hpp"
+#include "world_event_code/WorldUpdateInfo.hpp"
 
 /* Concept for later. We could make the world wrap, and add our own functions to
  * add horizontally and vertically to curPos, which would use modular addition
@@ -82,8 +83,10 @@ class World {
 			   // final version. For now it is convenient to print
 			   // stuff to the terminal though.
 	std::vector<std::vector<std::string>> getSpriteNames();
+	WorldState& getWorldState();
 
 	private:
+	bool isRunning = false;
 	WorldState worldState;
 
 	std::string forestPath = "../data/forests/mixedforest";
