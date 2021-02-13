@@ -54,7 +54,7 @@ void WorldState::updateCloudCover() {
 
 void WorldState::updateIfRaining() {
 	float chanceOfRain = 0.9f;
-	chanceOfRain *= cloudPercent; 
+	chanceOfRain *= cloudPercent;
 
 	int rainRand = rand() % 100;
 	if (float(rainRand) / 100.f < chanceOfRain) {
@@ -108,6 +108,10 @@ string WorldState::getTotalAgeString() {
 	string result =
 	    "Years: " + to_string(ageYears) + " Months: " + to_string(ageMonths) + " Days: " + to_string(ageHours) + " Hours: " + to_string(ageHours);
 	return result;
+}
+
+bool WorldState::getIsRaining(){
+	return isRaining;
 }
 
 WorldUpdateInfo &WorldState::getUpdateInfo() { return updateInfo; }

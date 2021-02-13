@@ -31,6 +31,7 @@ class WorldState {
 	int getCurrentMonth();
 	int getCurrentDay();
 	int getCurrentHour();
+	bool getIsRaining();
 	WorldUpdateInfo& getUpdateInfo();
 
 	private:
