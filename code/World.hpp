@@ -28,9 +28,17 @@ class World {
 	void generateWorld();
 	// This will let the trees grow for a bit then
 	// randomly populate with mushrooms.
+	// This needs to be changed so that it just tells each tree to grow a certain amount.
+	// The way it works now is very inefficient. 
 	void populateWorld();
 	// This should update the world one tick. Should change
 	// curPos and go through whole 2d list.
+	// Right now, it updates everything just, hours hours. Which is honestly kind of unmaintanable
+	// due to the fact we'll need to update ground moisture, etc, based off how much the world has rained.
+	// Would probably be better to set a max update of, maybe, 24 hours, and then if it goes above that we can 
+	// just loop and update hours % 24 times. It should be easier to guess the average rainfall over the course of a day
+	// or less than it would be over the course of months.
+	// WE SHOULD CALCULATE THE AVERAGE RAINFALL ONLY ONCE AT THE BEGINNING OF THE UPDATE!
 	void update(int hours);
 	// This will be some kind of while loop that keeps running
 	// update. May do this in main instead, not sure.

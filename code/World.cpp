@@ -86,7 +86,7 @@ void World::populateWorld() {
 void World::update(int hours) {
 	worldState.getUpdateInfo().resetInfo();
 	resetCurPos();
-	worldState.updateAges(hours);
+	worldState.update(hours);
 	if (!isRunning) {
 		worldState.getUpdateInfo().appendInfoLine("World updated " + std::to_string(hours) + " hours");
 		worldState.getUpdateInfo().appendInfoLine("The world is now " + worldState.getTotalAgeString() + " old");
