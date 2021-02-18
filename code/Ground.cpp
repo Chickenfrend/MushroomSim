@@ -46,8 +46,7 @@ Mushroom *Ground::getMushroom() {
 bool Ground::hasTreeTrunk() {
 	if (trunk.get() == nullptr) {
 		return false;
-	} else {
-		return true;
+	} else { return true;
 	}
 }
 

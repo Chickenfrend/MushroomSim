@@ -11,12 +11,8 @@ void WorldState::incrementTotalMushOrganisms() { totalMushOrganisms++; }
 season WorldState::getCurrentSeason() { return curSeason; }
 
 void WorldState::update(int hours) {
-	int prevAgeDays = ageDays;
 	updateAges(hours);
-	if (prevAgeDays != ageDays) {
-		updateCloudCover();
-	}
-	updateIfRaining();
+	totalRainHoursSinceLastUpdate = updateCumulativeWeather(hours);
 }
 
 // For now, this is how I'm doing it. But I think it'd be better to properly
@@ -49,7 +45,6 @@ void WorldState::updateCloudCover() {
 		cloudCover = 0;
 	}
 	cloudPercent = ((float)cloudCover) / 100.f;
-	updateInfo.appendInfoLine("The cloud cover is now: " + to_string(cloudPercent));
 }
 
 void WorldState::updateIfRaining() {
@@ -58,16 +53,36 @@ void WorldState::updateIfRaining() {
 
 	int rainRand = rand() % 100;
 	if (float(rainRand) / 100.f < chanceOfRain) {
-		if (isRaining == false) {
-			updateInfo.appendInfoLine("It started raining!");
-		}
 		isRaining = true;
 	} else {
-		if (isRaining == true) {
-			updateInfo.appendInfoLine("It stopped raining!");
-		}
 		isRaining = false;
 	}
+}
+
+//Not sure that it makes sense that cloud cover updates every hour... Oh well.
+float WorldState::updateCumulativeWeather(int hours) {
+	bool prevIsRaining = isRaining;
+	float totalRainFall = 0;
+	for (int i = 0; i < hours; i++) {
+		updateCloudCover();
+		updateIfRaining();
+		if (isRaining) {
+			totalRainFall++;
+		}
+	}
+	if(prevIsRaining != isRaining){
+		if(isRaining){
+			updateInfo.appendInfoLine("It started raining!");
+		}else{
+			updateInfo.appendInfoLine("It stopped raining!");
+		}
+	}
+	updateInfo.appendInfoLine("The cloud cover is now: " + to_string(cloudPercent));
+	return totalRainFall;
+}
+
+float WorldState::getCumulativeRainHours(){
+	return totalRainHoursSinceLastUpdate;
 }
 
 void WorldState::updateAges(int hours) {
@@ -110,9 +125,7 @@ string WorldState::getTotalAgeString() {
 	return result;
 }
 
-bool WorldState::getIsRaining(){
-	return isRaining;
-}
+bool WorldState::getIsRaining() { return isRaining; }
 
 WorldUpdateInfo &WorldState::getUpdateInfo() { return updateInfo; }
 

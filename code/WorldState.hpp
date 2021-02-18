@@ -1,11 +1,10 @@
 #ifndef __WORLDSTATE
 #define __WORLDSTATE
 
-#include <random>
 #include "GlobalEnums.hpp"
-#include <string>
 #include "world_event_code/WorldUpdateInfo.hpp"
-
+#include <random>
+#include <string>
 
 // I implemented world age, seasons, etc, in world.hpp. Eventually, I should probably move those here.
 class WorldState {
@@ -31,13 +30,18 @@ class WorldState {
 	int getCurrentMonth();
 	int getCurrentDay();
 	int getCurrentHour();
+	//Rainy hours since the last update.
+	float getCumulativeRainHours();
 	bool getIsRaining();
-	WorldUpdateInfo& getUpdateInfo();
+	WorldUpdateInfo &getUpdateInfo();
 
 	private:
+	// updateCumulativeWeather returns a float representing how many hours it rained.
+	float updateCumulativeWeather(int hours);
 	void updateAges(int hours);
 	void updateCloudCover();
 	void updateIfRaining();
+	float totalRainHoursSinceLastUpdate = 0.f;
 	int totalMushOrganisms = 0; // Keep track of how many unique mushrooms there are.
 	int ageHours = 0;
 	int ageDays = 0;
