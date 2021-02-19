@@ -46,7 +46,8 @@ Mushroom *Ground::getMushroom() {
 bool Ground::hasTreeTrunk() {
 	if (trunk.get() == nullptr) {
 		return false;
-	} else { return true;
+	} else {
+		return true;
 	}
 }
 
@@ -153,13 +154,13 @@ void Ground::update(int hours) {
 	updateMoisture(hours);
 }
 
-//This will need to be changed
+// This will need to be changed
 void Ground::updateMoisture(int timeDifference) {
-	if (world->getWorldState().getIsRaining()) {
-		if(moisture < 1.f){
-			moisture += drainageRate*timeDifference;
-		}
-	}else if(moisture > 0.f){
-		moisture -= drainageRate*timeDifference;
+	if (moisture < 1.f) {
+		float hoursRained = world->getWorldState().getCumulativeRainHours();
+		moisture += 2*drainageRate * hoursRained;
+	} 
+	if (moisture > 0.f) {
+		moisture -= drainageRate * timeDifference;
 	}
 }

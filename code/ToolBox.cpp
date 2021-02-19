@@ -17,3 +17,4 @@ int ToolBox::MonthsToDays(int months) { return 30 * months; }
 int ToolBox::DaysToHours(int days) { return 24 * days; }
 
 int ToolBox::HoursToDays(int hours) { return hours / 24; }
+

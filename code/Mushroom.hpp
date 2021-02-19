@@ -10,6 +10,7 @@
 
 #include "GameObject.hpp"
 #include "ShroomTracker.hpp"
+#include "GlobalEnums.hpp"
 #include "ToolBox.hpp"
 #include "TreeRoot.hpp"
 
@@ -30,6 +31,7 @@ class Mushroom : public GameObject {
 						 // part of.
 	// Possible could be in shroom tracker...
 	std::set<std::string> validTrees;
+	std::set<month> bloomMonths;
 
 	protected:
 	bool needsTreeList = true;
@@ -50,6 +52,7 @@ class Mushroom : public GameObject {
 	std::string name; // The name of the mushrooms species.
 	std::string graphicsSymbol = "m";
 	void storeValidTreeList();
+	void storeValidMonths();
 
 	public:
 	Mushroom(std::shared_ptr<WorldState>);

@@ -28,6 +28,10 @@ void Mushroom::storeValidTreeList() {
 	}
 }
 
+void Mushroom::storeValidMonths(){
+	
+}
+
 bool Mushroom::checkIfValidTree(string treeName) {
 	if (validTrees.find(treeName) != validTrees.end()) {
 		return true;
