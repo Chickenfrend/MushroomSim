@@ -7,5 +7,9 @@ UpdateWorldCommand::UpdateWorldCommand(World& _world, GUIHandler& _gHandler, int
 void UpdateWorldCommand::execute(){
 	world.update(timeStep);
 	gHandler.updateBottomTextBox(world.getWorldState().getUpdateInfo().getText());
+	gHandler.clearRightTextBox();
+	GroundInfoWriter infoWriter(world.getCursorGround());
+	infoWriter.writeToBox(gHandler.getRightTextBox());
+
 }
 

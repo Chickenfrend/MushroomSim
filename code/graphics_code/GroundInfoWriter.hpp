@@ -15,6 +15,7 @@ class GroundInfoWriter {
 	Mushroom *shroom;
 	float moisture;
 	float density;
+	int nutrients;
 	bool hasMushroom = false;
 	bool hasTreeRoot = false;
 	bool hasTreeTrunk = false;

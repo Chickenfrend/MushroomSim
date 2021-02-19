@@ -15,6 +15,8 @@ float Ground::getDensity() { return density; }
 
 float Ground::getMoisture() { return moisture; }
 
+int Ground::getNutrients() { return nutrients; }
+
 void Ground::setMoisture(float m) { moisture = m; }
 
 void Ground::setDensity(float d) { density = d; }
@@ -50,7 +52,6 @@ bool Ground::hasTreeTrunk() {
 		return true;
 	}
 }
-
 bool Ground::hasMushroom() {
 	if (mushroom.get() == nullptr) {
 		return false;
@@ -156,11 +157,18 @@ void Ground::update(int hours) {
 
 // This will need to be changed
 void Ground::updateMoisture(int timeDifference) {
-	if (moisture < 1.f) {
-		float hoursRained = world->getWorldState().getCumulativeRainHours();
-		moisture += 2*drainageRate * hoursRained;
-	} 
-	if (moisture > 0.f) {
+	float hoursRained = world->getWorldState().getCumulativeRainHours();
+	float newMoisture = accumulationRate * hoursRained;
+
+	if (moisture - (drainageRate * timeDifference) > 0.f) {
 		moisture -= drainageRate * timeDifference;
+	} else {
+		moisture = 0.f;
+	}
+
+	if (moisture + newMoisture < 1.f) {
+		moisture += newMoisture;
+	} else {
+		moisture = 1.f;
 	}
 }

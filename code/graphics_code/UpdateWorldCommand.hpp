@@ -3,6 +3,7 @@
 
 #include "Command.hpp"
 #include "GUIHandler.hpp"
+#include "GroundInfoWriter.hpp"
 #include "../World.hpp"
 
 class UpdateWorldCommand : public Command{

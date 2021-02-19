@@ -1,4 +1,5 @@
 #include "GroundInfoWriter.hpp"
+#include <SFML/System/String.hpp>
 
 GroundInfoWriter::GroundInfoWriter(Ground& ground):shroom(ground.getMushroom()){
 	hasTreeRoot = ground.hasTreeRoot();
@@ -7,6 +8,7 @@ GroundInfoWriter::GroundInfoWriter(Ground& ground):shroom(ground.getMushroom()){
 
 	moisture = ground.getMoisture();
 	density = ground.getDensity();
+	nutrients = ground.getNutrients();
 
 	if(hasTreeTrunk){
 		trunkName = ground.getTreeTrunk()->getTreeType();
@@ -22,6 +24,7 @@ GroundInfoWriter::GroundInfoWriter(Ground& ground):shroom(ground.getMushroom()){
 void GroundInfoWriter::writeToBox(tgui::TextBox::Ptr infoBox){
 	infoBox->addText(sf::String("Ground Density: " + std::to_string(density) + "\n"));
 	infoBox->addText(sf::String("Ground Moisture: " + std::to_string(moisture) + "\n"));
+	infoBox->addText(sf::String("Ground nutrients: " + std::to_string(nutrients) + "\n"));
 
 	if(hasTreeTrunk){
 		infoBox->addText(sf::String("Tree: ") + trunkName + "\n\n");
