@@ -29,7 +29,20 @@ void Mushroom::storeValidTreeList() {
 }
 
 void Mushroom::storeValidMonths(){
-	
+	string monthListPath = "../descriptions/mushrooms/" + name + "/valid_months.txt";	
+	ifstream monthList(monthListPath);	
+	string line;
+	if (!monthList.is_open()) {
+		throw std::runtime_error("Could not open the month list file.");
+	}
+
+	while(std::getline(monthList, line)){
+		bloomMonths.insert(SeasonsHandler::stringToMonth(line));
+	}
+
+	if(bloomMonths.empty()){
+		std::cerr << "Warning: Mushroom " << name << " has no valid months. It won't ever bloom!";
+	}
 }
 
 bool Mushroom::checkIfValidTree(string treeName) {

@@ -13,6 +13,7 @@
 #include "GlobalEnums.hpp"
 #include "ToolBox.hpp"
 #include "TreeRoot.hpp"
+#include "SeasonsHandler.hpp"
 
 using std::ifstream;
 using std::string;

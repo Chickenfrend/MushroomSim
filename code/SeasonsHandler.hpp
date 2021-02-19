@@ -7,14 +7,11 @@
 
 class SeasonsHandler {
 	public:
-	static month stringToMonth();
-	static season stringToSeason();
+	static month stringToMonth(std::string _month);
+	static season stringToSeason(std::string _season);
 
 	private:
-	const std::map<std::string, month> stringMonthMap = {{"january", january}, {"february", february}, {"march", march},
-							     {"april", april},	   {"may", may},	   {"june", june},
-							     {"july", july},	   {"august", august},	   {"september", september},
-							     {"october", october}, {"november", november}, {"december", december}};
+	static const std::map<std::string, month> stringMonthMap;
 	const std::map<std::string, season> stringSeasonMap = {{"winter", winter}, {"spring", spring}, {"summer", summer}, {"fall", fall}};
 };
 #endif
