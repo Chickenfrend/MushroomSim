@@ -24,6 +24,7 @@ class Mushroom : public GameObject {
 	int ageDays = 0;
 	int ageYears = 0;
 	int ageMonths = 0;
+	int storedNutrients = 0;
 
 	float density; // The density of the mycelium in whatever ground block
 		       // (should this be kept in the ground object?).
@@ -59,8 +60,6 @@ class Mushroom : public GameObject {
 	Mushroom(std::shared_ptr<WorldState>);
 	Mushroom(std::shared_ptr<WorldState>, std::shared_ptr<ShroomTracker> sharedTracker);
 	virtual void updateSpreadConditions(int hours);
-	// Returns true if the mushroom is able
-	// to spread!
 	bool checkSpreadConditions();
 	virtual bool checkBloomConditions(); // Returns true if the mushroom is
 					     // ready to bloom!
@@ -70,6 +69,8 @@ class Mushroom : public GameObject {
 
 	void update(int hours);
 	void sporeRelease();
+	void feed(int newNutrients);
+	void transferNutrientsInNetwork(int hours);
 
 	// Might be smart to keep these in GameObject.
 	int getAgeHours();
