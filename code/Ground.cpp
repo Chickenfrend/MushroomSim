@@ -140,6 +140,7 @@ void Ground::growMushroom() {
 }
 
 void Ground::update(int hours) {
+	passiveNutrientGrowth(hours);
 	if (hasTreeTrunk()) {
 		trunk->age(hours);
 		if (trunk->checkRootRequirements()) {
@@ -147,6 +148,9 @@ void Ground::update(int hours) {
 		}
 	}
 	if (hasMushroom()) {
+		int nutrientsToFeed = std::min(5*hours, nutrients);
+		mushroom->feed(nutrientsToFeed);
+		nutrients -= nutrientsToFeed;;
 		mushroom->update(hours);
 		if (mushroom->checkSpreadConditions()) {
 			growMushroom();
@@ -172,3 +176,26 @@ void Ground::updateMoisture(int timeDifference) {
 		moisture = 1.f;
 	}
 }
+
+void Ground::passiveNutrientGrowth(int hours){
+	bool lessNutrientsThanMax = nutrients <= nutrientPassiveMax;
+	if(nutrients + passiveNutrientGain*hours < nutrientPassiveMax){
+		nutrients += passiveNutrientGain*hours;
+	}else if(lessNutrientsThanMax){
+		nutrients = nutrientPassiveMax;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

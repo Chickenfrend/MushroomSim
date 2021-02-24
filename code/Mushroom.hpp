@@ -9,25 +9,32 @@
 #include <vector>
 
 #include "GameObject.hpp"
-#include "ShroomTracker.hpp"
 #include "GlobalEnums.hpp"
+#include "SeasonsHandler.hpp"
+#include "ShroomTracker.hpp"
 #include "ToolBox.hpp"
 #include "TreeRoot.hpp"
-#include "SeasonsHandler.hpp"
 
 using std::ifstream;
 using std::string;
 
 class Mushroom : public GameObject {
 	private:
+	bool isDead = false;
 	int ageHours = 0;
 	int ageDays = 0;
 	int ageYears = 0;
 	int ageMonths = 0;
 	int storedNutrients = 0;
+	int nutrientsToSpread = 100;
+	float moisture = 0.5f;
+	float moistureNeeded = 0.5f;
+	// The density of the mycelium in whatever ground block
+	// (should this be kept in the ground object?).
+	float density = 0.01f;
+	float densityToSpread = 0.5f;
+	void maintain(int hours);
 
-	float density; // The density of the mycelium in whatever ground block
-		       // (should this be kept in the ground object?).
 	std::shared_ptr<ShroomTracker> organism; // A pointer to a shroom tracker object, which keeps
 						 // track of what larger organism this mycelium block is
 						 // part of.
@@ -70,6 +77,7 @@ class Mushroom : public GameObject {
 	void update(int hours);
 	void sporeRelease();
 	void feed(int newNutrients);
+	void water(float waterGroundPercent);
 	void transferNutrientsInNetwork(int hours);
 
 	// Might be smart to keep these in GameObject.
@@ -79,6 +87,8 @@ class Mushroom : public GameObject {
 	void age(int hours);
 
 	float getDensity();
+	int getStoredNutrients();
+	float getMoisturePercent();
 
 	bool getBloomingStatus();
 	std::string getDescription();

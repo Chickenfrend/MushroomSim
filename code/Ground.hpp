@@ -42,9 +42,13 @@ class Ground {
 	// Moisture and density are percentages that indicate how dense, and moist, respectively, the soil is.
 	// Drainage rate is the rate at which moisture leaves the ground.
 	void updateMoisture(int timeDifference);
+	void passiveNutrientGrowth(int hours);
 	float density = 0.f;
 	float moisture = 0.f;
 	int nutrients = 1000;
+	// How many nutrients the ground will passively regain each hour.
+	int passiveNutrientGain = 5;
+	int nutrientPassiveMax = 1000;
 	// accumulationRate and drainageRate determine how fast the ground gains and loses water.
 	float accumulationRate = 0.015f;
 	float drainageRate = 0.01f;
