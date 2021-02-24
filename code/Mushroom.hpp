@@ -84,6 +84,7 @@ class Mushroom : public GameObject {
 	int getAgeHours();
 	int getAgeDays();
 	int getAgeMonths();
+	bool checkIfDead();
 	void age(int hours);
 
 	float getDensity();

@@ -148,16 +148,25 @@ void Ground::update(int hours) {
 		}
 	}
 	if (hasMushroom()) {
-		int nutrientsToFeed = std::min(5*hours, nutrients);
-		mushroom->feed(nutrientsToFeed);
-		nutrients -= nutrientsToFeed;;
-		mushroom->update(hours);
-		if (mushroom->checkSpreadConditions()) {
-			growMushroom();
+		if (!mushroom->checkIfDead()) {
+			int nutrientsToFeed = std::min(5 * hours, nutrients);
+			mushroom->feed(nutrientsToFeed);
+			nutrients -= nutrientsToFeed;
+			;
+			mushroom->update(hours);
+			if (mushroom->checkSpreadConditions()) {
+				growMushroom();
+			}
+			if(mushroom->checkIfDead()){
+				mushroom.reset(nullptr);
+			}
+		}else{
+			mushroom.reset(nullptr);
 		}
 	}
 	updateMoisture(hours);
 }
+
 
 // This will need to be changed
 void Ground::updateMoisture(int timeDifference) {
@@ -177,25 +186,12 @@ void Ground::updateMoisture(int timeDifference) {
 	}
 }
 
-void Ground::passiveNutrientGrowth(int hours){
+void Ground::passiveNutrientGrowth(int hours) {
 	bool lessNutrientsThanMax = nutrients <= nutrientPassiveMax;
-	if(nutrients + passiveNutrientGain*hours < nutrientPassiveMax){
-		nutrients += passiveNutrientGain*hours;
-	}else if(lessNutrientsThanMax){
+	if (nutrients + passiveNutrientGain * hours < nutrientPassiveMax) {
+		nutrients += passiveNutrientGain * hours;
+	} else if (lessNutrientsThanMax) {
 		nutrients = nutrientPassiveMax;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
