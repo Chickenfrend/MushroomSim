@@ -152,7 +152,6 @@ void Ground::update(int hours) {
 			int nutrientsToFeed = std::min(5 * hours, nutrients);
 			mushroom->feed(nutrientsToFeed);
 			nutrients -= nutrientsToFeed;
-			;
 			mushroom->update(hours);
 			if (mushroom->checkSpreadConditions()) {
 				growMushroom();
