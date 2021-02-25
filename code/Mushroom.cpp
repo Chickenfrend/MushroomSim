@@ -165,5 +165,5 @@ int Mushroom::getAgeDays() { return getAgeMonths() * 30 + ageDays; }
 
 int Mushroom::getAgeMonths() { return ageYears * 12 + ageMonths; }
 
-bool Mushroom::checkIfDead(){ return isDead; }
+bool Mushroom::checkIfDead() { return isDead; }
 

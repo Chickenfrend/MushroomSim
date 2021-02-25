@@ -23,16 +23,6 @@ int main() {
 	gameView = gHandler.createView();
 	window.setView(gameView);
 
-	sf::Texture shroomTexture;
-	sf::Texture groundTexture;
-	sf::Texture treeTrunkTexture;
-	sf::Texture treeRootTexture;
-
-	sHandler.prepareTexture(&shroomTexture, sHandler.texturePathFromName("Mushroom.png"));
-	sHandler.prepareTexture(&groundTexture, sHandler.texturePathFromName("Ground.png"));
-	sHandler.prepareTexture(&treeTrunkTexture, sHandler.texturePathFromName("TreeTrunk.png"));
-	sHandler.prepareTexture(&treeRootTexture, sHandler.texturePathFromName("TreeRoot.png"));
-
 	EventHandler eHandler(window, world, gHandler);
 
 	while (window.isOpen()) {
@@ -59,7 +49,7 @@ int main() {
 		}
 
 		window.clear();
-		sHandler.drawGraphics(world.getSpriteNames(), &shroomTexture, &groundTexture, &treeTrunkTexture, &treeRootTexture, &window);
+		sHandler.drawGraphics(world.getSpriteNames(), &window);
 		sHandler.drawCursor(world.getCursor(), window);
 		gui.draw();
 		window.display();

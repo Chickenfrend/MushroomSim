@@ -45,7 +45,7 @@ class Ground {
 	void passiveNutrientGrowth(int hours);
 	float density = 0.f;
 	float moisture = 0.f;
-	int nutrients = 1000;
+	int nutrients = 10000;
 	// How many nutrients the ground will passively regain each hour.
 	int passiveNutrientGain = 5;
 	int nutrientPassiveMax = 1000;

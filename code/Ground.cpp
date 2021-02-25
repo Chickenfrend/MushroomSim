@@ -92,7 +92,7 @@ std::string Ground::getSpriteName() {
 	if (trunk) {
 		return "TreeTrunk.png";
 	} else if (mushroom) {
-		return "Mushroom.png";
+		return "Mycelium.png";
 	} else if (root) {
 		return "TreeRoot.png";
 	} else {
