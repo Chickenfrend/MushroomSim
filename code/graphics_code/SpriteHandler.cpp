@@ -14,7 +14,7 @@ void SpriteHandler::drawGraphics(vector<vector<string>> spriteNames, sf::RenderW
 	for (auto nameVect : spriteNames) {
 		for (auto name : nameVect) {
 			if(spriteNameCoords.find(name) != spriteNameCoords.end()){
-				spriteCoords = spriteNameCoords[name];
+				spriteCoords = spriteNameCoords.at(name);
 			}else{
 				throw std::runtime_error("Unkown texture name " + name);
 			}
@@ -55,18 +55,22 @@ void SpriteHandler::loadSpriteCoordinates() {
 	}
 
 	while (std::getline(coordFile, line)) {
-		string spriteName = "";
+		string spriteName;
 		string xPos, yPos;
 		std::istringstream stream(line);
 		std::getline(stream, spriteName, ',');
 		std::getline(stream, xPos, ',');
 		std::getline(stream, yPos);
 		pair<int, int> coords = {std::stoi(xPos), std::stoi(yPos)};
-		spriteNameCoords[spriteName] = coords;
+		spriteNameCoords.insert({spriteName, coords});
 	}
 }
 
-void SpriteHandler::prepareSpriteSheet() { prepareTexture(&spriteSheet, spriteSheetPath); }
+void SpriteHandler::prepareSpriteSheet(){
+	if(!spriteSheet.loadFromFile(spriteSheetPath)){
+		throw "Could not load sprite sheet!";
+	}
+}
 
 void SpriteHandler::drawCursor(pair<int, int> cursor, sf::RenderWindow &curWindow) {
 	sf::RectangleShape cursorSquare(sf::Vector2f(16.f, 16.f));
